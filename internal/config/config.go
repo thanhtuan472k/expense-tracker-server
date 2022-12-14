@@ -1,6 +1,9 @@
 package config
 
-import "os"
+import (
+	"expense-tracker-server/external/constant"
+	"os"
+)
 
 // ENV ...
 type ENV struct {
@@ -65,13 +68,28 @@ func GetENV() *ENV {
 	return &env
 }
 
+// IsEnvDevelop ...
+func IsEnvDevelop() bool {
+	return env.Env == constant.EnvDevelop
+}
+
+// IsEnvStaging ...
+func IsEnvStaging() bool {
+	return env.Env == constant.EnvStaging
+}
+
+// IsEnvProduction ...
+func IsEnvProduction() bool {
+	return env.Env == constant.EnvProduction
+}
+
 // Init ...
 func Init() {
 	env = ENV{
 		Env:                     os.Getenv("ENV"),
 		ZookeeperPrefixExternal: os.Getenv("ZOOKEEPER_PREFIX_EXTERNAL"),
-		ZookeeperPrefixCommon:   os.Getenv("ZOOKEEPER_PREFIX_CAMPAIGN_COMMON"),
-		ZookeeperPrefixApp:      os.Getenv("ZOOKEEPER_PREFIX_CAMPAIGN_APP"),
-		ZookeeperPrefixAdmin:    os.Getenv("ZOOKEEPER_PREFIX_CAMPAIGN_ADMIN"),
+		ZookeeperPrefixCommon:   os.Getenv("ZOOKEEPER_PREFIX_EXPENSE_COMMON"),
+		ZookeeperPrefixApp:      os.Getenv("ZOOKEEPER_PREFIX_EXPENSE_APP"),
+		ZookeeperPrefixAdmin:    os.Getenv("ZOOKEEPER_PREFIX_EXPENSE_ADMIN"),
 	}
 }

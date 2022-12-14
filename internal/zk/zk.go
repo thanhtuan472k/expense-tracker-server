@@ -37,7 +37,7 @@ func server(envVars *config.ENV) {
 	envVars.App.Port = zk.GetStringValue(fmt.Sprintf("%s/port", appPrefix))
 
 	// MongoDB
-	mongodbPrefix := getExternalPrefix("/mongodb/campaign")
+	mongodbPrefix := getExternalPrefix("/mongodb/expense")
 	envVars.MongoDB.URI = zk.GetStringValue(fmt.Sprintf("%s/uri", mongodbPrefix))
 	envVars.MongoDB.DBName = zk.GetStringValue(fmt.Sprintf("%s/db_name", mongodbPrefix))
 
@@ -48,7 +48,7 @@ func server(envVars *config.ENV) {
 	envVars.MongoDB.ReadPrefMode = zk.GetStringValue(fmt.Sprintf("%s/read_pref_mode", mongodbPrefix))
 
 	// NATS
-	natsPrefix := getExternalPrefix("/nats/campaign")
+	natsPrefix := getExternalPrefix("/nats/expense")
 	envVars.Nats.URL = zk.GetStringValue(fmt.Sprintf("%s/uri", natsPrefix))
 	envVars.Nats.Username = zk.GetStringValue(fmt.Sprintf("%s/user", natsPrefix))
 	envVars.Nats.Password = zk.GetStringValue(fmt.Sprintf("%s/password", natsPrefix))
@@ -71,7 +71,7 @@ func server(envVars *config.ENV) {
 	envVars.EnableAuthenticationService = zk.GetStringValue(fmt.Sprintf("%s/authentication_google/enable", adminPrefix))
 
 	// Redis
-	redisPrefix := getExternalPrefix("/redis/campaign")
+	redisPrefix := getExternalPrefix("/redis/expense")
 	envVars.Redis.URI = zk.GetStringValue(fmt.Sprintf("%s/uri", redisPrefix))
 	envVars.Redis.Password = zk.GetStringValue(fmt.Sprintf("%s/auth/password", redisPrefix))
 
