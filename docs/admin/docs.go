@@ -10,11 +10,9 @@ const docTemplate = `{
     "info": {
         "description": "{{escape .Description}}",
         "title": "{{.Title}}",
-        "termsOfService": "https://selly.vn",
         "contact": {
             "name": "Dev team",
-            "url": "https://selly.vn",
-            "email": "dev@selly.vn"
+            "email": "tuanngo.472000@gmail.com"
         },
         "version": "{{.Version}}"
     },
@@ -34,10 +32,10 @@ const docTemplate = `{
 var SwaggerInfo = &swag.Spec{
 	Version:          "1.0",
 	Host:             "",
-	BasePath:         "/admin/campaign",
+	BasePath:         "/admin/expense",
 	Schemes:          []string{},
-	Title:            "Selly Campaign - Admin API",
-	Description:      "All APIs for Campaign admin.\n\n******************************\n- Add description\n******************************\n",
+	Title:            "Expense Tracker - Admin API",
+	Description:      "All APIs for Expense admin.\n\n******************************\n- Add description\n******************************\n",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,
 }

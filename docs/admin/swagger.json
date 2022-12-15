@@ -1,17 +1,15 @@
 {
     "swagger": "2.0",
     "info": {
-        "description": "All APIs for Campaign admin.\n\n******************************\n- Add description\n******************************\n",
-        "title": "Selly Campaign - Admin API",
-        "termsOfService": "https://selly.vn",
+        "description": "All APIs for Expense admin.\n\n******************************\n- Add description\n******************************\n",
+        "title": "Expense Tracker - Admin API",
         "contact": {
             "name": "Dev team",
-            "url": "https://selly.vn",
-            "email": "dev@selly.vn"
+            "email": "tuanngo.472000@gmail.com"
         },
         "version": "1.0"
     },
-    "basePath": "/admin/campaign",
+    "basePath": "/admin/expense",
     "paths": {},
     "securityDefinitions": {
         "ApiKeyAuth": {

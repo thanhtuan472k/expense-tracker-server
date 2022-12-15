@@ -1,8 +1,10 @@
 package main
 
 import (
+	"expense-tracker-server/docs/admin"
 	"expense-tracker-server/internal/config"
 	"expense-tracker-server/pkg/admin/server"
+	echoSwagger "github.com/swaggo/echo-swagger"
 	"os"
 
 	"github.com/labstack/echo/v4"
@@ -10,19 +12,19 @@ import (
 	"go.elastic.co/apm/module/apmechov4"
 )
 
-// @title Selly Campaign - Admin API
+// @title Expense Tracker - Admin API
 // @version 1.0
-// @description All APIs for Campaign admin.
+// @description All APIs for Expense admin.
 // @description
 // @description ******************************
 // @description - Add description
 // @description ******************************
 // @description
-// @termsOfService https://selly.vn
+// @termsOfService
 // @contact.name Dev team
-// @contact.url https://selly.vn
-// @contact.email dev@selly.vn
-// @basePath /admin/campaign
+// @contact.url
+// @contact.email tuanngo.472000@gmail.com
+// @basePath /admin/expense
 
 // @securityDefinitions.apikey ApiKeyAuth
 // @in header
@@ -46,11 +48,11 @@ func main() {
 	server.Bootstrap(e)
 
 	// Swagger
-	//if config.IsEnvDevelop() {
-	//	domain := os.Getenv("DOMAIN_CAMPAIGN_ADMIN")
-	//	admin.SwaggerInfo.Host = domain
-	//	e.GET(admin.SwaggerInfo.BasePath+"/swagger/*", echoSwagger.WrapHandler)
-	//}
+	if config.IsEnvDevelop() {
+		domain := os.Getenv("DOMAIN_EXPENSE_ADMIN")
+		admin.SwaggerInfo.Host = domain
+		e.GET(admin.SwaggerInfo.BasePath+"/swagger/*", echoSwagger.WrapHandler)
+	}
 
 	// Start server
 	e.Logger.Fatal(e.Start(config.GetENV().Admin.Port))
