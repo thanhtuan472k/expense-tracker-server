@@ -1,0 +1,22 @@
+basePath: /admin/campaign
+info:
+  contact:
+    email: dev@selly.vn
+    name: Dev team
+    url: https://selly.vn
+  description: |
+    All APIs for Campaign admin.
+
+    ******************************
+    - Add description
+    ******************************
+  termsOfService: https://selly.vn
+  title: Selly Campaign - Admin API
+  version: "1.0"
+paths: {}
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

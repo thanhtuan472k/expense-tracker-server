@@ -1,0 +1,23 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "All APIs for Campaign admin.\n\n******************************\n- Add description\n******************************\n",
+        "title": "Selly Campaign - Admin API",
+        "termsOfService": "https://selly.vn",
+        "contact": {
+            "name": "Dev team",
+            "url": "https://selly.vn",
+            "email": "dev@selly.vn"
+        },
+        "version": "1.0"
+    },
+    "basePath": "/admin/campaign",
+    "paths": {},
+    "securityDefinitions": {
+        "ApiKeyAuth": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
+    }
+}

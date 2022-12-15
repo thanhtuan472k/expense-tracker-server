@@ -13,7 +13,7 @@ run-app:
 swagger-admin:
 	swag init -d ./ -g cmd/admin/main.go \
     --exclude ./pkg/app \
-    -o ./docs/admin --pd
+    -o ./docs/admin
 
 swagger-app:
 	swag init -d ./ -g cmd/app/main.go \
