@@ -9,3 +9,13 @@ run-admin:
 
 run-app:
 	go run cmd/app/main.go
+
+swagger-admin:
+	swag init -d ./ -g cmd/admin/main.go \
+    --exclude ./pkg/app \
+    -o ./docs/admin --pd
+
+swagger-app:
+	swag init -d ./ -g cmd/app/main.go \
+	--exclude ./pkg/admin \
+	-o ./docs/app
