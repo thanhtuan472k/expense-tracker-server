@@ -1,0 +1,21 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "All APIs for Expense admin.\n\n******************************\n- Add description\n******************************\n",
+        "title": "Expense Tracker - Admin API",
+        "contact": {
+            "name": "Dev team",
+            "email": "tuanngo.472000@gmail.com"
+        },
+        "version": "1.0"
+    },
+    "basePath": "/admin/expense",
+    "paths": {},
+    "securityDefinitions": {
+        "ApiKeyAuth": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
+    }
+}
