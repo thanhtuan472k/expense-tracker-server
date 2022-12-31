@@ -11,7 +11,20 @@ info:
     ******************************
   title: Expense Tracker - Admin API
   version: "1.0"
-paths: {}
+paths:
+  /ping:
+    get:
+      consumes:
+      - application/json
+      operationId: ping
+      produces:
+      - application/json
+      responses: {}
+      security:
+      - ApiKeyAuth: []
+      summary: Ping
+      tags:
+      - Common
 securityDefinitions:
   ApiKeyAuth:
     in: header

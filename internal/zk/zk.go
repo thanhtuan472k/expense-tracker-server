@@ -48,27 +48,27 @@ func server(envVars *config.ENV) {
 	envVars.MongoDB.ReadPrefMode = zk.GetStringValue(fmt.Sprintf("%s/read_pref_mode", mongodbPrefix))
 
 	// NATS
-	natsPrefix := getExternalPrefix("/nats/expense")
-	envVars.Nats.URL = zk.GetStringValue(fmt.Sprintf("%s/uri", natsPrefix))
-	envVars.Nats.Username = zk.GetStringValue(fmt.Sprintf("%s/user", natsPrefix))
-	envVars.Nats.Password = zk.GetStringValue(fmt.Sprintf("%s/password", natsPrefix))
-	envVars.Nats.APIKey = zk.GetStringValue(fmt.Sprintf("%s/api_key", natsPrefix))
+	//natsPrefix := getExternalPrefix("/nats/expense")
+	//envVars.Nats.URL = zk.GetStringValue(fmt.Sprintf("%s/uri", natsPrefix))
+	//envVars.Nats.Username = zk.GetStringValue(fmt.Sprintf("%s/user", natsPrefix))
+	//envVars.Nats.Password = zk.GetStringValue(fmt.Sprintf("%s/password", natsPrefix))
+	//envVars.Nats.APIKey = zk.GetStringValue(fmt.Sprintf("%s/api_key", natsPrefix))
 
 	// MongoDB_AUDIT
-	mongoAuditPrefix := getExternalPrefix("/mongodb/campaign_audit")
-	envVars.MongoAudit.Host = zk.GetStringValue(fmt.Sprintf("%s/host", mongoAuditPrefix))
-	envVars.MongoAudit.DBName = zk.GetStringValue(fmt.Sprintf("%s/db_name", mongoAuditPrefix))
+	//mongoAuditPrefix := getExternalPrefix("/mongodb/campaign_audit")
+	//envVars.MongoAudit.Host = zk.GetStringValue(fmt.Sprintf("%s/host", mongoAuditPrefix))
+	//envVars.MongoAudit.DBName = zk.GetStringValue(fmt.Sprintf("%s/db_name", mongoAuditPrefix))
 
 	// FileHost
-	commonPrefix := getCommonPrefix("")
-	envVars.FileHost = zk.GetStringValue(fmt.Sprintf("%s/file_host", commonPrefix))
+	//commonPrefix := getCommonPrefix("")
+	//envVars.FileHost = zk.GetStringValue(fmt.Sprintf("%s/file_host", commonPrefix))
 
 	// Authentication
-	authPrefix := getAppPrefix("/authentication")
-	envVars.SecretKey = zk.GetStringValue(fmt.Sprintf("%s/auth_secretkey", authPrefix))
+	//authPrefix := getAppPrefix("/authentication")
+	//envVars.SecretKey = zk.GetStringValue(fmt.Sprintf("%s/auth_secretkey", authPrefix))
 
 	// AUTH GG
-	envVars.EnableAuthenticationService = zk.GetStringValue(fmt.Sprintf("%s/authentication_google/enable", adminPrefix))
+	//envVars.EnableAuthenticationService = zk.GetStringValue(fmt.Sprintf("%s/authentication_google/enable", adminPrefix))
 
 	// Redis
 	redisPrefix := getExternalPrefix("/redis/expense")
