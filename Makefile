@@ -1,3 +1,15 @@
+#!bin/bash
+
+export DOMAIN_EXPENSE_TRACKER_ADMIN=localhost:8000
+export DOMAIN_EXPENSE_TRACKER_APP=localhost:8001
+export ENV=develop
+export ZOOKEEPER_URI=127.0.0.1:2181
+export ZOOKEEPER_PREFIX_EXTERNAL=/expense_tracker
+export ZOOKEEPER_PREFIX_EXPENSE_TRACKER_COMMON=/expense_tracker/common
+export ZOOKEEPER_PREFIX_EXPENSE_TRACKER_ADMIN=/expense_tracker/admin
+export ZOOKEEPER_PREFIX_EXPENSE_TRACKER_APP=/expense_tracker/app
+
+
 # make update-submodules branch=develop
 update-submodules:
 	git submodule update --init --recursive && \

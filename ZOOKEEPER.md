@@ -6,13 +6,13 @@ create /expense_tracker
 ```shell
 create /expense_tracker/admin
 create /expense_tracker/admin/server expense_admin
-create /expense_tracker/admin/port:
+create /expense_tracker/admin/port :
 ```
 
 ```shell
 create /expense_tracker/app
 create /expense_tracker/app/server expense_app
-create /expense_tracker/admin/port :8001
+create /expense_tracker/app/port :8001
 ```
 
 ```shell
