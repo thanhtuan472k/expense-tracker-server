@@ -15,6 +15,7 @@ func Connect() {
 
 	// Connect
 	if err := zk.Connect(uri); err != nil {
+		fmt.Println("errrrr", err)
 		panic(err)
 	}
 
