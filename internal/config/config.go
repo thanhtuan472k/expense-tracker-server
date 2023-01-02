@@ -88,8 +88,8 @@ func Init() {
 	env = ENV{
 		Env:                     os.Getenv("ENV"),
 		ZookeeperPrefixExternal: os.Getenv("ZOOKEEPER_PREFIX_EXTERNAL"),
-		ZookeeperPrefixCommon:   os.Getenv("ZOOKEEPER_PREFIX_EXPENSE_COMMON"),
-		ZookeeperPrefixApp:      os.Getenv("ZOOKEEPER_PREFIX_EXPENSE_APP"),
-		ZookeeperPrefixAdmin:    os.Getenv("ZOOKEEPER_PREFIX_EXPENSE_ADMIN"),
+		ZookeeperPrefixCommon:   os.Getenv("ZOOKEEPER_PREFIX_EXPENSE_TRACKER_COMMON"),
+		ZookeeperPrefixApp:      os.Getenv("ZOOKEEPER_PREFIX_EXPENSE_TRACKER_APP"),
+		ZookeeperPrefixAdmin:    os.Getenv("ZOOKEEPER_PREFIX_EXPENSE_TRACKER_ADMIN"),
 	}
 }
