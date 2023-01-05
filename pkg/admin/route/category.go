@@ -17,4 +17,7 @@ func category(e *echo.Group) {
 
 	// Create ...
 	g.POST("", h.Create, v.ValidateBody)
+
+	// Update ...
+	g.PUT("/:id", h.Update, v.ValidateBody)
 }
