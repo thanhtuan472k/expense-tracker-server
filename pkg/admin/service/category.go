@@ -4,6 +4,7 @@ import (
 	"context"
 	"expense-tracker-server/pkg/admin/dao"
 	requestmodel "expense-tracker-server/pkg/admin/model/request"
+	"fmt"
 )
 
 // CategoryInterface ...
@@ -46,5 +47,6 @@ func (c categoryImplement) Create(ctx context.Context, payload requestmodel.Cate
 
 	// Response
 	categoryID = doc.ID.Hex()
+	fmt.Println("tesst")
 	return
 }
