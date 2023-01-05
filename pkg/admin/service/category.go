@@ -2,13 +2,14 @@ package service
 
 import (
 	"context"
+	"expense-tracker-server/pkg/admin/dao"
 	requestmodel "expense-tracker-server/pkg/admin/model/request"
 )
 
 // CategoryInterface ...
 type CategoryInterface interface {
 	// Create new category ...
-	Create(ctx context.Context, payload requestmodel.CategoryBody) (categoryID string, err error)
+	Create(ctx context.Context, payload requestmodel.CategoryBodyCreate) (categoryID string, err error)
 
 	// All
 
@@ -32,7 +33,18 @@ type categoryImplement struct{}
 //
 
 // Create ...
-func (c categoryImplement) Create(ctx context.Context, payload requestmodel.CategoryBody) (categoryID string, err error) {
-	//TODO implement me
-	panic("implement me")
+func (c categoryImplement) Create(ctx context.Context, payload requestmodel.CategoryBodyCreate) (categoryID string, err error) {
+	var (
+		d   = dao.Category()
+		doc = payload.ConvertToBSON()
+	)
+
+	// Create
+	if err = d.InsertOne(ctx, doc); err != nil {
+		return
+	}
+
+	// Response
+	categoryID = doc.ID.Hex()
+	return
 }

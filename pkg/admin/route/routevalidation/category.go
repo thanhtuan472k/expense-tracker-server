@@ -13,7 +13,7 @@ type Category struct{}
 // ValidateBody ...
 func (Category) ValidateBody(next echo.HandlerFunc) echo.HandlerFunc {
 	return func(c echo.Context) error {
-		var payload requestmodel.CategoryBody
+		var payload requestmodel.CategoryBodyCreate
 
 		if err := c.Bind(&payload); err != nil {
 			return response.R400(c, nil, "")

@@ -1,4 +1,17 @@
 basePath: /admin/expense
+definitions:
+  requestmodel.CategoryBodyCreate:
+    properties:
+      name:
+        type: string
+      type:
+        type: string
+    type: object
+  responsemodel.ResponseCreate:
+    properties:
+      _id:
+        type: string
+    type: object
 info:
   contact:
     email: tuanngo.472000@gmail.com
@@ -12,6 +25,30 @@ info:
   title: Expense Tracker - Admin API
   version: "1.0"
 paths:
+  /categories:
+    post:
+      consumes:
+      - application/json
+      operationId: category-create
+      parameters:
+      - description: Payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/requestmodel.CategoryBodyCreate'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responsemodel.ResponseCreate'
+      security:
+      - ApiKeyAuth: []
+      summary: Create
+      tags:
+      - Category
   /ping:
     get:
       consumes:

@@ -1,7 +1,7 @@
 package main
 
 import (
-	"expense-tracker-server/docs/admin"
+	admin "expense-tracker-server/docs/admin"
 	"expense-tracker-server/internal/config"
 	"expense-tracker-server/pkg/admin/server"
 	echoSwagger "github.com/swaggo/echo-swagger"

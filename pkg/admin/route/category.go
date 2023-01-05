@@ -16,5 +16,5 @@ func category(e *echo.Group) {
 	)
 
 	// Create ...
-	g.POST("/", h.Create, v.ValidateBody)
+	g.POST("", h.Create, v.ValidateBody)
 }
