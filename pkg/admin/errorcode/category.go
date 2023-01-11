@@ -7,6 +7,7 @@ const (
 	CategoryIsInvalid       = "category_is_invalid"
 	CategoryStatusIsInvalid = "category_status_is_invalid"
 	CategoryIDIsInvalid     = "category_id_is_invalid"
+	CategoryNotFound        = "category_not_found"
 )
 
 // 200 - 299
@@ -30,5 +31,10 @@ var category = []response.Code{
 		Key:     CategoryIDIsInvalid,
 		Message: "ID danh mục không hợp lệ",
 		Code:    203,
+	},
+	{
+		Key:     CategoryNotFound,
+		Message: "Không tìm thấy danh mục",
+		Code:    204,
 	},
 }
