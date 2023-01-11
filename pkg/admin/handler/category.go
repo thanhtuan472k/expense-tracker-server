@@ -43,6 +43,7 @@ func (Category) Create(c echo.Context) error {
 // @security ApiKeyAuth
 // @accept json
 // @produce json
+// @param id path string true "Category id"
 // @param payload body requestmodel.CategoryBodyCreate true "Payload"
 // @success 200 {object} responsemodel.ResponseCreate
 // @router /categories/{id} [PUT]

@@ -5,6 +5,8 @@ import (
 	mgexpense "expense-tracker-server/external/model/mg/expense"
 	"expense-tracker-server/external/mongodb"
 	"expense-tracker-server/external/util/ptime"
+	internalconstant "expense-tracker-server/internal/constant"
+	"expense-tracker-server/pkg/admin/errorcode"
 	validation "github.com/go-ozzo/ozzo-validation/v4"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
@@ -17,7 +19,14 @@ type CategoryBodyCreate struct {
 
 // Validate ...
 func (m CategoryBodyCreate) Validate() error {
-	return validation.ValidateStruct(&m)
+	var types = []interface{}{
+		internalconstant.CategoryTypeExpense,
+		internalconstant.CategoryTypeIncome,
+	}
+	return validation.ValidateStruct(&m,
+		validation.Field(&m.Name, validation.Required.Error(errorcode.CategoryIsRequiredName)),
+		validation.Field(&m.Type, validation.In(types...).Error(errorcode.CategoryIsInvalid)),
+	)
 }
 
 // ConvertToBSON ...
@@ -31,4 +40,9 @@ func (m CategoryBodyCreate) ConvertToBSON() mgexpense.Category {
 		CreatedAt:    ptime.Now(),
 		UpdatedAt:    ptime.Now(),
 	}
+}
+
+// CategoryChangeStatus ...
+type CategoryChangeStatus struct {
+	Status string `json:"status"`
 }

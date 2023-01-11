@@ -49,6 +49,35 @@ paths:
       summary: Create
       tags:
       - Category
+  /categories/{id}:
+    put:
+      consumes:
+      - application/json
+      operationId: category-update
+      parameters:
+      - description: Category id
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/requestmodel.CategoryBodyCreate'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responsemodel.ResponseCreate'
+      security:
+      - ApiKeyAuth: []
+      summary: Update
+      tags:
+      - Category
   /ping:
     get:
       consumes:
