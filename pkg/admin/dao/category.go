@@ -15,6 +15,12 @@ type CategoryInterface interface {
 
 	// FindOneByCondition ...
 	FindOneByCondition(ctx context.Context, cond interface{}, opts ...*options.FindOneOptions) (doc mgexpense.Category)
+
+	// FindByCondition ...
+	FindByCondition(ctx context.Context, cond interface{}, opts ...*options.FindOptions) (docs []mgexpense.Category)
+
+	// CountByCondition ...
+	CountByCondition(ctx context.Context, cond interface{}) int64
 }
 
 // categoryImplement ...
@@ -57,4 +63,47 @@ func (d categoryImplement) FindOneByCondition(ctx context.Context, cond interfac
 		})
 	}
 	return
+}
+
+// FindByCondition ...
+func (d categoryImplement) FindByCondition(ctx context.Context, cond interface{}, opts ...*options.FindOptions) (docs []mgexpense.Category) {
+	var (
+		col = database.CategoryCol()
+	)
+
+	cursor, err := col.Find(ctx, opts)
+	if err != nil {
+		logger.Error("dao.Category - FindByCondition cursor", logger.LogData{
+			Data: bson.M{
+				"cond":  cond,
+				"opts":  opts,
+				"error": err.Error(),
+			},
+		})
+	}
+
+	// Close cursor
+	defer cursor.Close(ctx)
+
+	if err = cursor.All(ctx, &docs); err != nil {
+
+		logger.Error("dao.Category - FindByCondition decode", logger.LogData{
+			Data: bson.M{
+				"cond":  cond,
+				"opts":  opts,
+				"error": err.Error(),
+			},
+		})
+	}
+	return
+}
+
+// CountByCondition ...
+func (d categoryImplement) CountByCondition(ctx context.Context, cond interface{}) int64 {
+	var (
+		col = database.CategoryCol()
+	)
+
+	total, _ := col.CountDocuments(ctx, cond)
+	return total
 }

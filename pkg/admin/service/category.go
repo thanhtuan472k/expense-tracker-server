@@ -12,6 +12,7 @@ import (
 	responsemodel "expense-tracker-server/pkg/admin/model/response"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
+	"sync"
 )
 
 // CategoryInterface ...
@@ -63,8 +64,48 @@ func (s categoryImplement) Create(ctx context.Context, payload requestmodel.Cate
 
 // All ...
 func (s categoryImplement) All(ctx context.Context, q mgquerry.AppQuery) (result responsemodel.ResponseCategoryAll) {
-	//TODO implement me
-	panic("implement me")
+	var (
+		d  = dao.Category()
+		wg = sync.WaitGroup{}
+	)
+
+	// Assign cond
+	cond := bson.D{}
+	q.ExpenseTracker.AssignKeyword(&cond)
+	q.ExpenseTracker.AssignStatus(&cond)
+	q.ExpenseTracker.AssignCategoryType(&cond)
+
+	// Find
+	wg.Add(1)
+	go func() {
+		defer wg.Done()
+		// Init data
+		result.List = make([]responsemodel.ResponseCategoryAdmin, 0)
+
+		// Find options
+		findOpts := q.GetFindOptionsWithPage()
+
+		// Find
+		docs := d.FindByCondition(ctx, cond, findOpts)
+		for _, doc := range docs {
+			result.List = append(result.List, s.detail(ctx, doc))
+		}
+	}()
+
+	// Assign total
+	wg.Add(1)
+	go func() {
+		defer wg.Done()
+		result.Total = d.CountByCondition(ctx, cond)
+	}()
+
+	wg.Wait()
+
+	// Assign limit
+	result.Limit = q.Limit
+
+	return
+
 }
 
 // Detail ...
