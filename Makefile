@@ -23,7 +23,7 @@ run-app:
 	go run cmd/app/main.go
 
 swagger-admin:
-	swag init -d ./ -g cmd/admin/main.go \
+	swag init -d ./ -g cmd/admin/main.go -pd\
     --exclude ./pkg/app \
     -o ./docs/admin
 

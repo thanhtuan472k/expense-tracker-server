@@ -10,7 +10,6 @@ require (
 	github.com/leekchan/accounting v1.0.0
 	github.com/logrusorgru/aurora v2.0.3+incompatible
 	github.com/swaggo/echo-swagger v1.3.5
-	github.com/swaggo/swag v1.8.7
 	github.com/thoas/go-funk v0.9.2
 	go.elastic.co/apm/module/apmechov4 v1.15.0
 	go.elastic.co/apm/module/apmmongo v1.15.0
@@ -50,6 +49,7 @@ require (
 	github.com/santhosh-tekuri/jsonschema v1.2.4 // indirect
 	github.com/shopspring/decimal v0.0.0-20180709203117-cd690d0c9e24 // indirect
 	github.com/swaggo/files v1.0.0 // indirect
+	github.com/swaggo/swag v1.8.7 // indirect
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
 	github.com/valyala/fasttemplate v1.2.2 // indirect
 	github.com/xdg-go/pbkdf2 v1.0.0 // indirect

@@ -1,7 +1,7 @@
 package main
 
 import (
-	"expense-tracker-server/docs/admin"
+	admin "expense-tracker-server/docs/admin"
 	"expense-tracker-server/internal/config"
 	"expense-tracker-server/pkg/admin/server"
 	echoSwagger "github.com/swaggo/echo-swagger"
@@ -49,11 +49,12 @@ func main() {
 
 	// Swagger
 	if config.IsEnvDevelop() {
-		domain := os.Getenv("DOMAIN_EXPENSE_ADMIN")
+		domain := os.Getenv("DOMAIN_EXPENSE_TRACKER_ADMIN")
 		admin.SwaggerInfo.Host = domain
 		e.GET(admin.SwaggerInfo.BasePath+"/swagger/*", echoSwagger.WrapHandler)
 	}
 
 	// Start server
 	e.Logger.Fatal(e.Start(config.GetENV().Admin.Port))
+
 }
