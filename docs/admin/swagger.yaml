@@ -1,10 +1,53 @@
 basePath: /admin/expense
 definitions:
+  ptime.TimeResponse:
+    properties:
+      time:
+        type: string
+    type: object
   requestmodel.CategoryBodyCreate:
     properties:
       name:
         type: string
       type:
+        type: string
+    type: object
+  requestmodel.CategoryChangeStatus:
+    properties:
+      status:
+        type: string
+    type: object
+  responsemodel.ResponseCategoryAdmin:
+    properties:
+      _id:
+        type: string
+      createdAt:
+        $ref: '#/definitions/ptime.TimeResponse'
+      name:
+        type: string
+      status:
+        type: string
+      type:
+        type: string
+      updatedAt:
+        $ref: '#/definitions/ptime.TimeResponse'
+    type: object
+  responsemodel.ResponseCategoryAll:
+    properties:
+      limit:
+        type: integer
+      list:
+        items:
+          $ref: '#/definitions/responsemodel.ResponseCategoryAdmin'
+        type: array
+      total:
+        type: integer
+    type: object
+  responsemodel.ResponseChangeStatus:
+    properties:
+      _id:
+        type: string
+      status:
         type: string
     type: object
   responsemodel.ResponseCreate:
@@ -26,6 +69,35 @@ info:
   version: "1.0"
 paths:
   /categories:
+    get:
+      consumes:
+      - application/json
+      operationId: category-all
+      parameters:
+      - in: query
+        name: limit
+        type: integer
+      - in: query
+        name: page
+        type: integer
+      - in: query
+        name: status
+        type: string
+      - in: query
+        name: type
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responsemodel.ResponseCategoryAll'
+      security:
+      - ApiKeyAuth: []
+      summary: All
+      tags:
+      - Category
     post:
       consumes:
       - application/json
@@ -50,6 +122,28 @@ paths:
       tags:
       - Category
   /categories/{id}:
+    get:
+      consumes:
+      - application/json
+      operationId: category-detail
+      parameters:
+      - description: Category id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responsemodel.ResponseCategoryAdmin'
+      security:
+      - ApiKeyAuth: []
+      summary: Detail
+      tags:
+      - Category
     put:
       consumes:
       - application/json
@@ -76,6 +170,35 @@ paths:
       security:
       - ApiKeyAuth: []
       summary: Update
+      tags:
+      - Category
+  /categories/{id}/status:
+    patch:
+      consumes:
+      - application/json
+      operationId: category-change-status
+      parameters:
+      - description: Category id
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/requestmodel.CategoryChangeStatus'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responsemodel.ResponseChangeStatus'
+      security:
+      - ApiKeyAuth: []
+      summary: ChangeStatus
       tags:
       - Category
   /ping:

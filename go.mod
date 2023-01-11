@@ -10,6 +10,7 @@ require (
 	github.com/leekchan/accounting v1.0.0
 	github.com/logrusorgru/aurora v2.0.3+incompatible
 	github.com/swaggo/echo-swagger v1.3.5
+	github.com/swaggo/swag v1.8.7
 	github.com/thoas/go-funk v0.9.2
 	go.elastic.co/apm/module/apmechov4 v1.15.0
 	go.elastic.co/apm/module/apmmongo v1.15.0
@@ -23,6 +24,7 @@ require (
 require (
 	github.com/KyleBanks/depth v1.2.1 // indirect
 	github.com/armon/go-radix v1.0.0 // indirect
+	github.com/asaskevich/govalidator v0.0.0-20200108200545-475eaeb16496 // indirect
 	github.com/cespare/xxhash/v2 v2.1.2 // indirect
 	github.com/cockroachdb/apd v1.1.0 // indirect
 	github.com/dgryski/go-rendezvous v0.0.0-20200823014737-9f7001d12a5f // indirect
@@ -49,7 +51,6 @@ require (
 	github.com/santhosh-tekuri/jsonschema v1.2.4 // indirect
 	github.com/shopspring/decimal v0.0.0-20180709203117-cd690d0c9e24 // indirect
 	github.com/swaggo/files v1.0.0 // indirect
-	github.com/swaggo/swag v1.8.7 // indirect
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
 	github.com/valyala/fasttemplate v1.2.2 // indirect
 	github.com/xdg-go/pbkdf2 v1.0.0 // indirect
