@@ -24,7 +24,7 @@ type CategoryInterface interface {
 	Update(ctx context.Context, id primitive.ObjectID, payload requestmodel.CategoryBodyCreate)
 
 	// ChangeStatus ...
-	ChangeStatus(ctx context.Context, id primitive.ObjectID, payload requestmodel.CategoryChangeStatus) (result responsemodel.ResponseChangeStatus)
+	ChangeStatus(ctx context.Context, id primitive.ObjectID, payload requestmodel.CategoryChangeStatus) (result responsemodel.ResponseChangeStatus, err error)
 }
 
 // Category ...
@@ -75,7 +75,7 @@ func (s categoryImplement) Update(ctx context.Context, id primitive.ObjectID, pa
 }
 
 // ChangeStatus ...
-func (s categoryImplement) ChangeStatus(ctx context.Context, id primitive.ObjectID, payload requestmodel.CategoryChangeStatus) (result responsemodel.ResponseChangeStatus) {
+func (s categoryImplement) ChangeStatus(ctx context.Context, id primitive.ObjectID, payload requestmodel.CategoryChangeStatus) (result responsemodel.ResponseChangeStatus, err error) {
 	//TODO implement me
 	panic("implement me")
 }
