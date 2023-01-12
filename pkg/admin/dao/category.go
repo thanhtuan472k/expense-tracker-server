@@ -5,6 +5,7 @@ import (
 	"expense-tracker-server/external/logger"
 	mgexpense "expense-tracker-server/external/model/mg/expense"
 	"expense-tracker-server/internal/database"
+	"fmt"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
@@ -67,33 +68,19 @@ func (d categoryImplement) FindOneByCondition(ctx context.Context, cond interfac
 
 // FindByCondition ...
 func (d categoryImplement) FindByCondition(ctx context.Context, cond interface{}, opts ...*options.FindOptions) (docs []mgexpense.Category) {
-	var (
-		col = database.CategoryCol()
-	)
+	var col = database.CategoryCol()
 
-	cursor, err := col.Find(ctx, opts)
+	cursor, err := col.Find(ctx, cond, opts...)
 	if err != nil {
-		logger.Error("dao.Category - FindByCondition cursor", logger.LogData{
-			Data: bson.M{
-				"cond":  cond,
-				"opts":  opts,
-				"error": err.Error(),
-			},
-		})
+		fmt.Println("err FindByCondition 1: ", err.Error())
+		return
 	}
 
 	// Close cursor
 	defer cursor.Close(ctx)
 
-	if err = cursor.All(ctx, &docs); err != nil {
-
-		logger.Error("dao.Category - FindByCondition decode", logger.LogData{
-			Data: bson.M{
-				"cond":  cond,
-				"opts":  opts,
-				"error": err.Error(),
-			},
-		})
+	if err := cursor.All(ctx, &docs); err != nil {
+		fmt.Println("err FindByCondition 2: ", err.Error())
 	}
 	return
 }
