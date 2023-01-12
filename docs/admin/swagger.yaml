@@ -55,6 +55,11 @@ definitions:
       _id:
         type: string
     type: object
+  responsemodel.ResponseUpdate:
+    properties:
+      _id:
+        type: string
+    type: object
 info:
   contact:
     email: tuanngo.472000@gmail.com
@@ -166,7 +171,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/responsemodel.ResponseCreate'
+            $ref: '#/definitions/responsemodel.ResponseUpdate'
       security:
       - ApiKeyAuth: []
       summary: Update
