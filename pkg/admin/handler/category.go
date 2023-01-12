@@ -60,6 +60,11 @@ func (Category) All(c echo.Context) error {
 			SortInterface: bson.D{
 				{"createdAt", -1},
 			},
+			ExpenseTracker: mgquerry.ExpenseTracker{
+				Keyword: qParams.Keyword,
+				Status:  qParams.Status,
+				Type:    qParams.Type,
+			},
 		}
 	)
 

@@ -27,7 +27,7 @@ func (m CategoryBodyCreate) Validate() error {
 	}
 	return validation.ValidateStruct(&m,
 		validation.Field(&m.Name, validation.Required.Error(errorcode.CategoryIsRequiredName)),
-		validation.Field(&m.Type, validation.In(types...).Error(errorcode.CategoryIsInvalid)),
+		validation.Field(&m.Type, validation.In(types...).Error(errorcode.CategoryTypeIsInvalid)),
 	)
 }
 
@@ -46,10 +46,11 @@ func (m CategoryBodyCreate) ConvertToBSON() mgexpense.Category {
 
 // CategoryAll ...
 type CategoryAll struct {
-	Page   int64  `json:"page"`
-	Limit  int64  `json:"limit"`
-	Status string `json:"status"`
-	Type   string `json:"type"`
+	Page    int64  `json:"page"`
+	Limit   int64  `json:"limit"`
+	Keyword string `json:"keyword"`
+	Status  string `json:"status"`
+	Type    string `json:"type"`
 }
 
 // Validate ...
