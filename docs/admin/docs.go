@@ -181,7 +181,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/responsemodel.ResponseCreate"
+                            "$ref": "#/definitions/responsemodel.ResponseUpdate"
                         }
                     }
                 }
@@ -335,6 +335,14 @@ const docTemplate = `{
             }
         },
         "responsemodel.ResponseCreate": {
+            "type": "object",
+            "properties": {
+                "_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "responsemodel.ResponseUpdate": {
             "type": "object",
             "properties": {
                 "_id": {

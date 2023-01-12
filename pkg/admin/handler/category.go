@@ -100,7 +100,7 @@ func (Category) Detail(c echo.Context) error {
 // @produce json
 // @param id path string true "Category id"
 // @param payload body requestmodel.CategoryBodyCreate true "Payload"
-// @success 200 {object} responsemodel.ResponseCreate
+// @success 200 {object} responsemodel.ResponseUpdate
 // @router /categories/{id} [PUT]
 func (Category) Update(c echo.Context) error {
 	var (
