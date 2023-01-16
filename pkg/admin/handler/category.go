@@ -104,21 +104,22 @@ func (Category) Detail(c echo.Context) error {
 // @accept json
 // @produce json
 // @param id path string true "Category id"
-// @param payload body requestmodel.CategoryBodyCreate true "Payload"
+// @param payload body requestmodel.CategoryBodyUpdate true "Payload"
 // @success 200 {object} responsemodel.ResponseUpdate
 // @router /categories/{id} [PUT]
 func (Category) Update(c echo.Context) error {
 	var (
 		ctx     = echocontext.GetContext(c)
-		payload = echocontext.GetPayload(c).(requestmodel.CategoryBodyCreate)
+		payload = echocontext.GetPayload(c).(requestmodel.CategoryBodyUpdate)
 		s       = service.Category()
+		id      = echocontext.GetParam(c, "id").(primitive.ObjectID)
 	)
 
-	result, err := s.Create(ctx, payload)
+	result, err := s.Update(ctx, id, payload)
 	if err != nil {
 		return response.R400(c, nil, err.Error())
 	}
-	return response.R200(c, responsemodel.ResponseCreate{ID: result}, "")
+	return response.R200(c, responsemodel.ResponseUpdate{ID: result}, "")
 }
 
 // ChangeStatus godoc

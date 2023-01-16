@@ -39,6 +39,11 @@ const docTemplate = `{
                 "operationId": "category-all",
                 "parameters": [
                     {
+                        "type": "string",
+                        "name": "keyword",
+                        "in": "query"
+                    },
+                    {
                         "type": "integer",
                         "name": "limit",
                         "in": "query"
@@ -173,7 +178,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/requestmodel.CategoryBodyCreate"
+                            "$ref": "#/definitions/requestmodel.CategoryBodyUpdate"
                         }
                     }
                 ],
@@ -271,6 +276,14 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "type": {
+                    "type": "string"
+                }
+            }
+        },
+        "requestmodel.CategoryBodyUpdate": {
+            "type": "object",
+            "properties": {
+                "name": {
                     "type": "string"
                 }
             }

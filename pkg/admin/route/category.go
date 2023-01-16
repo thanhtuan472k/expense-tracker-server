@@ -16,7 +16,7 @@ func category(e *echo.Group) {
 	)
 
 	// Create ...
-	g.POST("", h.Create, v.ValidateBody)
+	g.POST("", h.Create, v.Create)
 
 	// All ...
 	g.GET("", h.All, v.All)
@@ -25,8 +25,8 @@ func category(e *echo.Group) {
 	g.GET("/:id", h.Detail, v.Detail)
 
 	// Update ...
-	g.PUT("/:id", h.Update, v.ValidateBody)
+	g.PUT("/:id", h.Update, v.Update, v.Detail)
 
 	// ChangeStatus ...
-	g.PATCH("/:id", h.ChangeStatus, v.ValidateBody, v.Detail)
+	g.PATCH("/:id/status", h.ChangeStatus, v.ChangeStatus, v.Detail)
 }
