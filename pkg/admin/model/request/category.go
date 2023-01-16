@@ -9,7 +9,6 @@ import (
 	internalconstant "expense-tracker-server/internal/constant"
 	"expense-tracker-server/pkg/admin/errorcode"
 	validation "github.com/go-ozzo/ozzo-validation/v4"
-	"github.com/go-ozzo/ozzo-validation/v4/is"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
@@ -27,7 +26,7 @@ func (m CategoryBodyCreate) Validate() error {
 	}
 	return validation.ValidateStruct(&m,
 		validation.Field(&m.Name, validation.Required.Error(errorcode.CategoryIsRequiredName)),
-		validation.Field(&m.Type, validation.In(types...).Error(errorcode.CategoryIsInvalid)),
+		validation.Field(&m.Type, validation.In(types...).Error(errorcode.CategoryTypeIsInvalid)),
 	)
 }
 
@@ -46,10 +45,11 @@ func (m CategoryBodyCreate) ConvertToBSON() mgexpense.Category {
 
 // CategoryAll ...
 type CategoryAll struct {
-	Page   int64  `json:"page"`
-	Limit  int64  `json:"limit"`
-	Status string `json:"status"`
-	Type   string `json:"type"`
+	Page    int64  `query:"page"`
+	Limit   int64  `query:"limit"`
+	Keyword string `query:"keyword"`
+	Status  string `query:"status"`
+	Type    string `query:"type"`
 }
 
 // Validate ...
@@ -67,9 +67,9 @@ func (m CategoryAll) Validate() error {
 	)
 
 	return validation.ValidateStruct(&m,
-		validation.Field(&m.Page, is.UTFLetterNumeric.Error(response.CommonPageInvalid)),
-		validation.Field(&m.Limit, is.UTFLetterNumeric.Error(response.CommonLimitInvalid)),
-		validation.Field(&m.Type, validation.In(types...).Error(errorcode.CategoryIsInvalid)),
+		validation.Field(&m.Page, validation.Min(0).Error(response.CommonPageInvalid)),
+		validation.Field(&m.Limit, validation.Min(0).Error(response.CommonLimitInvalid)),
+		validation.Field(&m.Type, validation.In(types...).Error(errorcode.CategoryTypeIsInvalid)),
 		validation.Field(&m.Status, validation.In(statuses...).Error(errorcode.CategoryStatusIsInvalid)),
 	)
 }
@@ -89,5 +89,24 @@ func (m CategoryChangeStatus) Validate() error {
 	return validation.ValidateStruct(&m,
 		validation.Field(&m.Status, validation.In(statuses...).Error(errorcode.CategoryStatusIsInvalid)),
 	)
+}
 
+// CategoryBodyUpdate ...
+type CategoryBodyUpdate struct {
+	Name string `json:"name"`
+}
+
+// Validate ...
+func (m CategoryBodyUpdate) Validate() error {
+	return validation.ValidateStruct(&m,
+		validation.Field(&m.Name, validation.Required.Error(errorcode.CategoryIsRequiredName)),
+	)
+}
+
+// ConvertToBSON ...
+func (m CategoryBodyUpdate) ConvertToBSON() mgexpense.Category {
+	return mgexpense.Category{
+		Name:         m.Name,
+		SearchString: mongodb.NonAccentVietnamese(m.Name),
+	}
 }

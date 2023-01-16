@@ -39,6 +39,11 @@ const docTemplate = `{
                 "operationId": "category-all",
                 "parameters": [
                     {
+                        "type": "string",
+                        "name": "keyword",
+                        "in": "query"
+                    },
+                    {
                         "type": "integer",
                         "name": "limit",
                         "in": "query"
@@ -173,7 +178,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/requestmodel.CategoryBodyCreate"
+                            "$ref": "#/definitions/requestmodel.CategoryBodyUpdate"
                         }
                     }
                 ],
@@ -181,7 +186,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/responsemodel.ResponseCreate"
+                            "$ref": "#/definitions/responsemodel.ResponseUpdate"
                         }
                     }
                 }
@@ -275,6 +280,14 @@ const docTemplate = `{
                 }
             }
         },
+        "requestmodel.CategoryBodyUpdate": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
         "requestmodel.CategoryChangeStatus": {
             "type": "object",
             "properties": {
@@ -335,6 +348,14 @@ const docTemplate = `{
             }
         },
         "responsemodel.ResponseCreate": {
+            "type": "object",
+            "properties": {
+                "_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "responsemodel.ResponseUpdate": {
             "type": "object",
             "properties": {
                 "_id": {

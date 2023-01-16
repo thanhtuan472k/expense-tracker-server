@@ -12,6 +12,11 @@ definitions:
       type:
         type: string
     type: object
+  requestmodel.CategoryBodyUpdate:
+    properties:
+      name:
+        type: string
+    type: object
   requestmodel.CategoryChangeStatus:
     properties:
       status:
@@ -55,6 +60,11 @@ definitions:
       _id:
         type: string
     type: object
+  responsemodel.ResponseUpdate:
+    properties:
+      _id:
+        type: string
+    type: object
 info:
   contact:
     email: tuanngo.472000@gmail.com
@@ -74,6 +84,9 @@ paths:
       - application/json
       operationId: category-all
       parameters:
+      - in: query
+        name: keyword
+        type: string
       - in: query
         name: limit
         type: integer
@@ -159,14 +172,14 @@ paths:
         name: payload
         required: true
         schema:
-          $ref: '#/definitions/requestmodel.CategoryBodyCreate'
+          $ref: '#/definitions/requestmodel.CategoryBodyUpdate'
       produces:
       - application/json
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/responsemodel.ResponseCreate'
+            $ref: '#/definitions/responsemodel.ResponseUpdate'
       security:
       - ApiKeyAuth: []
       summary: Update
