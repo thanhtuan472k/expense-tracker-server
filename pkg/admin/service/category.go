@@ -30,7 +30,7 @@ type CategoryInterface interface {
 	Update(ctx context.Context, id primitive.ObjectID, payload requestmodel.CategoryBodyUpdate) (categoryID string, err error)
 
 	// ChangeStatus ...
-	ChangeStatus(ctx context.Context, id primitive.ObjectID, payload requestmodel.CategoryChangeStatus) (result responsemodel.ResponseChangeStatus, err error)
+	ChangeStatus(ctx context.Context, id primitive.ObjectID, payload requestmodel.CategoryChangeStatus) (categoryID string, err error)
 }
 
 // Category ...
@@ -155,9 +155,33 @@ func (s categoryImplement) Update(ctx context.Context, id primitive.ObjectID, pa
 }
 
 // ChangeStatus ...
-func (s categoryImplement) ChangeStatus(ctx context.Context, id primitive.ObjectID, payload requestmodel.CategoryChangeStatus) (result responsemodel.ResponseChangeStatus, err error) {
-	//TODO implement me
-	panic("implement me")
+func (s categoryImplement) ChangeStatus(ctx context.Context, id primitive.ObjectID, payload requestmodel.CategoryChangeStatus) (categoryID string, err error) {
+	// Find category
+	category, err := s.FindByID(ctx, id)
+	if err != nil {
+		return
+	}
+
+	var (
+		d             = dao.Category()
+		payloadUpdate = bson.M{}
+		cond          = bson.D{{"_id", category.ID}}
+	)
+
+	// Set payload update
+	payloadUpdate = bson.M{
+		"status":    payload.Status,
+		"updatedAt": ptime.Now(),
+	}
+
+	// Update category
+	if err = d.UpdateOneByCondition(ctx, cond, bson.M{"$set": payloadUpdate}); err != nil {
+		return
+	}
+
+	// Response
+	categoryID = category.ID.Hex()
+	return
 }
 
 // FindByID ...

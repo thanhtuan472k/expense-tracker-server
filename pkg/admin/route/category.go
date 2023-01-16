@@ -28,5 +28,5 @@ func category(e *echo.Group) {
 	g.PUT("/:id", h.Update, v.Update, v.Detail)
 
 	// ChangeStatus ...
-	g.PATCH("/:id", h.ChangeStatus, v.ChangeStatus, v.Detail)
+	g.PATCH("/:id/status", h.ChangeStatus, v.ChangeStatus, v.Detail)
 }
