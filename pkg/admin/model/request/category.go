@@ -89,5 +89,24 @@ func (m CategoryChangeStatus) Validate() error {
 	return validation.ValidateStruct(&m,
 		validation.Field(&m.Status, validation.In(statuses...).Error(errorcode.CategoryStatusIsInvalid)),
 	)
+}
 
+// CategoryBodyUpdate ...
+type CategoryBodyUpdate struct {
+	Name string `json:"name"`
+}
+
+// Validate ...
+func (m CategoryBodyUpdate) Validate() error {
+	return validation.ValidateStruct(&m,
+		validation.Field(&m.Name, validation.Required.Error(errorcode.CategoryIsRequiredName)),
+	)
+}
+
+// ConvertToBSON ...
+func (m CategoryBodyUpdate) ConvertToBSON() mgexpense.Category {
+	return mgexpense.Category{
+		Name:         m.Name,
+		SearchString: mongodb.NonAccentVietnamese(m.Name),
+	}
 }

@@ -27,7 +27,7 @@ type CategoryInterface interface {
 	Detail(ctx context.Context, id primitive.ObjectID) (result responsemodel.ResponseCategoryAdmin, err error)
 
 	// Update ...
-	Update(ctx context.Context, id primitive.ObjectID, payload requestmodel.CategoryBodyCreate)
+	Update(ctx context.Context, id primitive.ObjectID, payload requestmodel.CategoryBodyUpdate) (categoryID string, err error)
 
 	// ChangeStatus ...
 	ChangeStatus(ctx context.Context, id primitive.ObjectID, payload requestmodel.CategoryChangeStatus) (result responsemodel.ResponseChangeStatus, err error)
@@ -127,15 +127,53 @@ func (s categoryImplement) Detail(ctx context.Context, id primitive.ObjectID) (r
 }
 
 // Update ...
-func (s categoryImplement) Update(ctx context.Context, id primitive.ObjectID, payload requestmodel.CategoryBodyCreate) {
-	//TODO implement me
-	panic("implement me")
+func (s categoryImplement) Update(ctx context.Context, id primitive.ObjectID, payload requestmodel.CategoryBodyUpdate) (categoryID string, err error) {
+	// Find category
+	category, err := s.FindByID(ctx, id)
+	if err != nil {
+		return
+	}
+
+	var (
+		d             = dao.Category()
+		data          = payload.ConvertToBSON()
+		payloadUpdate = bson.M{
+			"name":      data.Name,
+			"updatedAt": ptime.Now(),
+		}
+		cond = bson.D{{"_id", category.ID}}
+	)
+
+	// Update
+	if err = d.UpdateOneByCondition(ctx, cond, bson.M{"$set": payloadUpdate}); err != nil {
+		return
+	}
+
+	// Response
+	categoryID = category.ID.Hex()
+	return
 }
 
 // ChangeStatus ...
 func (s categoryImplement) ChangeStatus(ctx context.Context, id primitive.ObjectID, payload requestmodel.CategoryChangeStatus) (result responsemodel.ResponseChangeStatus, err error) {
 	//TODO implement me
 	panic("implement me")
+}
+
+// FindByID ...
+func (s categoryImplement) FindByID(ctx context.Context, id primitive.ObjectID) (result mgexpense.Category, err error) {
+	var (
+		d    = dao.Category()
+		cond = bson.D{{"_id", id}}
+	)
+
+	category := d.FindOneByCondition(ctx, cond)
+	if category.ID.IsZero() {
+		err = errors.New(errorcode.CategoryNotFound)
+		return
+	}
+	result = category
+	return
 }
 
 //

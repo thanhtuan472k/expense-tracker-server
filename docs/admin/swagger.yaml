@@ -12,6 +12,11 @@ definitions:
       type:
         type: string
     type: object
+  requestmodel.CategoryBodyUpdate:
+    properties:
+      name:
+        type: string
+    type: object
   requestmodel.CategoryChangeStatus:
     properties:
       status:
@@ -79,6 +84,9 @@ paths:
       - application/json
       operationId: category-all
       parameters:
+      - in: query
+        name: keyword
+        type: string
       - in: query
         name: limit
         type: integer
@@ -164,7 +172,7 @@ paths:
         name: payload
         required: true
         schema:
-          $ref: '#/definitions/requestmodel.CategoryBodyCreate'
+          $ref: '#/definitions/requestmodel.CategoryBodyUpdate'
       produces:
       - application/json
       responses:

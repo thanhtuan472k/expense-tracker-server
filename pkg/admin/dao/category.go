@@ -22,6 +22,9 @@ type CategoryInterface interface {
 
 	// CountByCondition ...
 	CountByCondition(ctx context.Context, cond interface{}) int64
+
+	// UpdateOneByCondition ...
+	UpdateOneByCondition(ctx context.Context, cond, payload interface{}) (err error)
 }
 
 // categoryImplement ...
@@ -93,4 +96,12 @@ func (d categoryImplement) CountByCondition(ctx context.Context, cond interface{
 
 	total, _ := col.CountDocuments(ctx, cond)
 	return total
+}
+
+// UpdateOneByCondition ...
+func (d categoryImplement) UpdateOneByCondition(ctx context.Context, cond, payload interface{}) (err error) {
+	var col = database.CategoryCol()
+
+	_, err = col.UpdateOne(ctx, cond, payload)
+	return
 }

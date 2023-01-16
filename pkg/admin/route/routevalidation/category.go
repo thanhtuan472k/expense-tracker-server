@@ -12,8 +12,8 @@ import (
 // Category ...
 type Category struct{}
 
-// ValidateBody ...
-func (Category) ValidateBody(next echo.HandlerFunc) echo.HandlerFunc {
+// Create ...
+func (Category) Create(next echo.HandlerFunc) echo.HandlerFunc {
 	return func(c echo.Context) error {
 		var payload requestmodel.CategoryBodyCreate
 
@@ -63,6 +63,24 @@ func (Category) Detail(next echo.HandlerFunc) echo.HandlerFunc {
 		}
 
 		echocontext.SetParam(c, "id", objID)
+		return next(c)
+	}
+}
+
+// Update ...
+func (Category) Update(next echo.HandlerFunc) echo.HandlerFunc {
+	return func(c echo.Context) error {
+		var payload requestmodel.CategoryBodyUpdate
+
+		if err := c.Bind(&payload); err != nil {
+			return response.R400(c, nil, "")
+		}
+
+		if err := payload.Validate(); err != nil {
+			return response.RouteValidation(c, err)
+		}
+
+		echocontext.SetPayload(c, payload)
 		return next(c)
 	}
 }
