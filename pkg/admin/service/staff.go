@@ -34,7 +34,6 @@ func (s staffImplement) Create(ctx context.Context, payload requestmodel.StaffBo
 
 	// Response
 	return
-
 }
 
 //

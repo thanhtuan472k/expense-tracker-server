@@ -7,11 +7,11 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
-// Staff ...
-type Staff struct{}
+// StaffManagement ...
+type StaffManagement struct{}
 
-// Login ...
-func (Staff) Login(next echo.HandlerFunc) echo.HandlerFunc {
+// Create ...
+func (StaffManagement) Create(next echo.HandlerFunc) echo.HandlerFunc {
 	return func(c echo.Context) error {
 		var payload requestmodel.StaffBodyCreate
 

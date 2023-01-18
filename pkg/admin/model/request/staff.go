@@ -14,3 +14,9 @@ type StaffBodyCreate struct {
 func (m StaffBodyCreate) Validate() error {
 	return validation.ValidateStruct(&m)
 }
+
+// StaffBodyLogin ...
+type StaffBodyLogin struct {
+	Phone    string `json:"phone"`
+	Password string `json:"password"`
+}

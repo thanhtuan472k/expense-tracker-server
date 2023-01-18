@@ -9,20 +9,20 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
-// Staff ...
-type Staff struct{}
+// StaffManagement ...
+type StaffManagement struct{}
 
-// Login godoc
+// Create godoc
 // @tags Staff
-// @summary Login
-// @id staff-login
+// @summary Create
+// @id staff-create
 // @security ApiKeyAuth
 // @accept json
 // @produce json
 // @param payload body requestmodel.StaffBodyCreate true "Payload"
 // @success 200 {object} responsemodel.ResponseCreate
 // @router /staffs [post]
-func (Staff) Login(c echo.Context) error {
+func (StaffManagement) Create(c echo.Context) error {
 	var (
 		ctx     = echocontext.GetContext(c)
 		payload = echocontext.GetPayload(c).(requestmodel.StaffBodyCreate)
