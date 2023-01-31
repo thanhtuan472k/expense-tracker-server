@@ -4,7 +4,6 @@ import (
 	"expense-tracker-server/external/response"
 	"expense-tracker-server/external/util/echocontext"
 	requestmodel "expense-tracker-server/pkg/admin/model/request"
-	responsemodel "expense-tracker-server/pkg/admin/model/response"
 	"expense-tracker-server/pkg/admin/service"
 	"github.com/labstack/echo/v4"
 )
@@ -19,19 +18,19 @@ type Staff struct{}
 // @security ApiKeyAuth
 // @accept json
 // @produce json
-// @param payload body requestmodel.StaffBodyCreate true "Payload"
-// @success 200 {object} responsemodel.ResponseCreate
+// @param payload body requestmodel.StaffBodyLogin true "Payload"
+// @success 200 {object} responsemodel.ResponseLoginSuccess
 // @router /staffs [post]
 func (Staff) Login(c echo.Context) error {
 	var (
 		ctx     = echocontext.GetContext(c)
-		payload = echocontext.GetPayload(c).(requestmodel.StaffBodyCreate)
+		payload = echocontext.GetPayload(c).(requestmodel.StaffBodyLogin)
 		s       = service.Staff()
 	)
 
-	result, err := s.Create(ctx, payload)
+	result, err := s.Login(ctx, payload)
 	if err != nil {
 		return response.R400(c, nil, err.Error())
 	}
-	return response.R200(c, responsemodel.ResponseCreate{ID: result}, "")
+	return response.R200(c, result, "")
 }

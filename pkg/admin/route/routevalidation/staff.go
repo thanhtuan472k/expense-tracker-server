@@ -13,7 +13,7 @@ type Staff struct{}
 // Login ...
 func (Staff) Login(next echo.HandlerFunc) echo.HandlerFunc {
 	return func(c echo.Context) error {
-		var payload requestmodel.StaffBodyCreate
+		var payload requestmodel.StaffBodyLogin
 
 		if err := c.Bind(&payload); err != nil {
 			return response.R400(c, nil, "")

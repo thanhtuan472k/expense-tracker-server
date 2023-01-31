@@ -17,6 +17,5 @@ func Init(e *echo.Echo) {
 	// Components
 	common(r)
 	staff(r)
-	staffManagement(r)
 	category(r)
 }

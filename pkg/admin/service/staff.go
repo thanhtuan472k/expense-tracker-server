@@ -3,12 +3,13 @@ package service
 import (
 	"context"
 	requestmodel "expense-tracker-server/pkg/admin/model/request"
+	responsemodel "expense-tracker-server/pkg/admin/model/response"
 )
 
 // StaffInterface ...
 type StaffInterface interface {
-	// Create new category ...
-	Create(ctx context.Context, payload requestmodel.StaffBodyCreate) (staffID string, err error)
+	// Login ...
+	Login(ctx context.Context, payload requestmodel.StaffBodyLogin) (success responsemodel.ResponseLoginSuccess, err error)
 }
 
 // Staff ...
@@ -23,19 +24,20 @@ type staffImplement struct{}
 // PUBLIC METHODS ...
 //
 
-func (s staffImplement) Create(ctx context.Context, payload requestmodel.StaffBodyCreate) (staffID string, err error) {
-	var ()
+// Login ...
+func (s staffImplement) Login(ctx context.Context, payload requestmodel.StaffBodyLogin) (success responsemodel.ResponseLoginSuccess, err error) {
+	// Find user with payload.phone
 
-	// Check email existed
+	// Check valid password
 
-	// Check phone existed
+	// Generate token
 
-	// Create staff
+	// Return
 
-	// Response
 	return
 }
 
 //
 // PRIVATE METHODS ...
 //
+
