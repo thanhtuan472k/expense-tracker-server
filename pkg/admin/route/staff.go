@@ -18,6 +18,7 @@ func staff(e *echo.Group) {
 	g.POST("/login", h.Login, v.Login)
 
 	// GetMe ...
+	g.GET("/me", h.Login)
 
 	// Update ...
 

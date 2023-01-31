@@ -34,3 +34,26 @@ func (Staff) Login(c echo.Context) error {
 	}
 	return response.R200(c, result, "")
 }
+
+// GetMe godoc
+// @tags Staff
+// @summary GetMe
+// @id staff-get-me
+// @security ApiKeyAuth
+// @accept json
+// @produce json
+// @success 200 {object} responsemodel.ResponseStaffMe
+// @router /staffs/me [get]
+func (Staff) GetMe(c echo.Context) error {
+	var (
+		ctx     = echocontext.GetContext(c)
+		staffID = echocontext.GetCurrentStaffID(c)
+		s       = service.Staff()
+	)
+
+	result, err := s.GetMe(ctx, staffID)
+	if err != nil {
+		return response.R400(c, nil, err.Error())
+	}
+	return response.R200(c, result, "")
+}
