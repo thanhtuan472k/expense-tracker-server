@@ -251,8 +251,28 @@
                 "responses": {}
             }
         },
-        "/staffs": {
+        "/staffs/login": {
             "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Staff"
+                ],
+                "summary": "Login",
+                "operationId": "staff-login",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/staffs/me": {
+            "get": {
                 "security": [
                     {
                         "ApiKeyAuth": []
@@ -267,25 +287,11 @@
                 "tags": [
                     "Staff"
                 ],
-                "summary": "Create",
-                "operationId": "staff-create",
-                "parameters": [
-                    {
-                        "description": "Payload",
-                        "name": "payload",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/requestmodel.StaffBodyCreate"
-                        }
-                    }
-                ],
+                "summary": "GetMe",
+                "operationId": "staff-get-me",
                 "responses": {
                     "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/responsemodel.ResponseCreate"
-                        }
+                        "description": "OK"
                     }
                 }
             }
@@ -323,23 +329,6 @@
             "type": "object",
             "properties": {
                 "status": {
-                    "type": "string"
-                }
-            }
-        },
-        "requestmodel.StaffBodyCreate": {
-            "type": "object",
-            "properties": {
-                "email": {
-                    "type": "string"
-                },
-                "gender": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "phone": {
                     "type": "string"
                 }
             }

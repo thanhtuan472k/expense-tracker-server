@@ -15,12 +15,10 @@ type Staff struct{}
 // @tags Staff
 // @summary Login
 // @id staff-login
-// @security ApiKeyAuth
 // @accept json
 // @produce json
-// @param payload body requestmodel.StaffBodyLogin true "Payload"
-// @success 200 {object} responsemodel.ResponseLoginSuccess
-// @router /staffs [post]
+// @success 200 {object} nil
+// @router /staffs/login [post]
 func (Staff) Login(c echo.Context) error {
 	var (
 		ctx     = echocontext.GetContext(c)
@@ -42,7 +40,7 @@ func (Staff) Login(c echo.Context) error {
 // @security ApiKeyAuth
 // @accept json
 // @produce json
-// @success 200 {object} responsemodel.ResponseStaffMe
+// @success 200 {object} nil
 // @router /staffs/me [get]
 func (Staff) GetMe(c echo.Context) error {
 	var (
