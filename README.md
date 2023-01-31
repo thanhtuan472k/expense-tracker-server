@@ -29,3 +29,8 @@ create /expense_tracker/redis/uri 127.0.0.1:6379
 create /expense_tracker/redis/expense/auth
 create /expense_tracker/redis/expense/auth
 ```
+
+```shell
+create /expense_tracker/authentication/sercet_key authentication
+create /expense_tracker/authentication/time_expire_token 25920000
+```

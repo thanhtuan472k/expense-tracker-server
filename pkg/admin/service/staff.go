@@ -26,11 +26,14 @@ type staffImplement struct{}
 
 // Login ...
 func (s staffImplement) Login(ctx context.Context, payload requestmodel.StaffBodyLogin) (success responsemodel.ResponseLoginSuccess, err error) {
-	// Find user with payload.phone
+	// Check staff (email, phone) is existed in system or not
 
-	// Check valid password
+	// If staff is not existed --> User not found
 
-	// Generate token
+	// If staff existed
+	// - payload.Password (hashed) and compare with hasedPassword in DB
+	// - If wrong password --> Password is incorrect
+	// - If success password --> Generate token and send response
 
 	// Return
 
@@ -40,4 +43,3 @@ func (s staffImplement) Login(ctx context.Context, payload requestmodel.StaffBod
 //
 // PRIVATE METHODS ...
 //
-

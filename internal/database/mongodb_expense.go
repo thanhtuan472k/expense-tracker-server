@@ -33,6 +33,11 @@ func ConnectMongoDBExpense() {
 	index()
 }
 
+// StaffCol ...
+func StaffCol() *mongo.Collection {
+	return expenseDB.Collection(colStaff)
+}
+
 // UserCol ...
 func UserCol() *mongo.Collection {
 	return expenseDB.Collection(colUser)
