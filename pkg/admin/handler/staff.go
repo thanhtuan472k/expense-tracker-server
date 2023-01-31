@@ -15,12 +15,10 @@ type Staff struct{}
 // @tags Staff
 // @summary Login
 // @id staff-login
-// @security ApiKeyAuth
 // @accept json
 // @produce json
-// @param payload body requestmodel.StaffBodyLogin true "Payload"
-// @success 200 {object} responsemodel.ResponseLoginSuccess
-// @router /staffs [post]
+// @success 200 {object} nil
+// @router /staffs/login [post]
 func (Staff) Login(c echo.Context) error {
 	var (
 		ctx     = echocontext.GetContext(c)
@@ -29,6 +27,29 @@ func (Staff) Login(c echo.Context) error {
 	)
 
 	result, err := s.Login(ctx, payload)
+	if err != nil {
+		return response.R400(c, nil, err.Error())
+	}
+	return response.R200(c, result, "")
+}
+
+// GetMe godoc
+// @tags Staff
+// @summary GetMe
+// @id staff-get-me
+// @security ApiKeyAuth
+// @accept json
+// @produce json
+// @success 200 {object} nil
+// @router /staffs/me [get]
+func (Staff) GetMe(c echo.Context) error {
+	var (
+		ctx     = echocontext.GetContext(c)
+		staffID = echocontext.GetCurrentStaffID(c)
+		s       = service.Staff()
+	)
+
+	result, err := s.GetMe(ctx, staffID)
 	if err != nil {
 		return response.R400(c, nil, err.Error())
 	}
