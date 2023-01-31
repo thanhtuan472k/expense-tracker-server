@@ -3,12 +3,13 @@ package service
 import (
 	"context"
 	requestmodel "expense-tracker-server/pkg/admin/model/request"
+	responsemodel "expense-tracker-server/pkg/admin/model/response"
 )
 
 // StaffInterface ...
 type StaffInterface interface {
-	// Create new category ...
-	Create(ctx context.Context, payload requestmodel.StaffBodyCreate) (staffID string, err error)
+	// Login ...
+	Login(ctx context.Context, payload requestmodel.StaffBodyLogin) (success responsemodel.ResponseLoginSuccess, err error)
 }
 
 // Staff ...
@@ -23,18 +24,20 @@ type staffImplement struct{}
 // PUBLIC METHODS ...
 //
 
-func (s staffImplement) Create(ctx context.Context, payload requestmodel.StaffBodyCreate) (staffID string, err error) {
-	var ()
+// Login ...
+func (s staffImplement) Login(ctx context.Context, payload requestmodel.StaffBodyLogin) (success responsemodel.ResponseLoginSuccess, err error) {
+	// Check staff (email, phone) is existed in system or not
 
-	// Check email existed
+	// If staff is not existed --> User not found
 
-	// Check phone existed
+	// If staff existed
+	// - payload.Password (hashed) and compare with hasedPassword in DB
+	// - If wrong password --> Password is incorrect
+	// - If success password --> Generate token and send response
 
-	// Create staff
+	// Return
 
-	// Response
 	return
-
 }
 
 //

@@ -22,6 +22,17 @@ definitions:
       status:
         type: string
     type: object
+  requestmodel.StaffBodyCreate:
+    properties:
+      email:
+        type: string
+      gender:
+        type: string
+      name:
+        type: string
+      phone:
+        type: string
+    type: object
   responsemodel.ResponseCategoryAdmin:
     properties:
       _id:
@@ -227,6 +238,30 @@ paths:
       summary: Ping
       tags:
       - Common
+  /staffs:
+    post:
+      consumes:
+      - application/json
+      operationId: staff-create
+      parameters:
+      - description: Payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/requestmodel.StaffBodyCreate'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responsemodel.ResponseCreate'
+      security:
+      - ApiKeyAuth: []
+      summary: Create
+      tags:
+      - Staff
 securityDefinitions:
   ApiKeyAuth:
     in: header
