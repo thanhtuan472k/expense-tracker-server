@@ -21,6 +21,8 @@ func staff(e *echo.Group) {
 	g.GET("/me", h.GetMe)
 
 	// Update ...
+	g.PUT("/me", h.Update, v.Update)
 
 	// ChangePassword ...
+	g.PATCH("/me/password", h.Update)
 }

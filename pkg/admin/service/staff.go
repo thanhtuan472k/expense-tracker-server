@@ -14,6 +14,12 @@ type StaffInterface interface {
 
 	// GetMe ...
 	GetMe(ctx context.Context, staffID primitive.ObjectID) (result responsemodel.ResponseStaffMe, err error)
+
+	// Update ...
+	Update(ctx context.Context, staffID primitive.ObjectID, payload requestmodel.StaffBodyUpdate) (result responsemodel.ResponseUpdate, err error)
+
+	// ChangePassword ...
+	ChangePassword(ctx context.Context, staffID primitive.ObjectID, payload requestmodel.StaffBodyChangePassword) (result responsemodel.ResponseUpdate, err error)
 }
 
 // Staff ...
@@ -46,6 +52,18 @@ func (s staffImplement) Login(ctx context.Context, payload requestmodel.StaffBod
 
 // GetMe ...
 func (s staffImplement) GetMe(ctx context.Context, staffID primitive.ObjectID) (result responsemodel.ResponseStaffMe, err error) {
+	//TODO implement me
+	panic("implement me")
+}
+
+// Update ...
+func (s staffImplement) Update(ctx context.Context, staffID primitive.ObjectID, payload requestmodel.StaffBodyUpdate) (result responsemodel.ResponseUpdate, err error) {
+	//TODO implement me
+	panic("implement me")
+}
+
+// ChangePassword ...
+func (s staffImplement) ChangePassword(ctx context.Context, staffID primitive.ObjectID, payload requestmodel.StaffBodyChangePassword) (result responsemodel.ResponseUpdate, err error) {
 	//TODO implement me
 	panic("implement me")
 }

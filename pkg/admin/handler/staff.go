@@ -17,6 +17,7 @@ type Staff struct{}
 // @id staff-login
 // @accept json
 // @produce json
+// @param payload body requestmodel.StaffBodyLogin true "Payload"
 // @success 200 {object} nil
 // @router /staffs/login [post]
 func (Staff) Login(c echo.Context) error {
@@ -50,6 +51,56 @@ func (Staff) GetMe(c echo.Context) error {
 	)
 
 	result, err := s.GetMe(ctx, staffID)
+	if err != nil {
+		return response.R400(c, nil, err.Error())
+	}
+	return response.R200(c, result, "")
+}
+
+// Update godoc
+// @tags Staff
+// @summary Update
+// @id staff-update-info
+// @security ApiKeyAuth
+// @accept json
+// @produce json
+// @param payload body requestmodel.StaffBodyUpdate true "Payload"
+// @success 200 {object} nil
+// @router /staffs/me [put]
+func (Staff) Update(c echo.Context) error {
+	var (
+		ctx     = echocontext.GetContext(c)
+		staffID = echocontext.GetCurrentStaffID(c)
+		payload = echocontext.GetPayload(c).(requestmodel.StaffBodyUpdate)
+		s       = service.Staff()
+	)
+
+	result, err := s.Update(ctx, staffID, payload)
+	if err != nil {
+		return response.R400(c, nil, err.Error())
+	}
+	return response.R200(c, result, "")
+}
+
+// ChangePassword godoc
+// @tags Staff
+// @summary ChangePassword
+// @id staff-change-password
+// @security ApiKeyAuth
+// @accept json
+// @produce json
+// @param payload body requestmodel.StaffBodyChangePassword true "Payload"
+// @success 200 {object} nil
+// @router /staffs/me/password [patch]
+func (Staff) ChangePassword(c echo.Context) error {
+	var (
+		ctx     = echocontext.GetContext(c)
+		staffID = echocontext.GetCurrentStaffID(c)
+		payload = echocontext.GetPayload(c).(requestmodel.StaffBodyChangePassword)
+		s       = service.Staff()
+	)
+
+	result, err := s.ChangePassword(ctx, staffID, payload)
 	if err != nil {
 		return response.R400(c, nil, err.Error())
 	}
