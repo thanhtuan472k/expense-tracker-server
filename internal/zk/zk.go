@@ -1,6 +1,7 @@
 package zk
 
 import (
+	"expense-tracker-server/external/util/pstring"
 	"expense-tracker-server/external/zk"
 	"expense-tracker-server/internal/config"
 	"fmt"
@@ -30,11 +31,15 @@ func server(envVars *config.ENV) {
 	adminPrefix := getAdminPrefix("")
 	envVars.Admin.Server = zk.GetStringValue(fmt.Sprintf("%s/server", adminPrefix))
 	envVars.Admin.Port = zk.GetStringValue(fmt.Sprintf("%s/port", adminPrefix))
+	envVars.Admin.Auth.SecretKey = zk.GetStringValue(fmt.Sprintf("%s/authentication/secret_key", adminPrefix))
+	envVars.Admin.Auth.TimeExpiredToken = pstring.StringToInt64(zk.GetStringValue(fmt.Sprintf("%s/authentication/time_expired_token", adminPrefix)))
 
 	// App
 	appPrefix := getAppPrefix("")
 	envVars.App.Server = zk.GetStringValue(fmt.Sprintf("%s/server", appPrefix))
 	envVars.App.Port = zk.GetStringValue(fmt.Sprintf("%s/port", appPrefix))
+	envVars.App.Auth.SecretKey = zk.GetStringValue(fmt.Sprintf("%s/authentication/secret_key", appPrefix))
+	envVars.App.Auth.TimeExpiredToken = pstring.StringToInt64(zk.GetStringValue(fmt.Sprintf("%s/authentication/time_expired_token", appPrefix)))
 
 	// MongoDB
 	mongodbPrefix := getExternalPrefix("/mongodb/expense")
@@ -46,29 +51,6 @@ func server(envVars *config.ENV) {
 	envVars.MongoDB.CertPem = zk.GetStringValue(fmt.Sprintf("%s/cert_pem", mongodbPrefix))
 	envVars.MongoDB.CertKeyFilePassword = zk.GetStringValue(fmt.Sprintf("%s/cert_key_file_password", mongodbPrefix))
 	envVars.MongoDB.ReadPrefMode = zk.GetStringValue(fmt.Sprintf("%s/read_pref_mode", mongodbPrefix))
-
-	// NATS
-	//natsPrefix := getExternalPrefix("/nats/expense")
-	//envVars.Nats.URL = zk.GetStringValue(fmt.Sprintf("%s/uri", natsPrefix))
-	//envVars.Nats.Username = zk.GetStringValue(fmt.Sprintf("%s/user", natsPrefix))
-	//envVars.Nats.Password = zk.GetStringValue(fmt.Sprintf("%s/password", natsPrefix))
-	//envVars.Nats.APIKey = zk.GetStringValue(fmt.Sprintf("%s/api_key", natsPrefix))
-
-	// MongoDB_AUDIT
-	//mongoAuditPrefix := getExternalPrefix("/mongodb/campaign_audit")
-	//envVars.MongoAudit.Host = zk.GetStringValue(fmt.Sprintf("%s/host", mongoAuditPrefix))
-	//envVars.MongoAudit.DBName = zk.GetStringValue(fmt.Sprintf("%s/db_name", mongoAuditPrefix))
-
-	// FileHost
-	//commonPrefix := getCommonPrefix("")
-	//envVars.FileHost = zk.GetStringValue(fmt.Sprintf("%s/file_host", commonPrefix))
-
-	// Authentication
-	//authPrefix := getAppPrefix("/authentication")
-	//envVars.SecretKey = zk.GetStringValue(fmt.Sprintf("%s/auth_secretkey", authPrefix))
-
-	// AUTH GG
-	//envVars.EnableAuthenticationService = zk.GetStringValue(fmt.Sprintf("%s/authentication_google/enable", adminPrefix))
 
 	// Redis
 	redisPrefix := getExternalPrefix("/redis/expense")
