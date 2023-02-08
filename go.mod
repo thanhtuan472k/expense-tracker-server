@@ -7,6 +7,7 @@ require (
 	github.com/go-redis/redis/v8 v8.11.5
 	github.com/go-zookeeper/zk v1.0.3
 	github.com/golang-jwt/jwt v3.2.2+incompatible
+	github.com/golang-jwt/jwt/v4 v4.4.3
 	github.com/labstack/echo/v4 v4.9.1
 	github.com/leekchan/accounting v1.0.0
 	github.com/logrusorgru/aurora v2.0.3+incompatible
@@ -18,6 +19,7 @@ require (
 	go.elastic.co/apm/module/apmzap v1.15.0
 	go.mongodb.org/mongo-driver v1.11.1
 	go.uber.org/zap v1.24.0
+	golang.org/x/crypto v0.4.0
 	golang.org/x/net v0.5.0
 	golang.org/x/text v0.6.0
 )
@@ -61,7 +63,6 @@ require (
 	go.elastic.co/fastjson v1.1.0 // indirect
 	go.uber.org/atomic v1.10.0 // indirect
 	go.uber.org/multierr v1.9.0 // indirect
-	golang.org/x/crypto v0.4.0 // indirect
 	golang.org/x/lint v0.0.0-20210508222113-6edffad5e616 // indirect
 	golang.org/x/mod v0.7.0 // indirect
 	golang.org/x/sync v0.1.0 // indirect

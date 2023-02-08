@@ -40,7 +40,7 @@ type staffImplement struct{}
 //
 
 // Login ...
-func (s staffImplement) Login(ctx context.Context, payload requestmodel.StaffBodyLogin) (success responsemodel.ResponseLoginSuccess, err error) {
+func (s staffImplement) Login(ctx context.Context, payload requestmodel.StaffBodyLogin) (result responsemodel.ResponseLoginSuccess, err error) {
 	var (
 		d = dao.Staff()
 	)
@@ -59,9 +59,15 @@ func (s staffImplement) Login(ctx context.Context, payload requestmodel.StaffBod
 		return
 	}
 	// - If success password --> Generate token and send response
+	accessToken := staff.GenerateAccessToken()
+	//refreshToken := staff.GenerateRefreshToken()
+	result = responsemodel.ResponseLoginSuccess{
+		ID:          staff.ID.Hex(),
+		AccessToken: accessToken,
+		//RefreshToken: refreshToken,
+	}
 
-	// Return
-
+	// Response
 	return
 }
 
