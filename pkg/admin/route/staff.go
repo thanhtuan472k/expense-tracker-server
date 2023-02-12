@@ -2,6 +2,7 @@ package route
 
 import (
 	"expense-tracker-server/pkg/admin/handler"
+	routeauth "expense-tracker-server/pkg/admin/route/auth"
 	"expense-tracker-server/pkg/admin/route/routevalidation"
 	"github.com/labstack/echo/v4"
 )
@@ -18,7 +19,7 @@ func staff(e *echo.Group) {
 	g.POST("/login", h.Login, v.Login)
 
 	// GetMe ...
-	g.GET("/me", h.GetMe)
+	g.GET("/me", h.GetMe, routeauth.RequiredLogin)
 
 	// Update ...
 	g.PUT("/me", h.Update, v.Update)

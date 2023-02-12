@@ -9,6 +9,8 @@ import (
 func Init(e *echo.Echo) {
 
 	// Middlewares ...
+	//e.Use(routeauth.Jwt())
+
 	e.Use(routemiddleware.CORSConfig())
 	e.Use(routemiddleware.Locale)
 
