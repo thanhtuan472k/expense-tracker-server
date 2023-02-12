@@ -4,6 +4,7 @@ import (
 	"context"
 	"errors"
 	"expense-tracker-server/external/constant"
+	"expense-tracker-server/external/mongodb"
 	"expense-tracker-server/internal/auth"
 	"expense-tracker-server/pkg/admin/dao"
 	"expense-tracker-server/pkg/admin/errorcode"
@@ -11,6 +12,7 @@ import (
 	responsemodel "expense-tracker-server/pkg/admin/model/response"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
+	"time"
 )
 
 // StaffInterface ...
@@ -104,8 +106,41 @@ func (s staffImplement) GetMe(ctx context.Context, staffID primitive.ObjectID) (
 
 // Update ...
 func (s staffImplement) Update(ctx context.Context, staffID primitive.ObjectID, payload requestmodel.StaffBodyUpdate) (result responsemodel.ResponseUpdate, err error) {
-	//TODO implement me
-	panic("implement me")
+	var (
+		d             = dao.Staff()
+		payloadUpdate = bson.M{
+			"name":         payload.Name,
+			"searchString": mongodb.NonAccentVietnamese(payload.Name),
+			"phone":        payload.Phone,
+			"email":        payload.Email,
+			"gender":       payload.Gender,
+			"updatedAt":    time.Now(),
+		}
+		cond = bson.M{"_id": staffID}
+	)
+
+	// Find staff
+	staff := d.FindOneByCondition(ctx, bson.M{"_id": staffID})
+
+	if staff.ID.IsZero() {
+		err = errors.New(errorcode.StaffNotFound)
+		return
+	}
+
+	// Check staff status inactive
+	if staff.Status == constant.StatusInactive {
+		err = errors.New(errorcode.StaffStatusInactive)
+		return
+	}
+
+	// Update
+	if err = d.UpdateOneByCondition(ctx, cond, bson.M{"$set": payloadUpdate}); err != nil {
+		return
+	}
+
+	// Response
+	result = responsemodel.ResponseUpdate{ID: staff.ID.Hex()}
+	return
 }
 
 // ChangePassword ...
