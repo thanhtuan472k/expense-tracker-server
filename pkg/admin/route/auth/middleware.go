@@ -15,6 +15,5 @@ func Jwt() echo.MiddlewareFunc {
 			token := echocontext.GetToken(c)
 			return token == ""
 		},
-	},
-	)
+	})
 }
