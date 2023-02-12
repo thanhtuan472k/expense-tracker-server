@@ -3,7 +3,7 @@ package route
 import (
 	"expense-tracker-server/pkg/admin/handler"
 	routeauth "expense-tracker-server/pkg/admin/route/auth"
-	"expense-tracker-server/pkg/admin/route/routevalidation"
+	"expense-tracker-server/pkg/admin/route/validation"
 	"github.com/labstack/echo/v4"
 )
 
@@ -12,7 +12,7 @@ func staff(e *echo.Group) {
 	var (
 		g = e.Group("/staffs")
 		h = handler.Staff{}
-		v = routevalidation.Staff{}
+		v = validation.Staff{}
 	)
 
 	// Login ...

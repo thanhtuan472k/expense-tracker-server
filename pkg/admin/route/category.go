@@ -2,7 +2,7 @@ package route
 
 import (
 	"expense-tracker-server/pkg/admin/handler"
-	"expense-tracker-server/pkg/admin/route/routevalidation"
+	"expense-tracker-server/pkg/admin/route/validation"
 	"github.com/labstack/echo/v4"
 )
 
@@ -12,7 +12,7 @@ func category(e *echo.Group) {
 		g = e.Group("/categories")
 
 		h = handler.Category{}
-		v = routevalidation.Category{}
+		v = validation.Category{}
 	)
 
 	// Create ...
