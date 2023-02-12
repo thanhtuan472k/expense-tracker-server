@@ -3,6 +3,7 @@ package service
 import (
 	"context"
 	"errors"
+	"expense-tracker-server/external/constant"
 	"expense-tracker-server/internal/auth"
 	"expense-tracker-server/pkg/admin/dao"
 	"expense-tracker-server/pkg/admin/errorcode"
@@ -58,9 +59,8 @@ func (s staffImplement) Login(ctx context.Context, payload requestmodel.StaffBod
 		err = errors.New(errorcode.StaffPasswordIncorrect)
 		return
 	}
-	// - If success password --> Generate token and send response
+	// - If success password --> Generate token
 	accessToken := staff.GenerateAccessToken()
-	//refreshToken := staff.GenerateRefreshToken()
 	result = responsemodel.ResponseLoginSuccess{
 		ID:          staff.ID.Hex(),
 		AccessToken: accessToken,
@@ -73,8 +73,33 @@ func (s staffImplement) Login(ctx context.Context, payload requestmodel.StaffBod
 
 // GetMe ...
 func (s staffImplement) GetMe(ctx context.Context, staffID primitive.ObjectID) (result responsemodel.ResponseStaffMe, err error) {
-	//TODO implement me
-	panic("implement me")
+	var (
+		d = dao.Staff()
+	)
+
+	// Find staff
+	staff := d.FindOneByCondition(ctx, bson.M{"_id": staffID})
+
+	if staff.ID.IsZero() {
+		err = errors.New(errorcode.StaffNotFound)
+		return
+	}
+
+	if staff.Status == constant.StatusInactive {
+		err = errors.New(errorcode.StaffStatusInactive)
+		return
+	}
+
+	// Response
+	result = responsemodel.ResponseStaffMe{
+		ID:     staff.ID.Hex(),
+		Name:   staff.Name,
+		Email:  staff.Email,
+		Gender: staff.Gender,
+		Phone:  staff.Phone,
+	}
+
+	return
 }
 
 // Update ...
