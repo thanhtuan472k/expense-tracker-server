@@ -2,6 +2,7 @@ package route
 
 import (
 	"expense-tracker-server/pkg/admin/handler"
+	routeauth "expense-tracker-server/pkg/admin/route/auth"
 	"expense-tracker-server/pkg/admin/route/validation"
 	"github.com/labstack/echo/v4"
 )
@@ -9,7 +10,7 @@ import (
 // category ...
 func category(e *echo.Group) {
 	var (
-		g = e.Group("/categories")
+		g = e.Group("/categories", routeauth.RequiredLogin)
 
 		h = handler.Category{}
 		v = validation.Category{}

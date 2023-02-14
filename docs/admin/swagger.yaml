@@ -24,7 +24,9 @@ definitions:
     type: object
   requestmodel.StaffBodyChangePassword:
     properties:
-      password:
+      newPassword:
+        type: string
+      oldPassword:
         type: string
     type: object
   requestmodel.StaffBodyLogin:

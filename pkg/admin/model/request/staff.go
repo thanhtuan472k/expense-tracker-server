@@ -10,7 +10,9 @@ type StaffBodyLogin struct {
 
 // Validate ...
 func (m StaffBodyLogin) Validate() error {
-	return validation.ValidateStruct(&m)
+	return validation.ValidateStruct(&m,
+		validation.Field(&m.Phone),
+	)
 }
 
 // StaffBodyUpdate ...
@@ -28,7 +30,8 @@ func (m StaffBodyUpdate) Validate() error {
 
 // StaffBodyChangePassword ...
 type StaffBodyChangePassword struct {
-	Password string `json:"password"`
+	OldPassword string `json:"oldPassword"`
+	NewPassword string `json:"newPassword"`
 }
 
 // Validate ...

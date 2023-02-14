@@ -22,8 +22,8 @@ func staff(e *echo.Group) {
 	g.GET("/me", h.GetMe, routeauth.RequiredLogin)
 
 	// Update ...
-	g.PUT("/me", h.Update, v.Update)
+	g.PUT("/me", h.Update, routeauth.RequiredLogin, v.Update)
 
 	// ChangePassword ...
-	g.PATCH("/me/password", h.ChangePassword)
+	g.PATCH("/me/password", h.ChangePassword, routeauth.RequiredLogin, v.ChangePassword)
 }

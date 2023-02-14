@@ -425,7 +425,10 @@ const docTemplate = `{
         "requestmodel.StaffBodyChangePassword": {
             "type": "object",
             "properties": {
-                "password": {
+                "newPassword": {
+                    "type": "string"
+                },
+                "oldPassword": {
                     "type": "string"
                 }
             }

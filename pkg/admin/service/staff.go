@@ -5,6 +5,7 @@ import (
 	"errors"
 	"expense-tracker-server/external/constant"
 	"expense-tracker-server/external/mongodb"
+	"expense-tracker-server/external/util/ptime"
 	"expense-tracker-server/internal/auth"
 	"expense-tracker-server/pkg/admin/dao"
 	"expense-tracker-server/pkg/admin/errorcode"
@@ -12,7 +13,6 @@ import (
 	responsemodel "expense-tracker-server/pkg/admin/model/response"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
-	"time"
 )
 
 // StaffInterface ...
@@ -114,7 +114,7 @@ func (s staffImplement) Update(ctx context.Context, staffID primitive.ObjectID, 
 			"phone":        payload.Phone,
 			"email":        payload.Email,
 			"gender":       payload.Gender,
-			"updatedAt":    time.Now(),
+			"updatedAt":    ptime.Now(),
 		}
 		cond = bson.M{"_id": staffID}
 	)
@@ -145,8 +145,44 @@ func (s staffImplement) Update(ctx context.Context, staffID primitive.ObjectID, 
 
 // ChangePassword ...
 func (s staffImplement) ChangePassword(ctx context.Context, staffID primitive.ObjectID, payload requestmodel.StaffBodyChangePassword) (result responsemodel.ResponseUpdate, err error) {
-	//TODO implement me
-	panic("implement me")
+	var (
+		d             = dao.Staff()
+		payloadUpdate = bson.M{
+			"password":  auth.HashedPassword(payload.NewPassword),
+			"updatedAt": ptime.Now(),
+		}
+		cond = bson.M{"_id": staffID}
+	)
+
+	// Find staff
+	staff := d.FindOneByCondition(ctx, cond)
+	if staff.ID.IsZero() {
+		err = errors.New(errorcode.StaffNotFound)
+		return
+	}
+
+	// Check oldPassword is correct
+	if isValidOldPassword := auth.CompareHashedPassword(payload.OldPassword, staff.Password); !isValidOldPassword {
+		err = errors.New(errorcode.StaffWrongOldPassword)
+		return
+	}
+
+	// Compare oldPassword vs newPassword
+	if isComparePassword := auth.CompareHashedPassword(payload.NewPassword, staff.Password); isComparePassword {
+		err = errors.New(errorcode.StaffNewPasswordSameOldPassword)
+		return
+	}
+
+	// Update
+	if err = d.UpdateOneByCondition(ctx, cond, bson.M{"$set": payloadUpdate}); err != nil {
+		return
+	}
+
+	// Response
+	result = responsemodel.ResponseUpdate{
+		ID: staffID.Hex(),
+	}
+	return
 }
 
 //
