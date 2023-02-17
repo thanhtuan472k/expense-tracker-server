@@ -5,6 +5,7 @@ import (
 	"errors"
 	"expense-tracker-server/external/constant"
 	"expense-tracker-server/external/mongodb"
+	"expense-tracker-server/external/util/format"
 	"expense-tracker-server/external/util/ptime"
 	"expense-tracker-server/internal/auth"
 	"expense-tracker-server/pkg/admin/dao"
@@ -48,7 +49,7 @@ func (s staffImplement) Login(ctx context.Context, payload requestmodel.StaffBod
 		d = dao.Staff()
 	)
 	// Check phone is existed in system or not
-	staff := d.FindOneByCondition(ctx, bson.M{"phone": payload.Phone})
+	staff := d.FindOneByCondition(ctx, bson.M{"phone": format.PhoneFormatCommon(payload.Phone)})
 
 	// If staff is not existed --> User not found
 	if staff.ID.IsZero() {
@@ -98,7 +99,7 @@ func (s staffImplement) GetMe(ctx context.Context, staffID primitive.ObjectID) (
 		Name:   staff.Name,
 		Email:  staff.Email,
 		Gender: staff.Gender,
-		Phone:  staff.Phone,
+		Phone:  format.PhoneFormatCommon(staff.Phone),
 	}
 
 	return
@@ -111,7 +112,7 @@ func (s staffImplement) Update(ctx context.Context, staffID primitive.ObjectID, 
 		payloadUpdate = bson.M{
 			"name":         payload.Name,
 			"searchString": mongodb.NonAccentVietnamese(payload.Name),
-			"phone":        payload.Phone,
+			"phone":        format.PhoneFormatCommon(payload.Phone),
 			"email":        payload.Email,
 			"gender":       payload.Gender,
 			"updatedAt":    ptime.Now(),
