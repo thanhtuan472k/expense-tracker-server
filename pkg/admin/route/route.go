@@ -2,6 +2,7 @@ package route
 
 import (
 	"expense-tracker-server/external/util/routemiddleware"
+	routeauth "expense-tracker-server/pkg/admin/route/auth"
 	"github.com/labstack/echo/v4"
 )
 
@@ -9,6 +10,8 @@ import (
 func Init(e *echo.Echo) {
 
 	// Middlewares ...
+	e.Use(routeauth.Jwt())
+
 	e.Use(routemiddleware.CORSConfig())
 	e.Use(routemiddleware.Locale)
 

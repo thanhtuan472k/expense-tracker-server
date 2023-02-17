@@ -22,6 +22,31 @@ definitions:
       status:
         type: string
     type: object
+  requestmodel.StaffBodyChangePassword:
+    properties:
+      newPassword:
+        type: string
+      oldPassword:
+        type: string
+    type: object
+  requestmodel.StaffBodyLogin:
+    properties:
+      password:
+        type: string
+      phone:
+        type: string
+    type: object
+  requestmodel.StaffBodyUpdate:
+    properties:
+      email:
+        type: string
+      gender:
+        type: string
+      name:
+        type: string
+      phone:
+        type: string
+    type: object
   responsemodel.ResponseCategoryAdmin:
     properties:
       _id:
@@ -227,6 +252,84 @@ paths:
       summary: Ping
       tags:
       - Common
+  /staffs/login:
+    post:
+      consumes:
+      - application/json
+      operationId: staff-login
+      parameters:
+      - description: Payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/requestmodel.StaffBodyLogin'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      summary: Login
+      tags:
+      - Staff
+  /staffs/me:
+    get:
+      consumes:
+      - application/json
+      operationId: staff-get-me
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      security:
+      - ApiKeyAuth: []
+      summary: GetMe
+      tags:
+      - Staff
+    put:
+      consumes:
+      - application/json
+      operationId: staff-update-info
+      parameters:
+      - description: Payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/requestmodel.StaffBodyUpdate'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      security:
+      - ApiKeyAuth: []
+      summary: Update
+      tags:
+      - Staff
+  /staffs/me/password:
+    patch:
+      consumes:
+      - application/json
+      operationId: staff-change-password
+      parameters:
+      - description: Payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/requestmodel.StaffBodyChangePassword'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      security:
+      - ApiKeyAuth: []
+      summary: ChangePassword
+      tags:
+      - Staff
 securityDefinitions:
   ApiKeyAuth:
     in: header

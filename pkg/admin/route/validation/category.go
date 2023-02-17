@@ -1,4 +1,4 @@
-package routevalidation
+package validation
 
 import (
 	"expense-tracker-server/external/response"

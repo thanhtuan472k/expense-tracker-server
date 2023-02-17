@@ -11,36 +11,36 @@ const (
 	CategoryTypeIsInvalid   = "category_type_is_invalid"
 )
 
-// 200 - 299
+// 300 - 399
 var category = []response.Code{
 	{
 		Key:     CategoryIsRequiredName,
 		Message: "Danh mục không được trống",
-		Code:    200,
+		Code:    300,
 	},
 	{
 		Key:     CategoryIsInvalid,
 		Message: "Danh mục không hợp lệ",
-		Code:    201,
+		Code:    301,
 	},
 	{
 		Key:     CategoryStatusIsInvalid,
 		Message: "Trạng thái danh mục không hợp lệ",
-		Code:    202,
+		Code:    302,
 	},
 	{
 		Key:     CategoryIDIsInvalid,
 		Message: "ID danh mục không hợp lệ",
-		Code:    203,
+		Code:    303,
 	},
 	{
 		Key:     CategoryNotFound,
 		Message: "Không tìm thấy danh mục",
-		Code:    204,
+		Code:    304,
 	},
 	{
 		Key:     CategoryTypeIsInvalid,
 		Message: "Loại danh mục không hợp lệ",
-		Code:    205,
+		Code:    305,
 	},
 }

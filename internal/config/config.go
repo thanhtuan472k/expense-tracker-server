@@ -24,13 +24,20 @@ type ENV struct {
 	Admin struct {
 		Server string
 		Port   string
+		Auth   struct {
+			SecretKey        string
+			TimeExpiredToken int64
+		}
 	}
 	App struct {
 		Server string
 		Port   string
+		Auth   struct {
+			SecretKey        string
+			TimeExpiredToken int64
+		}
 	}
 	Nats       NatsConfig
-	SecretKey  string
 	MongoAudit MongoConfig `env:",prefix=MONGO_AUDIT_"`
 
 	FileHost string
