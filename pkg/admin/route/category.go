@@ -12,8 +12,9 @@ func category(e *echo.Group) {
 	var (
 		g = e.Group("/categories", routeauth.RequiredLogin)
 
-		h = handler.Category{}
-		v = validation.Category{}
+		h  = handler.Category{}
+		v  = validation.Category{}
+		vs = validation.SubCategory{}
 	)
 
 	// Create ...
@@ -30,4 +31,10 @@ func category(e *echo.Group) {
 
 	// ChangeStatus ...
 	g.PATCH("/:id/status", h.ChangeStatus, v.ChangeStatus, v.Detail)
+
+	// CreateSubCategory ...
+	g.POST("/:id/sub-categories", h.CreateSubCategory, vs.Create, v.Detail)
+
+	// SubCategoryAll ...
+	g.GET("/:id/sub-categories", h.SubCategoryAll, vs.All, v.Detail)
 }

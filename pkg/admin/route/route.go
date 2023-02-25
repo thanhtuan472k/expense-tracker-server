@@ -21,4 +21,5 @@ func Init(e *echo.Echo) {
 	common(r)
 	staff(r)
 	category(r)
+	subCategory(r)
 }
