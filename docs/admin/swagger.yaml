@@ -47,6 +47,11 @@ definitions:
       phone:
         type: string
     type: object
+  requestmodel.SubCategoryBodyCreate:
+    properties:
+      name:
+        type: string
+    type: object
   responsemodel.ResponseCategoryAdmin:
     properties:
       _id:
@@ -239,6 +244,35 @@ paths:
       summary: ChangeStatus
       tags:
       - Category
+  /categories/{id}/sub-categories:
+    post:
+      consumes:
+      - application/json
+      operationId: sub-category-create
+      parameters:
+      - description: Category id
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/requestmodel.SubCategoryBodyCreate'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responsemodel.ResponseCreate'
+      security:
+      - ApiKeyAuth: []
+      summary: Create Sub Category
+      tags:
+      - Category
   /ping:
     get:
       consumes:
@@ -330,6 +364,35 @@ paths:
       summary: ChangePassword
       tags:
       - Staff
+  /sub-categories:
+    post:
+      consumes:
+      - application/json
+      operationId: sub-category-update
+      parameters:
+      - description: Sub category id
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/requestmodel.SubCategoryBodyCreate'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responsemodel.ResponseCreate'
+      security:
+      - ApiKeyAuth: []
+      summary: Update
+      tags:
+      - SubCategory
 securityDefinitions:
   ApiKeyAuth:
     in: header

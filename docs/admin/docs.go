@@ -238,6 +238,52 @@ const docTemplate = `{
                 }
             }
         },
+        "/categories/{id}/sub-categories": {
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Category"
+                ],
+                "summary": "Create Sub Category",
+                "operationId": "sub-category-create",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Category id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Payload",
+                        "name": "payload",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/requestmodel.SubCategoryBodyCreate"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/responsemodel.ResponseCreate"
+                        }
+                    }
+                }
+            }
+        },
         "/ping": {
             "get": {
                 "security": [
@@ -384,6 +430,52 @@ const docTemplate = `{
                     }
                 }
             }
+        },
+        "/sub-categories": {
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "SubCategory"
+                ],
+                "summary": "Update",
+                "operationId": "sub-category-update",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Sub category id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Payload",
+                        "name": "payload",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/requestmodel.SubCategoryBodyCreate"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/responsemodel.ResponseCreate"
+                        }
+                    }
+                }
+            }
         }
     },
     "definitions": {
@@ -457,6 +549,14 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "phone": {
+                    "type": "string"
+                }
+            }
+        },
+        "requestmodel.SubCategoryBodyCreate": {
+            "type": "object",
+            "properties": {
+                "name": {
                     "type": "string"
                 }
             }

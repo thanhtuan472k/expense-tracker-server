@@ -48,6 +48,11 @@ func CategoryCol() *mongo.Collection {
 	return expenseDB.Collection(colCategory)
 }
 
+// SubCategoryCol ...
+func SubCategoryCol() *mongo.Collection {
+	return expenseDB.Collection(colSubCategory)
+}
+
 //ExpenseMoneyCol ...
 func ExpenseMoneyCol() *mongo.Collection {
 	return expenseDB.Collection(colExpenseMoney)

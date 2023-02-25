@@ -147,3 +147,30 @@ func (Category) ChangeStatus(c echo.Context) error {
 	}
 	return response.R200(c, result, "")
 }
+
+// CreateSubCategory godoc
+// @tags Category
+// @summary Create Sub Category
+// @id sub-category-create
+// @security ApiKeyAuth
+// @accept json
+// @produce json
+// @Param  id path string true "Category id"
+// @param payload body requestmodel.SubCategoryBodyCreate true "Payload"
+// @success 200 {object} responsemodel.ResponseCreate
+// @router /categories/{id}/sub-categories [post]
+func (Category) CreateSubCategory(c echo.Context) error {
+	var (
+		ctx     = echocontext.GetContext(c)
+		payload = echocontext.GetPayload(c).(requestmodel.SubCategoryBodyCreate)
+		s       = service.SubCategory()
+		id      = echocontext.GetParam(c, "id").(primitive.ObjectID)
+	)
+
+	result, err := s.Create(ctx, id, payload)
+	if err != nil {
+		return response.R400(c, nil, err.Error())
+	}
+
+	return response.R200(c, responsemodel.ResponseCreate{ID: result}, "")
+}
