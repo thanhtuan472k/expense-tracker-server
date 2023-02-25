@@ -52,6 +52,11 @@ definitions:
       name:
         type: string
     type: object
+  requestmodel.SubCategoryChangeStatus:
+    properties:
+      status:
+        type: string
+    type: object
   responsemodel.ResponseCategoryAdmin:
     properties:
       _id:
@@ -89,6 +94,32 @@ definitions:
     properties:
       _id:
         type: string
+    type: object
+  responsemodel.ResponseSubCategoryAdmin:
+    properties:
+      _id:
+        type: string
+      createdAt:
+        $ref: '#/definitions/ptime.TimeResponse'
+      name:
+        type: string
+      status:
+        type: string
+      type:
+        type: string
+      updatedAt:
+        $ref: '#/definitions/ptime.TimeResponse'
+    type: object
+  responsemodel.ResponseSubCategoryAll:
+    properties:
+      limit:
+        type: integer
+      list:
+        items:
+          $ref: '#/definitions/responsemodel.ResponseSubCategoryAdmin'
+        type: array
+      total:
+        type: integer
     type: object
   responsemodel.ResponseUpdate:
     properties:
@@ -245,6 +276,40 @@ paths:
       tags:
       - Category
   /categories/{id}/sub-categories:
+    get:
+      consumes:
+      - application/json
+      operationId: sub-category-all
+      parameters:
+      - description: Category id
+        in: path
+        name: id
+        required: true
+        type: string
+      - in: query
+        name: keyword
+        type: string
+      - in: query
+        name: limit
+        type: integer
+      - in: query
+        name: page
+        type: integer
+      - in: query
+        name: status
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responsemodel.ResponseSubCategoryAll'
+      security:
+      - ApiKeyAuth: []
+      summary: Get all Sub Category
+      tags:
+      - Category
     post:
       consumes:
       - application/json
@@ -364,8 +429,30 @@ paths:
       summary: ChangePassword
       tags:
       - Staff
-  /sub-categories:
-    post:
+  /sub-categories/{id}:
+    get:
+      consumes:
+      - application/json
+      operationId: sub-category-detail
+      parameters:
+      - description: Sub category id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responsemodel.ResponseSubCategoryAdmin'
+      security:
+      - ApiKeyAuth: []
+      summary: Detail
+      tags:
+      - SubCategory
+    put:
       consumes:
       - application/json
       operationId: sub-category-update
@@ -391,6 +478,35 @@ paths:
       security:
       - ApiKeyAuth: []
       summary: Update
+      tags:
+      - SubCategory
+  /sub-categories/{id}/status:
+    patch:
+      consumes:
+      - application/json
+      operationId: sub-category-change-status
+      parameters:
+      - description: Sub category id
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/requestmodel.SubCategoryChangeStatus'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responsemodel.ResponseChangeStatus'
+      security:
+      - ApiKeyAuth: []
+      summary: ChangeStatus
       tags:
       - SubCategory
 securityDefinitions:

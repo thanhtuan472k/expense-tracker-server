@@ -34,4 +34,7 @@ func category(e *echo.Group) {
 
 	// CreateSubCategory ...
 	g.POST("/:id/sub-categories", h.CreateSubCategory, vs.Create, v.Detail)
+
+	// SubCategoryAll ...
+	g.GET("/:id/sub-categories", h.SubCategoryAll, vs.All, v.Detail)
 }

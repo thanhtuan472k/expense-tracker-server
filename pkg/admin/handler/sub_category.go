@@ -23,7 +23,7 @@ type SubCategory struct{}
 // @Param  id path string true "Sub category id"
 // @param payload body requestmodel.SubCategoryBodyCreate true "Payload"
 // @success 200 {object} responsemodel.ResponseCreate
-// @router /sub-categories [post]
+// @router /sub-categories/{id} [put]
 func (SubCategory) Update(c echo.Context) error {
 	var (
 		ctx     = echocontext.GetContext(c)
@@ -37,4 +37,54 @@ func (SubCategory) Update(c echo.Context) error {
 		return response.R400(c, nil, err.Error())
 	}
 	return response.R200(c, responsemodel.ResponseCreate{ID: result}, "")
+}
+
+// Detail godoc
+// @tags SubCategory
+// @summary Detail
+// @id sub-category-detail
+// @security ApiKeyAuth
+// @accept json
+// @produce json
+// @Param  id path string true "Sub category id"
+// @success 200 {object} responsemodel.ResponseSubCategoryAdmin
+// @router /sub-categories/{id} [get]
+func (SubCategory) Detail(c echo.Context) error {
+	var (
+		ctx = echocontext.GetContext(c)
+		s   = service.SubCategory()
+		id  = echocontext.GetParam(c, "id").(primitive.ObjectID)
+	)
+
+	result, err := s.Detail(ctx, id)
+	if err != nil {
+		return response.R400(c, echo.Map{}, err.Error())
+	}
+	return response.R200(c, result, "")
+}
+
+// ChangeStatus godoc
+// @tags SubCategory
+// @summary ChangeStatus
+// @id sub-category-change-status
+// @security ApiKeyAuth
+// @accept json
+// @produce json
+// @Param  id path string true "Sub category id"
+// @param payload body requestmodel.SubCategoryChangeStatus true "Payload"
+// @success 200 {object} responsemodel.ResponseChangeStatus
+// @router /sub-categories/{id}/status [patch]
+func (SubCategory) ChangeStatus(c echo.Context) error {
+	var (
+		ctx     = echocontext.GetContext(c)
+		payload = echocontext.GetPayload(c).(requestmodel.SubCategoryChangeStatus)
+		s       = service.SubCategory()
+		id      = echocontext.GetParam(c, "id").(primitive.ObjectID)
+	)
+
+	result, err := s.ChangeStatus(ctx, id, payload)
+	if err != nil {
+		return response.R400(c, nil, err.Error())
+	}
+	return response.R200(c, result, "")
 }

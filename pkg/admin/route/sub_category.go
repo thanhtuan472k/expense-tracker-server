@@ -17,4 +17,10 @@ func subCategory(e *echo.Group) {
 
 	// Update ...
 	g.PUT("/:id", h.Update, v.Update, v.Detail)
+
+	// Detail ...
+	g.GET("/:id", h.Detail, v.Detail)
+
+	// ChangeStatus ...
+	g.PATCH("/:id/status", h.ChangeStatus, v.ChangeStatus, v.Detail)
 }

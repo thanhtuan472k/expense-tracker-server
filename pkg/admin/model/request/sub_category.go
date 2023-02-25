@@ -52,3 +52,16 @@ type SubCategoryChangeStatus struct {
 func (m SubCategoryChangeStatus) Validate() error {
 	return validation.ValidateStruct(&m)
 }
+
+// SubCategoryAll ...
+type SubCategoryAll struct {
+	Page    int64  `query:"page"`
+	Limit   int64  `query:"limit"`
+	Keyword string `query:"keyword"`
+	Status  string `query:"status"`
+}
+
+// Validate ...
+func (m SubCategoryAll) Validate() error {
+	return validation.ValidateStruct(&m)
+}

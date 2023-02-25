@@ -239,6 +239,61 @@ const docTemplate = `{
             }
         },
         "/categories/{id}/sub-categories": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Category"
+                ],
+                "summary": "Get all Sub Category",
+                "operationId": "sub-category-all",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Category id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "name": "keyword",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "status",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/responsemodel.ResponseSubCategoryAll"
+                        }
+                    }
+                }
+            },
             "post": {
                 "security": [
                     {
@@ -431,8 +486,43 @@ const docTemplate = `{
                 }
             }
         },
-        "/sub-categories": {
-            "post": {
+        "/sub-categories/{id}": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "SubCategory"
+                ],
+                "summary": "Detail",
+                "operationId": "sub-category-detail",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Sub category id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/responsemodel.ResponseSubCategoryAdmin"
+                        }
+                    }
+                }
+            },
+            "put": {
                 "security": [
                     {
                         "ApiKeyAuth": []
@@ -472,6 +562,52 @@ const docTemplate = `{
                         "description": "OK",
                         "schema": {
                             "$ref": "#/definitions/responsemodel.ResponseCreate"
+                        }
+                    }
+                }
+            }
+        },
+        "/sub-categories/{id}/status": {
+            "patch": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "SubCategory"
+                ],
+                "summary": "ChangeStatus",
+                "operationId": "sub-category-change-status",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Sub category id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Payload",
+                        "name": "payload",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/requestmodel.SubCategoryChangeStatus"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/responsemodel.ResponseChangeStatus"
                         }
                     }
                 }
@@ -561,6 +697,14 @@ const docTemplate = `{
                 }
             }
         },
+        "requestmodel.SubCategoryChangeStatus": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "type": "string"
+                }
+            }
+        },
         "responsemodel.ResponseCategoryAdmin": {
             "type": "object",
             "properties": {
@@ -617,6 +761,46 @@ const docTemplate = `{
             "properties": {
                 "_id": {
                     "type": "string"
+                }
+            }
+        },
+        "responsemodel.ResponseSubCategoryAdmin": {
+            "type": "object",
+            "properties": {
+                "_id": {
+                    "type": "string"
+                },
+                "createdAt": {
+                    "$ref": "#/definitions/ptime.TimeResponse"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "updatedAt": {
+                    "$ref": "#/definitions/ptime.TimeResponse"
+                }
+            }
+        },
+        "responsemodel.ResponseSubCategoryAll": {
+            "type": "object",
+            "properties": {
+                "limit": {
+                    "type": "integer"
+                },
+                "list": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/responsemodel.ResponseSubCategoryAdmin"
+                    }
+                },
+                "total": {
+                    "type": "integer"
                 }
             }
         },

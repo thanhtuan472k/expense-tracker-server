@@ -16,7 +16,7 @@ const (
 var category = []response.Code{
 	{
 		Key:     CategoryIsRequiredName,
-		Message: "Danh mục không được trống",
+		Message: "Tên danh mục không được trống",
 		Code:    300,
 	},
 	{
