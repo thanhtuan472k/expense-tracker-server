@@ -566,6 +566,52 @@ const docTemplate = `{
                     }
                 }
             }
+        },
+        "/sub-categories/{id}/status": {
+            "patch": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "SubCategory"
+                ],
+                "summary": "ChangeStatus",
+                "operationId": "sub-category-change-status",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Sub category id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Payload",
+                        "name": "payload",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/requestmodel.SubCategoryChangeStatus"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/responsemodel.ResponseChangeStatus"
+                        }
+                    }
+                }
+            }
         }
     },
     "definitions": {
@@ -647,6 +693,14 @@ const docTemplate = `{
             "type": "object",
             "properties": {
                 "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "requestmodel.SubCategoryChangeStatus": {
+            "type": "object",
+            "properties": {
+                "status": {
                     "type": "string"
                 }
             }

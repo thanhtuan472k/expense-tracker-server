@@ -52,6 +52,11 @@ definitions:
       name:
         type: string
     type: object
+  requestmodel.SubCategoryChangeStatus:
+    properties:
+      status:
+        type: string
+    type: object
   responsemodel.ResponseCategoryAdmin:
     properties:
       _id:
@@ -473,6 +478,35 @@ paths:
       security:
       - ApiKeyAuth: []
       summary: Update
+      tags:
+      - SubCategory
+  /sub-categories/{id}/status:
+    patch:
+      consumes:
+      - application/json
+      operationId: sub-category-change-status
+      parameters:
+      - description: Sub category id
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/requestmodel.SubCategoryChangeStatus'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responsemodel.ResponseChangeStatus'
+      security:
+      - ApiKeyAuth: []
+      summary: ChangeStatus
       tags:
       - SubCategory
 securityDefinitions:

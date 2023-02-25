@@ -160,9 +160,30 @@ func (s subCategoryImplement) Update(ctx context.Context, id primitive.ObjectID,
 }
 
 // ChangeStatus ...
-func (s subCategoryImplement) ChangeStatus(ctx context.Context, id primitive.ObjectID, payload requestmodel.SubCategoryChangeStatus) (categoryID string, err error) {
-	//TODO implement me
-	panic("implement me")
+func (s subCategoryImplement) ChangeStatus(ctx context.Context, id primitive.ObjectID, payload requestmodel.SubCategoryChangeStatus) (subCategoryID string, err error) {
+	// Find subCategory
+	subCategory, err := s.FindByID(ctx, id)
+	if err != nil {
+		return
+	}
+
+	var (
+		d             = dao.SubCategory()
+		cond          = bson.D{{"_id", id}}
+		payloadUpdate = bson.M{
+			"status":    payload.Status,
+			"updatedAt": ptime.Now(),
+		}
+	)
+
+	// Update
+	if err = d.UpdateOneByCondition(ctx, cond, bson.M{"$set": payloadUpdate}); err != nil {
+		return
+	}
+
+	// Response
+	subCategoryID = subCategory.ID.Hex()
+	return
 }
 
 // FindByID ...

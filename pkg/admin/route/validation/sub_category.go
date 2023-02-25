@@ -84,3 +84,21 @@ func (SubCategory) All(next echo.HandlerFunc) echo.HandlerFunc {
 		return next(c)
 	}
 }
+
+// ChangeStatus ...
+func (SubCategory) ChangeStatus(next echo.HandlerFunc) echo.HandlerFunc {
+	return func(c echo.Context) error {
+		var payload requestmodel.SubCategoryChangeStatus
+
+		if err := c.Bind(&payload); err != nil {
+			return response.R400(c, nil, "")
+		}
+
+		if err := payload.Validate(); err != nil {
+			return response.RouteValidation(c, err)
+		}
+
+		echocontext.SetPayload(c, payload)
+		return next(c)
+	}
+}
