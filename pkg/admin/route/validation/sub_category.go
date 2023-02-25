@@ -54,7 +54,7 @@ func (SubCategory) Detail(next echo.HandlerFunc) echo.HandlerFunc {
 		var id = c.Param("id")
 
 		if !primitive.IsValidObjectID(id) {
-			return response.R404(c, nil, errorcode.SubCategoryIDIsInvalid)
+			return response.R404(c, nil, errorcode.SubCategoryNotFound)
 		}
 
 		objID, err := primitive.ObjectIDFromHex(id)

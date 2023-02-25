@@ -118,8 +118,15 @@ func (s subCategoryImplement) All(ctx context.Context, q mgquerry.AppQuery) (res
 
 // Detail ...
 func (s subCategoryImplement) Detail(ctx context.Context, id primitive.ObjectID) (result responsemodel.ResponseSubCategoryAdmin, err error) {
-	//TODO implement me
-	panic("implement me")
+	// Find subCategory
+	subCategory, err := s.FindByID(ctx, id)
+	if err != nil {
+		return
+	}
+
+	// Response
+	result = s.detail(ctx, subCategory)
+	return
 }
 
 // Update ...
@@ -134,12 +141,40 @@ func (s subCategoryImplement) ChangeStatus(ctx context.Context, id primitive.Obj
 	panic("implement me")
 }
 
+// FindByID ...
+func (s subCategoryImplement) FindByID(ctx context.Context, id primitive.ObjectID) (result mgexpense.SubCategory, err error) {
+	var (
+		d    = dao.SubCategory()
+		cond = bson.D{{"_id", id}}
+	)
+
+	subCategory := d.FindOneByCondition(ctx, cond)
+	if subCategory.ID.IsZero() {
+		err = errors.New(errorcode.SubCategoryNotFound)
+		return
+	}
+	result = subCategory
+	return
+}
+
 //
 // PRIVATE ...
 //
 
 // brief ...
 func (s subCategoryImplement) brief(ctx context.Context, doc mgexpense.SubCategory) (result responsemodel.ResponseSubCategoryAdmin) {
+	return responsemodel.ResponseSubCategoryAdmin{
+		ID:        doc.ID.Hex(),
+		Name:      doc.Name,
+		Type:      doc.Type,
+		Status:    doc.Status,
+		CreatedAt: ptime.TimeResponseInit(doc.CreatedAt),
+		UpdatedAt: ptime.TimeResponseInit(doc.UpdatedAt),
+	}
+}
+
+// detail ...
+func (s subCategoryImplement) detail(ctx context.Context, doc mgexpense.SubCategory) (result responsemodel.ResponseSubCategoryAdmin) {
 	return responsemodel.ResponseSubCategoryAdmin{
 		ID:        doc.ID.Hex(),
 		Name:      doc.Name,
