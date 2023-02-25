@@ -20,6 +20,7 @@ type SubCategory struct{}
 // @security ApiKeyAuth
 // @accept json
 // @produce json
+// @Param  id path string true "Sub category id"
 // @param payload body requestmodel.SubCategoryBodyCreate true "Payload"
 // @success 200 {object} responsemodel.ResponseCreate
 // @router /sub-categories [post]

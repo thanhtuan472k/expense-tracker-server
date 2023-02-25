@@ -451,6 +451,13 @@ const docTemplate = `{
                 "operationId": "sub-category-update",
                 "parameters": [
                     {
+                        "type": "string",
+                        "description": "Sub category id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
                         "description": "Payload",
                         "name": "payload",
                         "in": "body",

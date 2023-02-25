@@ -370,6 +370,11 @@ paths:
       - application/json
       operationId: sub-category-update
       parameters:
+      - description: Sub category id
+        in: path
+        name: id
+        required: true
+        type: string
       - description: Payload
         in: body
         name: payload

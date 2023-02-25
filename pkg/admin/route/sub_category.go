@@ -16,5 +16,5 @@ func subCategory(e *echo.Group) {
 	)
 
 	// Update ...
-	g.PUT("/:id", h.Update, v.Update)
+	g.PUT("/:id", h.Update, v.Update, v.Detail)
 }

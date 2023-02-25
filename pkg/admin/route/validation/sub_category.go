@@ -3,8 +3,10 @@ package validation
 import (
 	"expense-tracker-server/external/response"
 	"expense-tracker-server/external/util/echocontext"
+	"expense-tracker-server/pkg/admin/errorcode"
 	requestmodel "expense-tracker-server/pkg/admin/model/request"
 	"github.com/labstack/echo/v4"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
 // SubCategory ...
@@ -42,6 +44,25 @@ func (SubCategory) Update(next echo.HandlerFunc) echo.HandlerFunc {
 		}
 
 		echocontext.SetPayload(c, payload)
+		return next(c)
+	}
+}
+
+// Detail ...
+func (s SubCategory) Detail(next echo.HandlerFunc) echo.HandlerFunc {
+	return func(c echo.Context) error {
+		var id = c.Param("id")
+
+		if !primitive.IsValidObjectID(id) {
+			return response.R404(c, nil, errorcode.SubCategoryIDIsInvalid)
+		}
+
+		objID, err := primitive.ObjectIDFromHex(id)
+		if err != nil {
+			return response.R400(c, nil, "")
+		}
+
+		echocontext.SetParam(c, "id", objID)
 		return next(c)
 	}
 }
