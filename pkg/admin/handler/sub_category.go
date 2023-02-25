@@ -23,7 +23,7 @@ type SubCategory struct{}
 // @Param  id path string true "Sub category id"
 // @param payload body requestmodel.SubCategoryBodyCreate true "Payload"
 // @success 200 {object} responsemodel.ResponseCreate
-// @router /sub-categories [post]
+// @router /sub-categories/{id} [put]
 func (SubCategory) Update(c echo.Context) error {
 	var (
 		ctx     = echocontext.GetContext(c)

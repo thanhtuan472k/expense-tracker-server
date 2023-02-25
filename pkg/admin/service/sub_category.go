@@ -4,6 +4,7 @@ import (
 	"context"
 	"errors"
 	mgexpense "expense-tracker-server/external/model/mg/expense"
+	"expense-tracker-server/external/mongodb"
 	"expense-tracker-server/external/util/mgquerry"
 	"expense-tracker-server/external/util/ptime"
 	"expense-tracker-server/pkg/admin/dao"
@@ -130,9 +131,32 @@ func (s subCategoryImplement) Detail(ctx context.Context, id primitive.ObjectID)
 }
 
 // Update ...
-func (s subCategoryImplement) Update(ctx context.Context, id primitive.ObjectID, payload requestmodel.SubCategoryBodyUpdate) (categoryID string, err error) {
-	//TODO implement me
-	panic("implement me")
+func (s subCategoryImplement) Update(ctx context.Context, id primitive.ObjectID, payload requestmodel.SubCategoryBodyUpdate) (subCategoryID string, err error) {
+	// Find subCategory
+	subCategory, err := s.FindByID(ctx, id)
+	if err != nil {
+		return
+	}
+
+	var (
+		d             = dao.SubCategory()
+		cond          = bson.D{{"_id", id}}
+		payloadUpdate = bson.M{
+			"name":         payload.Name,
+			"searchString": mongodb.NonAccentVietnamese(payload.Name),
+			"updatedAt":    ptime.Now(),
+		}
+	)
+
+	// Update
+	if err = d.UpdateOneByCondition(ctx, cond, bson.M{"$set": payloadUpdate}); err != nil {
+		return
+	}
+
+	// Response
+	subCategoryID = subCategory.ID.Hex()
+	return
+
 }
 
 // ChangeStatus ...

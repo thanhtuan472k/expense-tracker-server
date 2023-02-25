@@ -486,8 +486,43 @@ const docTemplate = `{
                 }
             }
         },
-        "/sub-categories": {
-            "post": {
+        "/sub-categories/{id}": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "SubCategory"
+                ],
+                "summary": "Detail",
+                "operationId": "sub-category-detail",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Sub category id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/responsemodel.ResponseSubCategoryAdmin"
+                        }
+                    }
+                }
+            },
+            "put": {
                 "security": [
                     {
                         "ApiKeyAuth": []
@@ -527,43 +562,6 @@ const docTemplate = `{
                         "description": "OK",
                         "schema": {
                             "$ref": "#/definitions/responsemodel.ResponseCreate"
-                        }
-                    }
-                }
-            }
-        },
-        "/sub-categories/{id}": {
-            "get": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    }
-                ],
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "SubCategory"
-                ],
-                "summary": "Detail",
-                "operationId": "sub-category-detail",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "Sub category id",
-                        "name": "id",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/responsemodel.ResponseSubCategoryAdmin"
                         }
                     }
                 }
