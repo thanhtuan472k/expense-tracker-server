@@ -28,6 +28,6 @@ swagger-admin:
     -o ./docs/admin
 
 swagger-app:
-	swag init -d ./ -g cmd/app/main.go \
+	swag init -d ./ -g cmd/app/main.go --pd \
 	--exclude ./pkg/admin \
 	-o ./docs/app
