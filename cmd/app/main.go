@@ -12,7 +12,7 @@ import (
 	"go.elastic.co/apm/module/apmechov4"
 )
 
-// @title Expense Tracker - Admin API
+// @title Expense Tracker - App API
 // @version 1.0
 // @description All APIs for Expense app.
 // @description
@@ -55,6 +55,6 @@ func main() {
 	}
 
 	// Start server
-	e.Logger.Fatal(e.Start(config.GetENV().Admin.Port))
+	e.Logger.Fatal(e.Start(config.GetENV().App.Port))
 
 }
