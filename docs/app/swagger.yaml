@@ -1,5 +1,16 @@
+basePath: /app/expense
 info:
-  contact: {}
+  contact:
+    email: tuanngo.472000@gmail.com
+    name: Dev team
+  description: |
+    All APIs for Expense app.
+
+    ******************************
+    - Add description
+    ******************************
+  title: Expense Tracker - Admin API
+  version: "1.0"
 paths:
   /ping:
     get:
@@ -14,4 +25,9 @@ paths:
       summary: Ping
       tags:
       - Common
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: Authorization
+    type: apiKey
 swagger: "2.0"

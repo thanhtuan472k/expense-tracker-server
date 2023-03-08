@@ -4,7 +4,7 @@ import (
 	"expense-tracker-server/internal/config"
 	"expense-tracker-server/internal/redis"
 	"expense-tracker-server/internal/zk"
-	"expense-tracker-server/pkg/admin/errorcode"
+	"expense-tracker-server/pkg/app/errorcode"
 )
 
 // Init ...

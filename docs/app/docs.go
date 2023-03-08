@@ -10,7 +10,10 @@ const docTemplate = `{
     "info": {
         "description": "{{escape .Description}}",
         "title": "{{.Title}}",
-        "contact": {},
+        "contact": {
+            "name": "Dev team",
+            "email": "tuanngo.472000@gmail.com"
+        },
         "version": "{{.Version}}"
     },
     "host": "{{.Host}}",
@@ -37,17 +40,24 @@ const docTemplate = `{
                 "responses": {}
             }
         }
+    },
+    "securityDefinitions": {
+        "ApiKeyAuth": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
     }
 }`
 
 // SwaggerInfo holds exported Swagger Info so clients can modify it
 var SwaggerInfo = &swag.Spec{
-	Version:          "",
+	Version:          "1.0",
 	Host:             "",
-	BasePath:         "",
+	BasePath:         "/app/expense",
 	Schemes:          []string{},
-	Title:            "",
-	Description:      "",
+	Title:            "Expense Tracker - Admin API",
+	Description:      "All APIs for Expense app.\n\n******************************\n- Add description\n******************************\n",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,
 }

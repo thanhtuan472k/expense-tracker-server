@@ -2,7 +2,7 @@ package route
 
 import (
 	"expense-tracker-server/external/util/routemiddleware"
-	routeauth "expense-tracker-server/pkg/admin/route/auth"
+	routeauth "expense-tracker-server/pkg/app/route/auth"
 	"github.com/labstack/echo/v4"
 )
 
