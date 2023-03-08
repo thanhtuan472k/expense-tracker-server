@@ -80,6 +80,7 @@ func (s staffImplement) GetMe(ctx context.Context, staffID primitive.ObjectID) (
 		d = dao.Staff()
 	)
 
+	// Comment
 	// Find staff
 	staff := d.FindOneByCondition(ctx, bson.M{"_id": staffID})
 
