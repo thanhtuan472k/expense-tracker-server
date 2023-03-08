@@ -1,0 +1,90 @@
+basePath: /app/expense
+definitions:
+  requestmodel.UserBodyLogin:
+    properties:
+      password:
+        type: string
+      phone:
+        type: string
+    type: object
+  requestmodel.UserBodyRegister:
+    properties:
+      name:
+        type: string
+      password:
+        type: string
+      phone:
+        type: string
+    type: object
+info:
+  contact:
+    email: tuanngo.472000@gmail.com
+    name: Dev team
+  description: |
+    All APIs for Expense app.
+
+    ******************************
+    - Add description
+    ******************************
+  title: Expense Tracker - App API
+  version: "1.0"
+paths:
+  /ping:
+    get:
+      consumes:
+      - application/json
+      operationId: ping
+      produces:
+      - application/json
+      responses: {}
+      security:
+      - ApiKeyAuth: []
+      summary: Ping
+      tags:
+      - Common
+  /users/login:
+    post:
+      consumes:
+      - application/json
+      operationId: user-login
+      parameters:
+      - description: Payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/requestmodel.UserBodyLogin'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      summary: Login
+      tags:
+      - User
+  /users/register:
+    post:
+      consumes:
+      - application/json
+      operationId: user-register
+      parameters:
+      - description: Payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/requestmodel.UserBodyRegister'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      summary: Login
+      tags:
+      - User
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"
