@@ -19,4 +19,7 @@ func user(e *echo.Group) {
 
 	// Login ...
 	g.POST("/login", h.Register)
+
+	// GetMe ...
+	g.GET("/me", h.GetMe)
 }

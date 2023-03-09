@@ -56,3 +56,26 @@ func (User) Login(c echo.Context) error {
 	}
 	return response.R200(c, result, "")
 }
+
+// GetMe godoc
+// @tags Staff
+// @summary GetMe
+// @id user-get-me
+// @security ApiKeyAuth
+// @accept json
+// @produce json
+// @success 200 {object} nil
+// @router /users/me [get]
+func (User) GetMe(c echo.Context) error {
+	var (
+		ctx    = echocontext.GetContext(c)
+		userID = echocontext.GetCurrentUserID(c)
+		s      = service.User()
+	)
+
+	result, err := s.GetMe(ctx, userID)
+	if err != nil {
+		return response.R400(c, nil, err.Error())
+	}
+	return response.R200(c, result, "")
+}
