@@ -51,7 +51,7 @@ func (s staffImplement) Login(ctx context.Context, payload requestmodel.StaffBod
 	// Check phone is existed in system or not
 	staff := d.FindOneByCondition(ctx, bson.M{"phone": format.PhoneFormatCommon(payload.Phone)})
 
-	// If staff is not existed --> User not found
+	// If staff is not existed --> Staff not found
 	if staff.ID.IsZero() {
 		err = errors.New(errorcode.StaffNotFound)
 		return

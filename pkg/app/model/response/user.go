@@ -7,6 +7,8 @@ type ResponseUserRegister struct {
 
 // ResponseUserLogin ...
 type ResponseUserLogin struct {
+	ID          string `json:"_id"`
+	AccessToken string `json:"accessToken"`
 }
 
 // ResponseUserMe ...
