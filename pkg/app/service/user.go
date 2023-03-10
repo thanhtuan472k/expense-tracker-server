@@ -39,7 +39,7 @@ type userImplement struct{}
 func (s userImplement) Register(ctx context.Context, payload requestmodel.UserBodyRegister) (result responsemodel.ResponseUserRegister, err error) {
 	var (
 		d   = dao.User()
-		doc = payload.ConvertToBSON()
+		doc = payload.ConvertToBSON(ctx)
 	)
 
 	// Check phone and email existed

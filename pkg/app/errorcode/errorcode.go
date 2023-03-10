@@ -7,5 +7,6 @@ func Init() {
 	// Init common code first
 	response.Init()
 
-	//
+	// Code from 200 -> 299
+	response.AddListCodes(user)
 }

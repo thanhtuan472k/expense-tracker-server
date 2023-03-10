@@ -149,7 +149,7 @@ func (s staffImplement) ChangePassword(ctx context.Context, staffID primitive.Ob
 	var (
 		d             = dao.Staff()
 		payloadUpdate = bson.M{
-			"password":  auth.HashedPassword(payload.NewPassword),
+			"password":  auth.GenerateHashedPassword(payload.NewPassword),
 			"updatedAt": ptime.Now(),
 		}
 		cond = bson.M{"_id": staffID}
