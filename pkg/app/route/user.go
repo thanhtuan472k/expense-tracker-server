@@ -18,7 +18,7 @@ func user(e *echo.Group) {
 	g.POST("/register", h.Register, v.Register)
 
 	// Login ...
-	g.POST("/login", h.Login)
+	g.POST("/login", h.Login, v.Login)
 
 	// GetMe ...
 	g.GET("/me", h.GetMe)

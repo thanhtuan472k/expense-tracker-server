@@ -57,16 +57,7 @@ func (d userImplement) InsertOne(ctx context.Context, payload interface{}) (err 
 // FindOneByCondition ...
 func (d userImplement) FindOneByCondition(ctx context.Context, cond interface{}, opts ...*options.FindOneOptions) (doc mgexpense.User) {
 	var col = database.UserCol()
-
-	if err := col.FindOne(ctx, cond, opts...).Decode(&doc); err != nil {
-		logger.Error("dao.Staff - FindOneByCondition err", logger.LogData{
-			Data: bson.M{
-				"cond":  cond,
-				"opts":  opts,
-				"error": err.Error(),
-			},
-		})
-	}
+	col.FindOne(ctx, cond, opts...).Decode(&doc)
 	return
 }
 

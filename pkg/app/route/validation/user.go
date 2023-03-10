@@ -31,7 +31,7 @@ func (User) Register(next echo.HandlerFunc) echo.HandlerFunc {
 // Login ...
 func (User) Login(next echo.HandlerFunc) echo.HandlerFunc {
 	return func(c echo.Context) error {
-		var payload requestmodel.UserBodyRegister
+		var payload requestmodel.UserBodyLogin
 
 		if err := c.Bind(&payload); err != nil {
 			return response.R400(c, nil, "")

@@ -4,6 +4,7 @@ import (
 	"context"
 	"expense-tracker-server/external/constant"
 	mgexpense "expense-tracker-server/external/model/mg/expense"
+	"expense-tracker-server/external/util/format"
 	"expense-tracker-server/internal/auth"
 	"expense-tracker-server/pkg/app/dao"
 	validation "github.com/go-ozzo/ozzo-validation/v4"
@@ -39,7 +40,7 @@ func (m UserBodyRegister) ConvertToBSON(ctx context.Context) mgexpense.User {
 		SearchString: m.Name,
 		Email:        m.Email,
 		Gender:       m.Gender,
-		Phone:        m.Phone,
+		Phone:        format.PhoneFormatCommon(m.Phone),
 		Password:     auth.GenerateHashedPassword(m.Password),
 		Status:       constant.StatusActive,
 		Code:         GenerateRandomUniqueUserCode(ctx),
