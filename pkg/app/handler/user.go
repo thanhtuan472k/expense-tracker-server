@@ -13,7 +13,7 @@ type User struct{}
 
 // Register godoc
 // @tags User
-// @summary Login
+// @summary Register
 // @id user-register
 // @accept json
 // @produce json
@@ -29,7 +29,7 @@ func (User) Register(c echo.Context) error {
 
 	result, err := s.Register(ctx, payload)
 	if err != nil {
-		return response.R400(c, nil, err.Error())
+		return response.R400(c, echo.Map{}, err.Error())
 	}
 	return response.R200(c, result, "")
 }
