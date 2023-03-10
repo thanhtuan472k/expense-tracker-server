@@ -71,6 +71,31 @@ const docTemplate = `{
                 }
             }
         },
+        "/users/me": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Staff"
+                ],
+                "summary": "GetMe",
+                "operationId": "user-get-me",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
         "/users/register": {
             "post": {
                 "consumes": [
@@ -82,7 +107,7 @@ const docTemplate = `{
                 "tags": [
                     "User"
                 ],
-                "summary": "Login",
+                "summary": "Register",
                 "operationId": "user-register",
                 "parameters": [
                     {
@@ -118,6 +143,12 @@ const docTemplate = `{
         "requestmodel.UserBodyRegister": {
             "type": "object",
             "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "gender": {
+                    "type": "string"
+                },
                 "name": {
                     "type": "string"
                 },

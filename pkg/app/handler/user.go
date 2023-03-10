@@ -13,7 +13,7 @@ type User struct{}
 
 // Register godoc
 // @tags User
-// @summary Login
+// @summary Register
 // @id user-register
 // @accept json
 // @produce json
@@ -29,7 +29,7 @@ func (User) Register(c echo.Context) error {
 
 	result, err := s.Register(ctx, payload)
 	if err != nil {
-		return response.R400(c, nil, err.Error())
+		return response.R400(c, echo.Map{}, err.Error())
 	}
 	return response.R200(c, result, "")
 }
@@ -51,6 +51,29 @@ func (User) Login(c echo.Context) error {
 	)
 
 	result, err := s.Login(ctx, payload)
+	if err != nil {
+		return response.R400(c, nil, err.Error())
+	}
+	return response.R200(c, result, "")
+}
+
+// GetMe godoc
+// @tags Staff
+// @summary GetMe
+// @id user-get-me
+// @security ApiKeyAuth
+// @accept json
+// @produce json
+// @success 200 {object} nil
+// @router /users/me [get]
+func (User) GetMe(c echo.Context) error {
+	var (
+		ctx    = echocontext.GetContext(c)
+		userID = echocontext.GetCurrentUserID(c)
+		s      = service.User()
+	)
+
+	result, err := s.GetMe(ctx, userID)
 	if err != nil {
 		return response.R400(c, nil, err.Error())
 	}

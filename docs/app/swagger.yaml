@@ -9,6 +9,10 @@ definitions:
     type: object
   requestmodel.UserBodyRegister:
     properties:
+      email:
+        type: string
+      gender:
+        type: string
       name:
         type: string
       password:
@@ -62,6 +66,21 @@ paths:
       summary: Login
       tags:
       - User
+  /users/me:
+    get:
+      consumes:
+      - application/json
+      operationId: user-get-me
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      security:
+      - ApiKeyAuth: []
+      summary: GetMe
+      tags:
+      - Staff
   /users/register:
     post:
       consumes:
@@ -79,7 +98,7 @@ paths:
       responses:
         "200":
           description: OK
-      summary: Login
+      summary: Register
       tags:
       - User
 securityDefinitions:
