@@ -1,0 +1,799 @@
+[{
+  "_id": {
+    "$oid": "63f9be6e3b585294f46d4023"
+  },
+  "name": "Thức ăn",
+  "searchString": "thuc an",
+  "status": "inactive",
+  "type": "expense",
+  "category": {
+    "$oid": "63f1dc0882c40b66c9e4bbbb"
+  },
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1677311598410"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1677311598410"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63f9be743b585294f46d4024"
+  },
+  "name": "Đồ uống",
+  "searchString": "do uong",
+  "status": "inactive",
+  "type": "expense",
+  "category": {
+    "$oid": "63f1dc0882c40b66c9e4bbbb"
+  },
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1677311604166"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1677311604166"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63f9be7e3b585294f46d4025"
+  },
+  "name": "Tạp phẩm",
+  "searchString": "tap pham",
+  "status": "inactive",
+  "type": "expense",
+  "category": {
+    "$oid": "63f1dc0882c40b66c9e4bbbb"
+  },
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1677311614231"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1677311614231"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63f9be843b585294f46d4026"
+  },
+  "name": "Nhậu",
+  "searchString": "nhau",
+  "status": "inactive",
+  "type": "expense",
+  "category": {
+    "$oid": "63f1dc0882c40b66c9e4bbbb"
+  },
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1677311620022"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1677311620022"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63f9bebe3b585294f46d4027"
+  },
+  "name": "Xăng xe",
+  "searchString": "xang xe",
+  "status": "inactive",
+  "type": "expense",
+  "category": {
+    "$oid": "63f1dc1282c40b66c9e4bbbc"
+  },
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1677311678111"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1677311678111"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63f9bec33b585294f46d4028"
+  },
+  "name": "Gửi xe",
+  "searchString": "gui xe",
+  "status": "inactive",
+  "type": "expense",
+  "category": {
+    "$oid": "63f1dc1282c40b66c9e4bbbc"
+  },
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1677311683910"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1677311683910"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63f9becf3b585294f46d4029"
+  },
+  "name": "Thuê xe",
+  "searchString": "thue xe",
+  "status": "inactive",
+  "type": "expense",
+  "category": {
+    "$oid": "63f1dc1282c40b66c9e4bbbc"
+  },
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1677311695906"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1677311695906"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63f9bedc3b585294f46d402a"
+  },
+  "name": "Dịch vụ & Bảo dưỡng",
+  "searchString": "dich vu  bao duong",
+  "status": "inactive",
+  "type": "expense",
+  "category": {
+    "$oid": "63f1dc1282c40b66c9e4bbbc"
+  },
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1677311708788"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1677311708788"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63f9bf103b585294f46d402b"
+  },
+  "name": "Học hành",
+  "searchString": "hoc hanh",
+  "status": "inactive",
+  "type": "expense",
+  "category": {
+    "$oid": "63f1dc2482c40b66c9e4bbbd"
+  },
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1677311760275"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1677311760275"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63f9bf173b585294f46d402c"
+  },
+  "name": "Đầu tư",
+  "searchString": "dau tu",
+  "status": "inactive",
+  "type": "expense",
+  "category": {
+    "$oid": "63f1dc2482c40b66c9e4bbbd"
+  },
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1677311767090"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1677311767090"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63f9bf1f3b585294f46d402d"
+  },
+  "name": "Kinh doanh",
+  "searchString": "kinh doanh",
+  "status": "inactive",
+  "type": "expense",
+  "category": {
+    "$oid": "63f1dc2482c40b66c9e4bbbd"
+  },
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1677311775406"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1677311775406"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63f9bf483b585294f46d402e"
+  },
+  "name": "Cắt tóc",
+  "searchString": "cat toc",
+  "status": "inactive",
+  "type": "expense",
+  "category": {
+    "$oid": "63f1dc2482c40b66c9e4bbbd"
+  },
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1677311816494"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1677311816494"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63f9c0133b585294f46d402f"
+  },
+  "name": "Quần áo",
+  "searchString": "quan ao",
+  "status": "inactive",
+  "type": "expense",
+  "category": {
+    "$oid": "63f1dc3982c40b66c9e4bbbe"
+  },
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1677312019163"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1677312019163"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63f9c01a3b585294f46d4030"
+  },
+  "name": "Phụ kiện",
+  "searchString": "phu kien",
+  "status": "inactive",
+  "type": "expense",
+  "category": {
+    "$oid": "63f1dc3982c40b66c9e4bbbe"
+  },
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1677312026956"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1677312026956"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63f9c0223b585294f46d4031"
+  },
+  "name": "Đồ điện tử",
+  "searchString": "do dien tu",
+  "status": "inactive",
+  "type": "expense",
+  "category": {
+    "$oid": "63f1dc3982c40b66c9e4bbbe"
+  },
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1677312034108"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1677312034108"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63f9c0673b585294f46d4034"
+  },
+  "name": "Phim ảnh",
+  "searchString": "phim anh",
+  "status": "inactive",
+  "type": "expense",
+  "category": {
+    "$oid": "63f1dc5282c40b66c9e4bbbf"
+  },
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1677312103525"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1677312103525"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63f9c06e3b585294f46d4035"
+  },
+  "name": "Game",
+  "searchString": "game",
+  "status": "inactive",
+  "type": "expense",
+  "category": {
+    "$oid": "63f1dc5282c40b66c9e4bbbf"
+  },
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1677312110457"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1677312110457"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63f9c0753b585294f46d4036"
+  },
+  "name": "Nhạc",
+  "searchString": "nhac",
+  "status": "inactive",
+  "type": "expense",
+  "category": {
+    "$oid": "63f1dc5282c40b66c9e4bbbf"
+  },
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1677312117320"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1677312117320"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63f9c0793b585294f46d4037"
+  },
+  "name": "Du lịch",
+  "searchString": "du lich",
+  "status": "inactive",
+  "type": "expense",
+  "category": {
+    "$oid": "63f1dc5282c40b66c9e4bbbf"
+  },
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1677312121696"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1677312121696"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63f9c0973b585294f46d4038"
+  },
+  "name": "Vật nuôi",
+  "searchString": "vat nuoi",
+  "status": "inactive",
+  "type": "expense",
+  "category": {
+    "$oid": "63f1dc5c82c40b66c9e4bbc0"
+  },
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1677312151315"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1677312151315"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63f9c0a13b585294f46d4039"
+  },
+  "name": "Đồ đạc & Nội thất",
+  "searchString": "do dac  noi that",
+  "status": "inactive",
+  "type": "expense",
+  "category": {
+    "$oid": "63f1dc5c82c40b66c9e4bbc0"
+  },
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1677312161870"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1677312161870"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63f9c0af3b585294f46d403a"
+  },
+  "name": "Sửa chữa nhà cửa",
+  "searchString": "sua chua nha cua",
+  "status": "inactive",
+  "type": "expense",
+  "category": {
+    "$oid": "63f1dc5c82c40b66c9e4bbc0"
+  },
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1677312175275"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1677312175275"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63f9c0bc3b585294f46d403b"
+  },
+  "name": "Thế chấp và Thuê nhà",
+  "searchString": "the chap va thue nha",
+  "status": "inactive",
+  "type": "expense",
+  "category": {
+    "$oid": "63f1dc5c82c40b66c9e4bbc0"
+  },
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1677312188822"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1677312188822"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63f9c0d33b585294f46d403c"
+  },
+  "name": "Điện",
+  "searchString": "dien",
+  "status": "inactive",
+  "type": "expense",
+  "category": {
+    "$oid": "63f1dc7f82c40b66c9e4bbc1"
+  },
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1677312211587"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1677312211587"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63f9c0d83b585294f46d403d"
+  },
+  "name": "Nước",
+  "searchString": "nuoc",
+  "status": "inactive",
+  "type": "expense",
+  "category": {
+    "$oid": "63f1dc7f82c40b66c9e4bbc1"
+  },
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1677312216638"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1677312216638"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63f9c0de3b585294f46d403e"
+  },
+  "name": "Internet",
+  "searchString": "internet",
+  "status": "inactive",
+  "type": "expense",
+  "category": {
+    "$oid": "63f1dc7f82c40b66c9e4bbc1"
+  },
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1677312222660"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1677312222660"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63f9c0e63b585294f46d403f"
+  },
+  "name": "Điện thoại di động",
+  "searchString": "dien thoai di dong",
+  "status": "inactive",
+  "type": "expense",
+  "category": {
+    "$oid": "63f1dc7f82c40b66c9e4bbc1"
+  },
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1677312230650"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1677312230650"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63f9c10c3b585294f46d4040"
+  },
+  "name": "Thể thao",
+  "searchString": "the thao",
+  "status": "inactive",
+  "type": "expense",
+  "category": {
+    "$oid": "63f1dc9382c40b66c9e4bbc2"
+  },
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1677312268922"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1677312268922"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63f9c1233b585294f46d4041"
+  },
+  "name": "Khám chữa bệnh",
+  "searchString": "kham chua benh",
+  "status": "inactive",
+  "type": "expense",
+  "category": {
+    "$oid": "63f1dc9382c40b66c9e4bbc2"
+  },
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1677312291268"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1677312291268"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63f9c1373b585294f46d4042"
+  },
+  "name": "Thuốc men",
+  "searchString": "thuoc men",
+  "status": "inactive",
+  "type": "expense",
+  "category": {
+    "$oid": "63f1dc9382c40b66c9e4bbc2"
+  },
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1677312311520"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1677312311520"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63f9c14f3b585294f46d4043"
+  },
+  "name": "Quà",
+  "searchString": "qua",
+  "status": "inactive",
+  "type": "expense",
+  "category": {
+    "$oid": "63f1dca982c40b66c9e4bbc3"
+  },
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1677312335658"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1677312335658"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63f9c15d3b585294f46d4044"
+  },
+  "name": "Cưới hỏi",
+  "searchString": "cuoi hoi",
+  "status": "inactive",
+  "type": "expense",
+  "category": {
+    "$oid": "63f1dca982c40b66c9e4bbc3"
+  },
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1677312349474"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1677312349474"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63f9c1653b585294f46d4045"
+  },
+  "name": "Tang lễ",
+  "searchString": "tang le",
+  "status": "inactive",
+  "type": "expense",
+  "category": {
+    "$oid": "63f1dca982c40b66c9e4bbc3"
+  },
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1677312357640"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1677312357640"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63f9c16b3b585294f46d4046"
+  },
+  "name": "Từ thiện",
+  "searchString": "tu thien",
+  "status": "inactive",
+  "type": "expense",
+  "category": {
+    "$oid": "63f1dca982c40b66c9e4bbc3"
+  },
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1677312363022"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1677312363022"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63f9c18f3b585294f46d4047"
+  },
+  "name": "Tiền tiêu vặt",
+  "searchString": "tien tieu vat",
+  "status": "inactive",
+  "type": "expense",
+  "category": {
+    "$oid": "63f1dcb782c40b66c9e4bbc4"
+  },
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1677312399479"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1677312399479"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63f9c1993b585294f46d4048"
+  },
+  "name": "Đồ dùng trẻ em",
+  "searchString": "do dung tre em",
+  "status": "inactive",
+  "type": "expense",
+  "category": {
+    "$oid": "63f1dcb782c40b66c9e4bbc4"
+  },
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1677312409113"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1677312409113"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63f9c1a13b585294f46d4049"
+  },
+  "name": "Giữ trẻ",
+  "searchString": "giu tre",
+  "status": "inactive",
+  "type": "expense",
+  "category": {
+    "$oid": "63f1dcb782c40b66c9e4bbc4"
+  },
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1677312417736"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1677312417736"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63f9c1a93b585294f46d404a"
+  },
+  "name": "Học hành update",
+  "searchString": "hoc hanh update",
+  "status": "active",
+  "type": "expense",
+  "category": {
+    "$oid": "63f1dcb782c40b66c9e4bbc4"
+  },
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1677312425876"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1677319357521"
+    }
+  }
+}]

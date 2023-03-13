@@ -9,6 +9,12 @@ export ZOOKEEPER_PREFIX_EXPENSE_TRACKER_COMMON=/expense_tracker/common
 export ZOOKEEPER_PREFIX_EXPENSE_TRACKER_ADMIN=/expense_tracker/admin
 export ZOOKEEPER_PREFIX_EXPENSE_TRACKER_APP=/expense_tracker/app
 
+# import data seed mongo
+mongo-seed:
+	# categories
+	mongoimport --host localhost:27017 --db expensetracker --collection categories --type json --file mock/categories.json --jsonArray
+	# sub-categories
+	mongoimport --host localhost:27017 --db expensetracker --collection sub-categories --type json --file mock/sub-categories.json --jsonArray
 
 # make update-submodules branch=develop
 update-submodules:
