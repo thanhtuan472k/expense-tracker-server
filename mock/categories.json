@@ -1,0 +1,307 @@
+[{
+  "_id": {
+    "$oid": "63f1dc0882c40b66c9e4bbbb"
+  },
+  "name": "Ăn uống",
+  "searchString": "an uong",
+  "status": "active",
+  "type": "expense",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1676794888139"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1676794888139"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63f1dc1282c40b66c9e4bbbc"
+  },
+  "name": "Đi lại",
+  "searchString": "di lai",
+  "status": "active",
+  "type": "expense",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1676794898778"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1676794898778"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63f1dc2482c40b66c9e4bbbd"
+  },
+  "name": "Phát triển bản thân",
+  "searchString": "phat trien ban than",
+  "status": "active",
+  "type": "expense",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1676794916859"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1676794916859"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63f1dc3982c40b66c9e4bbbe"
+  },
+  "name": "Mua sắm",
+  "searchString": "mua sam",
+  "status": "active",
+  "type": "expense",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1676794937791"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1676794937791"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63f1dc5282c40b66c9e4bbbf"
+  },
+  "name": "Giải trí",
+  "searchString": "giai tri",
+  "status": "active",
+  "type": "expense",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1676794962274"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1676794962274"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63f1dc5c82c40b66c9e4bbc0"
+  },
+  "name": "Nhà cửa",
+  "searchString": "nha cua",
+  "status": "active",
+  "type": "expense",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1676794972560"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1676794972560"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63f1dc7f82c40b66c9e4bbc1"
+  },
+  "name": "Hóa đơn & Tiện ích",
+  "searchString": "hoa don  tien ich",
+  "status": "active",
+  "type": "expense",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1676795007727"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1676795007727"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63f1dc9382c40b66c9e4bbc2"
+  },
+  "name": "Chăm sóc sức khỏe",
+  "searchString": "cham soc suc khoe",
+  "status": "active",
+  "type": "expense",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1676795027320"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1676795027320"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63f1dca982c40b66c9e4bbc3"
+  },
+  "name": "Hiếu hỉ & Từ thiện",
+  "searchString": "hieu hi  tu thien",
+  "status": "active",
+  "type": "expense",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1676795049322"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1676795049322"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63f1dcb782c40b66c9e4bbc4"
+  },
+  "name": "Con cái",
+  "searchString": "con cai",
+  "status": "active",
+  "type": "expense",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1676795063436"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1676795063436"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63f1dcbf82c40b66c9e4bbc5"
+  },
+  "name": "Khác",
+  "searchString": "khac",
+  "status": "active",
+  "type": "expense",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1676795071076"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1676795071076"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63f1ddc082c40b66c9e4bbc6"
+  },
+  "name": "Lương",
+  "searchString": "luong",
+  "status": "active",
+  "type": "income",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1676795328343"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1676795328343"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63f1ddc582c40b66c9e4bbc7"
+  },
+  "name": "Đầu tư",
+  "searchString": "dau tu",
+  "status": "active",
+  "type": "income",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1676795333928"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1676795333928"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63f1ddcd82c40b66c9e4bbc8"
+  },
+  "name": "Thưởng",
+  "searchString": "thuong",
+  "status": "active",
+  "type": "income",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1676795341599"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1676795341599"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63f1ddd482c40b66c9e4bbc9"
+  },
+  "name": "Quà",
+  "searchString": "qua",
+  "status": "active",
+  "type": "income",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1676795348229"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1676795348229"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63f1dde382c40b66c9e4bbca"
+  },
+  "name": "Công việc thêm",
+  "searchString": "cong viec them",
+  "status": "active",
+  "type": "income",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1676795363577"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1676795363577"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63f1ddea82c40b66c9e4bbcb"
+  },
+  "name": "Khác",
+  "searchString": "khac",
+  "status": "active",
+  "type": "income",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1676795370632"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1677319497218"
+    }
+  }
+}]
