@@ -5,8 +5,8 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
-// HashedPassword ...
-func HashedPassword(password string) string {
+// GenerateHashedPassword ...
+func GenerateHashedPassword(password string) string {
 	bytes, _ := bcrypt.GenerateFromPassword([]byte(password), internalconstant.PasswordHashingCost)
 	return string(bytes)
 }
