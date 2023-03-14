@@ -4,7 +4,7 @@
 
 - Admin
     - Login with account Root
-    - Management infomation
+    - Management information
     - Management categories (CRUD)
     - Management sub-categories (CRUD)
 - User
