@@ -10,11 +10,12 @@ import (
 func RequiredLogin(next echo.HandlerFunc) echo.HandlerFunc {
 	return func(c echo.Context) error {
 		user := echocontext.GetCurrenUserByToken(c.Get("user"))
+
 		if user == nil || user.ID == "" {
 			return response.R403(c, echo.Map{}, response.CommonForbidden)
 		}
 
-		c.Set("user", user.ID)
+		c.Set("current_user_id", user.ID) // TODO: refactor bỏ vào constant
 		return next(c)
 	}
 }
