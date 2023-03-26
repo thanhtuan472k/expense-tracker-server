@@ -21,7 +21,7 @@ type Income struct{}
 // @produce json
 // @param payload body requestmodel.SellerSavingCampaignBodyCreate true "Payload"
 // @success 200 {object} responsemodel.ResponseCreate
-// @router /seller-saving-campaigns [post]
+// @router /incomes [post]
 func (Income) Create(c echo.Context) error {
 	var (
 		ctx     = echocontext.GetContext(c)
@@ -30,12 +30,40 @@ func (Income) Create(c echo.Context) error {
 		userID  = echocontext.GetCurrentUserID(c)
 	)
 
-	sellerSavingCampaignID, err := s.Create(ctx, userID, payload)
+	incomeID, err := s.Create(ctx, userID, payload)
 	if err != nil {
 		return response.R400(c, nil, err.Error())
 	}
 
 	return response.R200(c, responsemodel.ResponseCreate{
-		ID: sellerSavingCampaignID,
+		ID: incomeID,
+	}, "")
+}
+
+// Update godoc
+// @tags Income
+// @summary Create
+// @id create-income-money
+// @security ApiKeyAuth
+// @accept json
+// @produce json
+// @param payload body requestmodel.SellerSavingCampaignBodyCreate true "Payload"
+// @success 200 {object} responsemodel.ResponseCreate
+// @router /incomes/{id} [put]
+func (Income) Update(c echo.Context) error {
+	var (
+		ctx     = echocontext.GetContext(c)
+		s       = service.Income()
+		payload = echocontext.GetPayload(c).(requestmodel.IncomeBodyCreate)
+		userID  = echocontext.GetCurrentUserID(c)
+	)
+
+	incomeID, err := s.Create(ctx, userID, payload)
+	if err != nil {
+		return response.R400(c, nil, err.Error())
+	}
+
+	return response.R200(c, responsemodel.ResponseCreate{
+		ID: incomeID,
 	}, "")
 }
