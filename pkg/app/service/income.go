@@ -10,6 +10,9 @@ import (
 type IncomeInterface interface {
 	// Create ...
 	Create(ctx context.Context, userID primitive.ObjectID, payload requestmodel.IncomeBodyCreate) (incomeID string, err error)
+
+	// Update ...
+	Update(ctx context.Context, userID primitive.ObjectID, payload requestmodel.IncomeBodyUpdate) (incomeID string, err error)
 }
 
 // Income ...
@@ -26,5 +29,10 @@ type incomeImplement struct{}
 
 // Create ...
 func (s incomeImplement) Create(ctx context.Context, userID primitive.ObjectID, payload requestmodel.IncomeBodyCreate) (incomeID string, err error) {
+	return
+}
+
+// Update ...
+func (s incomeImplement) Update(ctx context.Context, userID primitive.ObjectID, payload requestmodel.IncomeBodyUpdate) (incomeID string, err error) {
 	return
 }

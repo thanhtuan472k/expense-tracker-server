@@ -1,5 +1,36 @@
 basePath: /app/expense
 definitions:
+  querymodel.CategoryAll:
+    properties:
+      pageToken:
+        type: string
+      sort:
+        type: string
+      status:
+        type: string
+    type: object
+  requestmodel.IncomeBodyCreate:
+    properties:
+      category:
+        type: string
+      description:
+        type: string
+      money:
+        type: number
+      name:
+        type: string
+    type: object
+  requestmodel.IncomeBodyUpdate:
+    properties:
+      category:
+        type: string
+      description:
+        type: string
+      money:
+        type: number
+      name:
+        type: string
+    type: object
   requestmodel.UserBodyLogin:
     properties:
       password:
@@ -20,6 +51,11 @@ definitions:
       phone:
         type: string
     type: object
+  responsemodel.ResponseCreate:
+    properties:
+      _id:
+        type: string
+    type: object
 info:
   contact:
     email: tuanngo.472000@gmail.com
@@ -33,6 +69,74 @@ info:
   title: Expense Tracker - App API
   version: "1.0"
 paths:
+  /categories:
+    get:
+      consumes:
+      - application/json
+      operationId: app-category-all
+      parameters:
+      - description: Payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/querymodel.CategoryAll'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      summary: All
+      tags:
+      - Category
+  /incomes:
+    post:
+      consumes:
+      - application/json
+      operationId: create-income-money
+      parameters:
+      - description: Payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/requestmodel.IncomeBodyCreate'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responsemodel.ResponseCreate'
+      security:
+      - ApiKeyAuth: []
+      summary: Create
+      tags:
+      - Income
+  /incomes/{id}:
+    put:
+      consumes:
+      - application/json
+      operationId: update-income-money
+      parameters:
+      - description: Payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/requestmodel.IncomeBodyUpdate'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responsemodel.ResponseCreate'
+      security:
+      - ApiKeyAuth: []
+      summary: Create
+      tags:
+      - Income
   /ping:
     get:
       consumes:
