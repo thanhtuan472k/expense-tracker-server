@@ -21,4 +21,5 @@ func Init(e *echo.Echo) {
 	common(r)
 	user(r)
 	category(r)
+	income(r)
 }

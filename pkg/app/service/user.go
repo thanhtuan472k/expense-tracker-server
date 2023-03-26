@@ -3,7 +3,9 @@ package service
 import (
 	"context"
 	"errors"
+	"expense-tracker-server/external/constant"
 	"expense-tracker-server/external/util/format"
+	"expense-tracker-server/external/util/ptime"
 	"expense-tracker-server/internal/auth"
 	"expense-tracker-server/pkg/app/dao"
 	"expense-tracker-server/pkg/app/errorcode"
@@ -94,10 +96,41 @@ func (s userImplement) Login(ctx context.Context, payload requestmodel.UserBodyL
 
 // GetMe ...
 func (s userImplement) GetMe(ctx context.Context, id primitive.ObjectID) (result responsemodel.ResponseUserMe, err error) {
+	var (
+		d = dao.User()
+	)
+
+	// Find user
+	user := d.FindOneByCondition(ctx, bson.M{"_id": id})
+	if user.ID.IsZero() {
+		err = errors.New(errorcode.UserNotFound)
+		return
+	}
+
+	// Check user inactive
+	if user.Status == constant.StatusInactive {
+		err = errors.New(errorcode.UserStatusInactive)
+		return
+	}
+
+	// Response
+	result = responsemodel.ResponseUserMe{
+		ID:        user.ID.Hex(),
+		Name:      user.Name,
+		Email:     user.Email,
+		Gender:    user.Gender,
+		Phone:     user.Phone,
+		Code:      user.Code,
+		CreatedAt: ptime.TimeResponseInit(user.CreatedAt),
+		UpdatedAt: ptime.TimeResponseInit(user.UpdatedAt),
+	}
+
 	return
 }
 
+//
 // PRIVATE METHODS
+//
 
 // isExistedPhoneOrEmailByUser ...
 func (s userImplement) isExistedPhoneOrEmailByUser(ctx context.Context, phone, email string) bool {
