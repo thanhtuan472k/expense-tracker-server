@@ -16,4 +16,7 @@ func income(e *echo.Group) {
 
 	// Create ...
 	g.POST("", h.Create, v.Create)
+
+	// Update ...
+	g.PUT("/:id", h.Update, v.Update)
 }

@@ -14,3 +14,16 @@ type IncomeBodyCreate struct {
 func (m IncomeBodyCreate) Validate() error {
 	return validation.ValidateStruct(&m)
 }
+
+// IncomeBodyUpdate ...
+type IncomeBodyUpdate struct {
+	Name        string  `json:"name"`
+	Money       float64 `json:"money"`
+	Category    string  `json:"category"`
+	Description string  `json:"description"`
+}
+
+// Validate ...
+func (m IncomeBodyUpdate) Validate() error {
+	return validation.ValidateStruct(&m)
+}

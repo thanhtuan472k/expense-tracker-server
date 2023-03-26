@@ -13,17 +13,35 @@ type Income struct{}
 // Create ...
 func (Income) Create(next echo.HandlerFunc) echo.HandlerFunc {
 	return func(c echo.Context) error {
-		var query requestmodel.IncomeBodyCreate
+		var payload requestmodel.IncomeBodyCreate
 
-		if err := c.Bind(&query); err != nil {
+		if err := c.Bind(&payload); err != nil {
 			return response.R400(c, nil, "")
 		}
 
-		if err := query.Validate(); err != nil {
+		if err := payload.Validate(); err != nil {
 			return response.RouteValidation(c, err)
 		}
 
-		echocontext.SetQuery(c, query)
+		echocontext.SetPayload(c, payload)
+		return next(c)
+	}
+}
+
+// Update ...
+func (Income) Update(next echo.HandlerFunc) echo.HandlerFunc {
+	return func(c echo.Context) error {
+		var payload requestmodel.IncomeBodyUpdate
+
+		if err := c.Bind(&payload); err != nil {
+			return response.R400(c, nil, "")
+		}
+
+		if err := payload.Validate(); err != nil {
+			return response.RouteValidation(c, err)
+		}
+
+		echocontext.SetQuery(c, payload)
 		return next(c)
 	}
 }
