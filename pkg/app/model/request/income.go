@@ -10,7 +10,6 @@ import (
 
 // IncomeBodyCreate ...
 type IncomeBodyCreate struct {
-	Name     string  `json:"name"`
 	Money    float64 `json:"money"`
 	Category string  `json:"category"`
 	Note     string  `json:"note"`
@@ -40,7 +39,6 @@ func (m IncomeBodyCreate) ConvertToBSON(userID primitive.ObjectID, category mgex
 
 // IncomeBodyUpdate ...
 type IncomeBodyUpdate struct {
-	Name     string  `json:"name"`
 	Money    float64 `json:"money"`
 	Category string  `json:"category"`
 	Note     string  `json:"note"`
@@ -49,4 +47,15 @@ type IncomeBodyUpdate struct {
 // Validate ...
 func (m IncomeBodyUpdate) Validate() error {
 	return validation.ValidateStruct(&m)
+}
+
+// ConvertToBSON ...
+func (m IncomeBodyUpdate) ConvertToBSON() mgexpense.IncomeMoney {
+	return mgexpense.IncomeMoney{
+		Category: mgexpense.CategoryShort{
+			Name: m.Category,
+		},
+		Money: m.Money,
+		Note:  m.Note,
+	}
 }

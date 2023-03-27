@@ -253,9 +253,6 @@
                 "money": {
                     "type": "number"
                 },
-                "name": {
-                    "type": "string"
-                },
                 "note": {
                     "type": "string"
                 }
@@ -269,9 +266,6 @@
                 },
                 "money": {
                     "type": "number"
-                },
-                "name": {
-                    "type": "string"
                 },
                 "note": {
                     "type": "string"

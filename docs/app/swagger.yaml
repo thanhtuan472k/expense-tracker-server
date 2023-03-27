@@ -15,8 +15,6 @@ definitions:
         type: string
       money:
         type: number
-      name:
-        type: string
       note:
         type: string
     type: object
@@ -26,8 +24,6 @@ definitions:
         type: string
       money:
         type: number
-      name:
-        type: string
       note:
         type: string
     type: object

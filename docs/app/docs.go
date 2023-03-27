@@ -261,9 +261,6 @@ const docTemplate = `{
                 "money": {
                     "type": "number"
                 },
-                "name": {
-                    "type": "string"
-                },
                 "note": {
                     "type": "string"
                 }
@@ -277,9 +274,6 @@ const docTemplate = `{
                 },
                 "money": {
                     "type": "number"
-                },
-                "name": {
-                    "type": "string"
                 },
                 "note": {
                     "type": "string"
