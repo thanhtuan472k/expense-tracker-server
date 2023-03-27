@@ -19,7 +19,7 @@ type Income struct{}
 // @security ApiKeyAuth
 // @accept json
 // @produce json
-// @param payload body requestmodel.SellerSavingCampaignBodyCreate true "Payload"
+// @param payload body requestmodel.IncomeBodyCreate true "Payload"
 // @success 200 {object} responsemodel.ResponseCreate
 // @router /incomes [post]
 func (Income) Create(c echo.Context) error {
@@ -43,22 +43,22 @@ func (Income) Create(c echo.Context) error {
 // Update godoc
 // @tags Income
 // @summary Create
-// @id create-income-money
+// @id update-income-money
 // @security ApiKeyAuth
 // @accept json
 // @produce json
-// @param payload body requestmodel.SellerSavingCampaignBodyCreate true "Payload"
+// @param payload body requestmodel.IncomeBodyUpdate true "Payload"
 // @success 200 {object} responsemodel.ResponseCreate
 // @router /incomes/{id} [put]
 func (Income) Update(c echo.Context) error {
 	var (
 		ctx     = echocontext.GetContext(c)
 		s       = service.Income()
-		payload = echocontext.GetPayload(c).(requestmodel.IncomeBodyCreate)
+		payload = echocontext.GetPayload(c).(requestmodel.IncomeBodyUpdate)
 		userID  = echocontext.GetCurrentUserID(c)
 	)
 
-	incomeID, err := s.Create(ctx, userID, payload)
+	incomeID, err := s.Update(ctx, userID, payload)
 	if err != nil {
 		return response.R400(c, nil, err.Error())
 	}
