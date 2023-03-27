@@ -15,8 +15,6 @@ definitions:
         type: string
       money:
         type: number
-      name:
-        type: string
       note:
         type: string
     type: object
@@ -26,8 +24,6 @@ definitions:
         type: string
       money:
         type: number
-      name:
-        type: string
       note:
         type: string
     type: object
@@ -52,6 +48,11 @@ definitions:
         type: string
     type: object
   responsemodel.ResponseCreate:
+    properties:
+      _id:
+        type: string
+    type: object
+  responsemodel.ResponseUpdate:
     properties:
       _id:
         type: string
@@ -119,6 +120,11 @@ paths:
       - application/json
       operationId: update-income-money
       parameters:
+      - description: Income money id
+        in: path
+        name: id
+        required: true
+        type: string
       - description: Payload
         in: body
         name: payload
@@ -131,10 +137,10 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/responsemodel.ResponseCreate'
+            $ref: '#/definitions/responsemodel.ResponseUpdate'
       security:
       - ApiKeyAuth: []
-      summary: Create
+      summary: Update
       tags:
       - Income
   /ping:

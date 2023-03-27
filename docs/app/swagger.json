@@ -97,9 +97,16 @@
                 "tags": [
                     "Income"
                 ],
-                "summary": "Create",
+                "summary": "Update",
                 "operationId": "update-income-money",
                 "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Income money id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
                     {
                         "description": "Payload",
                         "name": "payload",
@@ -114,7 +121,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/responsemodel.ResponseCreate"
+                            "$ref": "#/definitions/responsemodel.ResponseUpdate"
                         }
                     }
                 }
@@ -253,9 +260,6 @@
                 "money": {
                     "type": "number"
                 },
-                "name": {
-                    "type": "string"
-                },
                 "note": {
                     "type": "string"
                 }
@@ -269,9 +273,6 @@
                 },
                 "money": {
                     "type": "number"
-                },
-                "name": {
-                    "type": "string"
                 },
                 "note": {
                     "type": "string"
@@ -310,6 +311,14 @@
             }
         },
         "responsemodel.ResponseCreate": {
+            "type": "object",
+            "properties": {
+                "_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "responsemodel.ResponseUpdate": {
             "type": "object",
             "properties": {
                 "_id": {
