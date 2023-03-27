@@ -9,4 +9,7 @@ func Init() {
 
 	// Code from 200 -> 299
 	response.AddListCodes(user)
+
+	// Code from 300 -> 399
+	response.AddListCodes(category)
 }

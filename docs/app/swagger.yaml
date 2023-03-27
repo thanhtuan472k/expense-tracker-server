@@ -13,22 +13,22 @@ definitions:
     properties:
       category:
         type: string
-      description:
-        type: string
       money:
         type: number
       name:
+        type: string
+      note:
         type: string
     type: object
   requestmodel.IncomeBodyUpdate:
     properties:
       category:
         type: string
-      description:
-        type: string
       money:
         type: number
       name:
+        type: string
+      note:
         type: string
     type: object
   requestmodel.UserBodyLogin:
