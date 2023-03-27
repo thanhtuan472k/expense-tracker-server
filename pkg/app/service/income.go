@@ -5,9 +5,11 @@ import (
 	"errors"
 	mgexpense "expense-tracker-server/external/model/mg/expense"
 	"expense-tracker-server/external/mongodb"
+	"expense-tracker-server/external/util/mgquerry"
 	"expense-tracker-server/pkg/app/dao"
 	"expense-tracker-server/pkg/app/errorcode"
 	requestmodel "expense-tracker-server/pkg/app/model/request"
+	responsemodel "expense-tracker-server/pkg/app/model/response"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
@@ -19,6 +21,9 @@ type IncomeInterface interface {
 
 	// Update ...
 	Update(ctx context.Context, userID, incomeID primitive.ObjectID, payload requestmodel.IncomeBodyUpdate) (result string, err error)
+
+	// All ...
+	All(ctx context.Context, q mgquerry.AppQuery, userID primitive.ObjectID) (result responsemodel.ResponseIncomeMoneyAll, err error)
 }
 
 // Income ...
@@ -97,6 +102,11 @@ func (s incomeImplement) Update(ctx context.Context, userID, incomeID primitive.
 
 	// Response
 	result = incomeMoney.ID.Hex()
+	return
+}
+
+// All ...
+func (s incomeImplement) All(ctx context.Context, q mgquerry.AppQuery, userID primitive.ObjectID) (result responsemodel.ResponseIncomeMoneyAll, err error) {
 	return
 }
 
