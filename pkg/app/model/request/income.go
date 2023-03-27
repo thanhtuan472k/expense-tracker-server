@@ -54,7 +54,7 @@ func (m IncomeBodyUpdate) ConvertToBSON(category mgexpense.Category) mgexpense.I
 	return mgexpense.IncomeMoney{
 		Category: mgexpense.CategoryShort{
 			ID:   category.ID,
-			Name: m.Category,
+			Name: category.Name,
 		},
 		Money:     m.Money,
 		Note:      m.Note,

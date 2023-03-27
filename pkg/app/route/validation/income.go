@@ -42,7 +42,7 @@ func (Income) Update(next echo.HandlerFunc) echo.HandlerFunc {
 			return response.RouteValidation(c, err)
 		}
 
-		echocontext.SetQuery(c, payload)
+		echocontext.SetPayload(c, payload)
 		return next(c)
 	}
 }

@@ -8,7 +8,6 @@ import (
 	"expense-tracker-server/pkg/app/dao"
 	"expense-tracker-server/pkg/app/errorcode"
 	requestmodel "expense-tracker-server/pkg/app/model/request"
-	"fmt"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
@@ -78,8 +77,6 @@ func (s incomeImplement) Update(ctx context.Context, userID, incomeID primitive.
 	if err != nil {
 		return
 	}
-
-	fmt.Println("categoryDoc", category)
 
 	var (
 		d             = dao.IncomeMoney()

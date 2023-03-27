@@ -6,7 +6,6 @@ import (
 	responsemodel "expense-tracker-server/pkg/admin/model/response"
 	requestmodel "expense-tracker-server/pkg/app/model/request"
 	"expense-tracker-server/pkg/app/service"
-	"fmt"
 	"github.com/labstack/echo/v4"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
@@ -51,7 +50,7 @@ func (Income) Create(c echo.Context) error {
 // @produce json
 // @param id path string true "Income money id"
 // @param payload body requestmodel.IncomeBodyUpdate true "Payload"
-// @success 200 {object} nil
+// @success 200 {object} responsemodel.ResponseUpdate
 // @router /incomes/{id} [put]
 func (Income) Update(c echo.Context) error {
 	var (
@@ -61,8 +60,7 @@ func (Income) Update(c echo.Context) error {
 		userID   = echocontext.GetCurrentUserID(c)
 		incomeID = echocontext.GetParam(c, "id").(primitive.ObjectID)
 	)
-	fmt.Println("userID", userID)
-	//fmt.Println("incomID", incomeID)
+
 	result, err := s.Update(ctx, userID, incomeID, payload)
 	if err != nil {
 		return response.R400(c, nil, err.Error())

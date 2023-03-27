@@ -127,7 +127,10 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "OK"
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/responsemodel.ResponseUpdate"
+                        }
                     }
                 }
             }
@@ -316,6 +319,14 @@ const docTemplate = `{
             }
         },
         "responsemodel.ResponseCreate": {
+            "type": "object",
+            "properties": {
+                "_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "responsemodel.ResponseUpdate": {
             "type": "object",
             "properties": {
                 "_id": {
