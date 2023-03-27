@@ -5,6 +5,7 @@ import (
 	"expense-tracker-server/external/util/echocontext"
 	requestmodel "expense-tracker-server/pkg/app/model/request"
 	"github.com/labstack/echo/v4"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
 // Income ...
@@ -41,7 +42,25 @@ func (Income) Update(next echo.HandlerFunc) echo.HandlerFunc {
 			return response.RouteValidation(c, err)
 		}
 
-		echocontext.SetQuery(c, payload)
+		echocontext.SetPayload(c, payload)
+		return next(c)
+	}
+}
+
+func (Income) Detail(next echo.HandlerFunc) echo.HandlerFunc {
+	return func(c echo.Context) error {
+		var id = c.Param("id")
+
+		if !primitive.IsValidObjectID(id) {
+			return response.R404(c, nil, "")
+		}
+
+		objID, err := primitive.ObjectIDFromHex(id)
+		if err != nil {
+			return response.R400(c, nil, "")
+		}
+
+		echocontext.SetParam(c, "id", objID)
 		return next(c)
 	}
 }

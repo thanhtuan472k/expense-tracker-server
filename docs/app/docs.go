@@ -105,9 +105,16 @@ const docTemplate = `{
                 "tags": [
                     "Income"
                 ],
-                "summary": "Create",
+                "summary": "Update",
                 "operationId": "update-income-money",
                 "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Income money id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
                     {
                         "description": "Payload",
                         "name": "payload",
@@ -122,7 +129,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/responsemodel.ResponseCreate"
+                            "$ref": "#/definitions/responsemodel.ResponseUpdate"
                         }
                     }
                 }
@@ -261,9 +268,6 @@ const docTemplate = `{
                 "money": {
                     "type": "number"
                 },
-                "name": {
-                    "type": "string"
-                },
                 "note": {
                     "type": "string"
                 }
@@ -277,9 +281,6 @@ const docTemplate = `{
                 },
                 "money": {
                     "type": "number"
-                },
-                "name": {
-                    "type": "string"
                 },
                 "note": {
                     "type": "string"
@@ -318,6 +319,14 @@ const docTemplate = `{
             }
         },
         "responsemodel.ResponseCreate": {
+            "type": "object",
+            "properties": {
+                "_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "responsemodel.ResponseUpdate": {
             "type": "object",
             "properties": {
                 "_id": {
