@@ -105,9 +105,16 @@ const docTemplate = `{
                 "tags": [
                     "Income"
                 ],
-                "summary": "Create",
+                "summary": "Update",
                 "operationId": "update-income-money",
                 "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Income money id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
                     {
                         "description": "Payload",
                         "name": "payload",
@@ -120,10 +127,7 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/responsemodel.ResponseCreate"
-                        }
+                        "description": "OK"
                     }
                 }
             }

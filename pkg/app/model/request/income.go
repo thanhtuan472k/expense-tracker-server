@@ -50,12 +50,14 @@ func (m IncomeBodyUpdate) Validate() error {
 }
 
 // ConvertToBSON ...
-func (m IncomeBodyUpdate) ConvertToBSON() mgexpense.IncomeMoney {
+func (m IncomeBodyUpdate) ConvertToBSON(category mgexpense.Category) mgexpense.IncomeMoney {
 	return mgexpense.IncomeMoney{
 		Category: mgexpense.CategoryShort{
+			ID:   category.ID,
 			Name: m.Category,
 		},
-		Money: m.Money,
-		Note:  m.Note,
+		Money:     m.Money,
+		Note:      m.Note,
+		UpdatedAt: ptime.Now(),
 	}
 }

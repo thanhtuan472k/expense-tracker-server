@@ -12,4 +12,7 @@ func Init() {
 
 	// Code from 300 -> 399
 	response.AddListCodes(category)
+
+	// Code from 400 -> 499
+	response.AddListCodes(incomeMoney)
 }
