@@ -258,13 +258,13 @@ const docTemplate = `{
                 "category": {
                     "type": "string"
                 },
-                "description": {
-                    "type": "string"
-                },
                 "money": {
                     "type": "number"
                 },
                 "name": {
+                    "type": "string"
+                },
+                "note": {
                     "type": "string"
                 }
             }
@@ -275,13 +275,13 @@ const docTemplate = `{
                 "category": {
                     "type": "string"
                 },
-                "description": {
-                    "type": "string"
-                },
                 "money": {
                     "type": "number"
                 },
                 "name": {
+                    "type": "string"
+                },
+                "note": {
                     "type": "string"
                 }
             }
