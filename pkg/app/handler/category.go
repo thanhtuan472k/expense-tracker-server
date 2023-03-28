@@ -20,7 +20,8 @@ type Category struct{}
 // @id app-category-all
 // @accept json
 // @produce json
-// @param payload body querymodel.CategoryAll true "Payload"
+// @security ApiKeyAuth
+// @param payload query querymodel.CategoryAll true "Query"
 // @success 200 {object} nil
 // @router /categories [get]
 func (Category) All(c echo.Context) error {
@@ -29,7 +30,7 @@ func (Category) All(c echo.Context) error {
 		qParams   = echocontext.GetQuery(c).(querymodel.CategoryAll)
 		pageToken = pagetoken.PageTokenDecode(qParams.PageToken)
 		q         = mgquerry.AppQuery{
-			Page:  pageToken.Page,
+			Page:  int64(pageToken.Page),
 			Limit: int64(constant.Limit20),
 		}
 		s = service.Category()

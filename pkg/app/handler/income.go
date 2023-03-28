@@ -79,9 +79,10 @@ func (Income) Update(c echo.Context) error {
 // @tags Income
 // @summary All
 // @id app-income-money-all
+// @security ApiKeyAuth
 // @accept json
 // @produce json
-// @param payload body querymodel.IncomeMoneyAll true "Payload"
+// @param payload query querymodel.IncomeMoneyAll true "Query"
 // @success 200 {object} nil
 // @router /incomes [get]
 func (Income) All(c echo.Context) error {

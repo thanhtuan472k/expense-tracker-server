@@ -15,7 +15,7 @@ type ResponseIncomeMoneyAll struct {
 // ResponseIncomeMoneyInfo ...
 type ResponseIncomeMoneyInfo struct { // meta struct for api list and detail
 	ID        string                  `json:"_id"`
-	Category  mgexpense.CategoryShort `json:"name"`
+	Category  mgexpense.CategoryShort `json:"category"`
 	Money     float64                 `json:"money"`
 	Note      string                  `json:"note"`
 	CreatedAt *ptime.TimeResponse     `json:"createdAt"`
