@@ -21,6 +21,11 @@ const docTemplate = `{
     "paths": {
         "/categories": {
             "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
                 "consumes": [
                     "application/json"
                 ],
@@ -34,13 +39,19 @@ const docTemplate = `{
                 "operationId": "app-category-all",
                 "parameters": [
                     {
-                        "description": "Payload",
-                        "name": "payload",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/querymodel.CategoryAll"
-                        }
+                        "type": "string",
+                        "name": "pageToken",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "sort",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "status",
+                        "in": "query"
                     }
                 ],
                 "responses": {
@@ -50,8 +61,13 @@ const docTemplate = `{
                 }
             }
         },
-        "/incomes": {
+        "/income-moneys": {
             "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
                 "consumes": [
                     "application/json"
                 ],
@@ -59,19 +75,30 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Income"
+                    "IncomeMoney"
                 ],
                 "summary": "All",
                 "operationId": "app-income-money-all",
                 "parameters": [
                     {
-                        "description": "Payload",
-                        "name": "payload",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/querymodel.IncomeMoneyAll"
-                        }
+                        "type": "string",
+                        "name": "fromAt",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "pageToken",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "sort",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "toAt",
+                        "in": "query"
                     }
                 ],
                 "responses": {
@@ -93,7 +120,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Income"
+                    "IncomeMoney"
                 ],
                 "summary": "Create",
                 "operationId": "app-income-money-create",
@@ -104,7 +131,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/requestmodel.IncomeBodyCreate"
+                            "$ref": "#/definitions/requestmodel.IncomeMoneyBodyCreate"
                         }
                     }
                 ],
@@ -118,7 +145,39 @@ const docTemplate = `{
                 }
             }
         },
-        "/incomes/{id}": {
+        "/income-moneys/{id}": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "IncomeMoney"
+                ],
+                "summary": "Detail",
+                "operationId": "app-income-money-detail",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Income money id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            },
             "put": {
                 "security": [
                     {
@@ -132,7 +191,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Income"
+                    "IncomeMoney"
                 ],
                 "summary": "Update",
                 "operationId": "app-income-money-update",
@@ -150,7 +209,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/requestmodel.IncomeBodyUpdate"
+                            "$ref": "#/definitions/requestmodel.IncomeMoneyBodyUpdate"
                         }
                     }
                 ],
@@ -274,38 +333,7 @@ const docTemplate = `{
         }
     },
     "definitions": {
-        "querymodel.CategoryAll": {
-            "type": "object",
-            "properties": {
-                "pageToken": {
-                    "type": "string"
-                },
-                "sort": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "string"
-                }
-            }
-        },
-        "querymodel.IncomeMoneyAll": {
-            "type": "object",
-            "properties": {
-                "fromAt": {
-                    "type": "string"
-                },
-                "pageToken": {
-                    "type": "string"
-                },
-                "sort": {
-                    "type": "string"
-                },
-                "toAt": {
-                    "type": "string"
-                }
-            }
-        },
-        "requestmodel.IncomeBodyCreate": {
+        "requestmodel.IncomeMoneyBodyCreate": {
             "type": "object",
             "properties": {
                 "category": {
@@ -319,7 +347,7 @@ const docTemplate = `{
                 }
             }
         },
-        "requestmodel.IncomeBodyUpdate": {
+        "requestmodel.IncomeMoneyBodyUpdate": {
             "type": "object",
             "properties": {
                 "category": {

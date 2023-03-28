@@ -8,20 +8,20 @@ import (
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
-// IncomeBodyCreate ...
-type IncomeBodyCreate struct {
+// IncomeMoneyBodyCreate ...
+type IncomeMoneyBodyCreate struct {
 	Money    float64 `json:"money"`
 	Category string  `json:"category"`
 	Note     string  `json:"note"`
 }
 
 // Validate ...
-func (m IncomeBodyCreate) Validate() error {
+func (m IncomeMoneyBodyCreate) Validate() error {
 	return validation.ValidateStruct(&m)
 }
 
 // ConvertToBSON ...
-func (m IncomeBodyCreate) ConvertToBSON(userID primitive.ObjectID, category mgexpense.Category) mgexpense.IncomeMoney {
+func (m IncomeMoneyBodyCreate) ConvertToBSON(userID primitive.ObjectID, category mgexpense.Category) mgexpense.IncomeMoney {
 	return mgexpense.IncomeMoney{
 		ID: primitive.NewObjectID(),
 		Category: mgexpense.CategoryShort{
@@ -37,20 +37,20 @@ func (m IncomeBodyCreate) ConvertToBSON(userID primitive.ObjectID, category mgex
 	}
 }
 
-// IncomeBodyUpdate ...
-type IncomeBodyUpdate struct {
+// IncomeMoneyBodyUpdate ...
+type IncomeMoneyBodyUpdate struct {
 	Money    float64 `json:"money"`
 	Category string  `json:"category"`
 	Note     string  `json:"note"`
 }
 
 // Validate ...
-func (m IncomeBodyUpdate) Validate() error {
+func (m IncomeMoneyBodyUpdate) Validate() error {
 	return validation.ValidateStruct(&m)
 }
 
 // ConvertToBSON ...
-func (m IncomeBodyUpdate) ConvertToBSON(category mgexpense.Category) mgexpense.IncomeMoney {
+func (m IncomeMoneyBodyUpdate) ConvertToBSON(category mgexpense.Category) mgexpense.IncomeMoney {
 	return mgexpense.IncomeMoney{
 		Category: mgexpense.CategoryShort{
 			ID:   category.ID,
