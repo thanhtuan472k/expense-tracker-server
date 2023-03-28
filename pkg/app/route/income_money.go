@@ -25,4 +25,5 @@ func income(e *echo.Group) {
 	g.GET("", h.All, v.All)
 
 	// Detail ...
+	g.GET("/:id", h.Detail, v.Detail)
 }

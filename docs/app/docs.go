@@ -146,6 +146,38 @@ const docTemplate = `{
             }
         },
         "/income-moneys/{id}": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "IncomeMoney"
+                ],
+                "summary": "Detail",
+                "operationId": "app-income-money-detail",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Income money id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            },
             "put": {
                 "security": [
                     {
