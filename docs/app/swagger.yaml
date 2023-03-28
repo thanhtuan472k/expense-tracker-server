@@ -1,26 +1,6 @@
 basePath: /app/expense
 definitions:
-  querymodel.CategoryAll:
-    properties:
-      pageToken:
-        type: string
-      sort:
-        type: string
-      status:
-        type: string
-    type: object
-  querymodel.IncomeMoneyAll:
-    properties:
-      fromAt:
-        type: string
-      pageToken:
-        type: string
-      sort:
-        type: string
-      toAt:
-        type: string
-    type: object
-  requestmodel.IncomeBodyCreate:
+  requestmodel.IncomeMoneyBodyCreate:
     properties:
       category:
         type: string
@@ -29,7 +9,7 @@ definitions:
       note:
         type: string
     type: object
-  requestmodel.IncomeBodyUpdate:
+  requestmodel.IncomeMoneyBodyUpdate:
     properties:
       category:
         type: string
@@ -87,40 +67,53 @@ paths:
       - application/json
       operationId: app-category-all
       parameters:
-      - description: Payload
-        in: body
-        name: payload
-        required: true
-        schema:
-          $ref: '#/definitions/querymodel.CategoryAll'
+      - in: query
+        name: pageToken
+        type: string
+      - in: query
+        name: sort
+        type: string
+      - in: query
+        name: status
+        type: string
       produces:
       - application/json
       responses:
         "200":
           description: OK
+      security:
+      - ApiKeyAuth: []
       summary: All
       tags:
       - Category
-  /incomes:
+  /income-moneys:
     get:
       consumes:
       - application/json
       operationId: app-income-money-all
       parameters:
-      - description: Payload
-        in: body
-        name: payload
-        required: true
-        schema:
-          $ref: '#/definitions/querymodel.IncomeMoneyAll'
+      - in: query
+        name: fromAt
+        type: string
+      - in: query
+        name: pageToken
+        type: string
+      - in: query
+        name: sort
+        type: string
+      - in: query
+        name: toAt
+        type: string
       produces:
       - application/json
       responses:
         "200":
           description: OK
+      security:
+      - ApiKeyAuth: []
       summary: All
       tags:
-      - Income
+      - IncomeMoney
     post:
       consumes:
       - application/json
@@ -131,7 +124,7 @@ paths:
         name: payload
         required: true
         schema:
-          $ref: '#/definitions/requestmodel.IncomeBodyCreate'
+          $ref: '#/definitions/requestmodel.IncomeMoneyBodyCreate'
       produces:
       - application/json
       responses:
@@ -143,8 +136,8 @@ paths:
       - ApiKeyAuth: []
       summary: Create
       tags:
-      - Income
-  /incomes/{id}:
+      - IncomeMoney
+  /income-moneys/{id}:
     put:
       consumes:
       - application/json
@@ -160,7 +153,7 @@ paths:
         name: payload
         required: true
         schema:
-          $ref: '#/definitions/requestmodel.IncomeBodyUpdate'
+          $ref: '#/definitions/requestmodel.IncomeMoneyBodyUpdate'
       produces:
       - application/json
       responses:
@@ -172,7 +165,7 @@ paths:
       - ApiKeyAuth: []
       summary: Update
       tags:
-      - Income
+      - IncomeMoney
   /ping:
     get:
       consumes:
