@@ -10,9 +10,9 @@ import (
 // income ...
 func income(e *echo.Group) {
 	var (
-		g = e.Group("/incomes", routeauth.RequiredLogin)
-		h = handler.Income{}
-		v = routevalidation.Income{}
+		g = e.Group("/income-moneys", routeauth.RequiredLogin)
+		h = handler.IncomeMoney{}
+		v = routevalidation.IncomeMoney{}
 	)
 
 	// Create ...

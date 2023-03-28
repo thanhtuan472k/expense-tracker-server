@@ -1,6 +1,6 @@
 basePath: /app/expense
 definitions:
-  requestmodel.IncomeBodyCreate:
+  requestmodel.IncomeMoneyBodyCreate:
     properties:
       category:
         type: string
@@ -9,7 +9,7 @@ definitions:
       note:
         type: string
     type: object
-  requestmodel.IncomeBodyUpdate:
+  requestmodel.IncomeMoneyBodyUpdate:
     properties:
       category:
         type: string
@@ -86,7 +86,7 @@ paths:
       summary: All
       tags:
       - Category
-  /incomes:
+  /income-moneys:
     get:
       consumes:
       - application/json
@@ -113,7 +113,7 @@ paths:
       - ApiKeyAuth: []
       summary: All
       tags:
-      - Income
+      - IncomeMoney
     post:
       consumes:
       - application/json
@@ -124,7 +124,7 @@ paths:
         name: payload
         required: true
         schema:
-          $ref: '#/definitions/requestmodel.IncomeBodyCreate'
+          $ref: '#/definitions/requestmodel.IncomeMoneyBodyCreate'
       produces:
       - application/json
       responses:
@@ -136,8 +136,8 @@ paths:
       - ApiKeyAuth: []
       summary: Create
       tags:
-      - Income
-  /incomes/{id}:
+      - IncomeMoney
+  /income-moneys/{id}:
     put:
       consumes:
       - application/json
@@ -153,7 +153,7 @@ paths:
         name: payload
         required: true
         schema:
-          $ref: '#/definitions/requestmodel.IncomeBodyUpdate'
+          $ref: '#/definitions/requestmodel.IncomeMoneyBodyUpdate'
       produces:
       - application/json
       responses:
@@ -165,7 +165,7 @@ paths:
       - ApiKeyAuth: []
       summary: Update
       tags:
-      - Income
+      - IncomeMoney
   /ping:
     get:
       consumes:

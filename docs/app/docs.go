@@ -61,7 +61,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/incomes": {
+        "/income-moneys": {
             "get": {
                 "security": [
                     {
@@ -75,7 +75,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Income"
+                    "IncomeMoney"
                 ],
                 "summary": "All",
                 "operationId": "app-income-money-all",
@@ -120,7 +120,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Income"
+                    "IncomeMoney"
                 ],
                 "summary": "Create",
                 "operationId": "app-income-money-create",
@@ -131,7 +131,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/requestmodel.IncomeBodyCreate"
+                            "$ref": "#/definitions/requestmodel.IncomeMoneyBodyCreate"
                         }
                     }
                 ],
@@ -145,7 +145,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/incomes/{id}": {
+        "/income-moneys/{id}": {
             "put": {
                 "security": [
                     {
@@ -159,7 +159,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Income"
+                    "IncomeMoney"
                 ],
                 "summary": "Update",
                 "operationId": "app-income-money-update",
@@ -177,7 +177,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/requestmodel.IncomeBodyUpdate"
+                            "$ref": "#/definitions/requestmodel.IncomeMoneyBodyUpdate"
                         }
                     }
                 ],
@@ -301,7 +301,7 @@ const docTemplate = `{
         }
     },
     "definitions": {
-        "requestmodel.IncomeBodyCreate": {
+        "requestmodel.IncomeMoneyBodyCreate": {
             "type": "object",
             "properties": {
                 "category": {
@@ -315,7 +315,7 @@ const docTemplate = `{
                 }
             }
         },
-        "requestmodel.IncomeBodyUpdate": {
+        "requestmodel.IncomeMoneyBodyUpdate": {
             "type": "object",
             "properties": {
                 "category": {

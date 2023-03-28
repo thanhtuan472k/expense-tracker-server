@@ -16,24 +16,24 @@ import (
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
-// Income ...
-type Income struct{}
+// IncomeMoney ...
+type IncomeMoney struct{}
 
 // Create godoc
-// @tags Income
+// @tags IncomeMoney
 // @summary Create
 // @id app-income-money-create
 // @security ApiKeyAuth
 // @accept json
 // @produce json
-// @param payload body requestmodel.IncomeBodyCreate true "Payload"
+// @param payload body requestmodel.IncomeMoneyBodyCreate true "Payload"
 // @success 200 {object} responsemodel.ResponseCreate
-// @router /incomes [post]
-func (Income) Create(c echo.Context) error {
+// @router /income-moneys [post]
+func (IncomeMoney) Create(c echo.Context) error {
 	var (
 		ctx     = echocontext.GetContext(c)
-		s       = service.Income()
-		payload = echocontext.GetPayload(c).(requestmodel.IncomeBodyCreate)
+		s       = service.IncomeMoney()
+		payload = echocontext.GetPayload(c).(requestmodel.IncomeMoneyBodyCreate)
 		userID  = echocontext.GetCurrentUserID(c)
 	)
 
@@ -48,21 +48,21 @@ func (Income) Create(c echo.Context) error {
 }
 
 // Update godoc
-// @tags Income
+// @tags IncomeMoney
 // @summary Update
 // @id app-income-money-update
 // @security ApiKeyAuth
 // @accept json
 // @produce json
 // @param id path string true "Income money id"
-// @param payload body requestmodel.IncomeBodyUpdate true "Payload"
+// @param payload body requestmodel.IncomeMoneyBodyUpdate true "Payload"
 // @success 200 {object} responsemodel.ResponseUpdate
-// @router /incomes/{id} [put]
-func (Income) Update(c echo.Context) error {
+// @router /income-moneys/{id} [put]
+func (IncomeMoney) Update(c echo.Context) error {
 	var (
 		ctx      = echocontext.GetContext(c)
-		s        = service.Income()
-		payload  = echocontext.GetPayload(c).(requestmodel.IncomeBodyUpdate)
+		s        = service.IncomeMoney()
+		payload  = echocontext.GetPayload(c).(requestmodel.IncomeMoneyBodyUpdate)
 		userID   = echocontext.GetCurrentUserID(c)
 		incomeID = echocontext.GetParam(c, "id").(primitive.ObjectID)
 	)
@@ -76,7 +76,7 @@ func (Income) Update(c echo.Context) error {
 }
 
 // All godoc
-// @tags Income
+// @tags IncomeMoney
 // @summary All
 // @id app-income-money-all
 // @security ApiKeyAuth
@@ -84,8 +84,8 @@ func (Income) Update(c echo.Context) error {
 // @produce json
 // @param payload query querymodel.IncomeMoneyAll true "Query"
 // @success 200 {object} nil
-// @router /incomes [get]
-func (Income) All(c echo.Context) error {
+// @router /income-moneys  [get]
+func (IncomeMoney) All(c echo.Context) error {
 	var (
 		ctx       = echocontext.GetContext(c)
 		qParams   = echocontext.GetQuery(c).(querymodel.IncomeMoneyAll)
@@ -100,7 +100,7 @@ func (Income) All(c echo.Context) error {
 				ToAt:   ptime.TimeParseISODate(qParams.ToAt),
 			},
 		}
-		s      = service.Income()
+		s      = service.IncomeMoney()
 		userID = echocontext.GetCurrentUserID(c)
 	)
 

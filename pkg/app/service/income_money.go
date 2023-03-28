@@ -16,32 +16,32 @@ import (
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
-// IncomeInterface ...
-type IncomeInterface interface {
+// IncomeMoneyInterface ...
+type IncomeMoneyInterface interface {
 	// Create ...
-	Create(ctx context.Context, userID primitive.ObjectID, payload requestmodel.IncomeBodyCreate) (incomeID string, err error)
+	Create(ctx context.Context, userID primitive.ObjectID, payload requestmodel.IncomeMoneyBodyCreate) (incomeID string, err error)
 
 	// Update ...
-	Update(ctx context.Context, userID, incomeID primitive.ObjectID, payload requestmodel.IncomeBodyUpdate) (result string, err error)
+	Update(ctx context.Context, userID, incomeID primitive.ObjectID, payload requestmodel.IncomeMoneyBodyUpdate) (result string, err error)
 
 	// All ...
 	All(ctx context.Context, q mgquerry.AppQuery, userID primitive.ObjectID) (result responsemodel.ResponseIncomeMoneyAll, err error)
 }
 
-// Income ...
-func Income() IncomeInterface {
-	return incomeImplement{}
+// IncomeMoney ...
+func IncomeMoney() IncomeMoneyInterface {
+	return incomeMoneyImplement{}
 }
 
-// incomeImplement ...
-type incomeImplement struct{}
+// incomeMoneyImplement ...
+type incomeMoneyImplement struct{}
 
 //
 // PUBLIC METHODS
 //
 
 // Create ...
-func (s incomeImplement) Create(ctx context.Context, userID primitive.ObjectID, payload requestmodel.IncomeBodyCreate) (incomeID string, err error) {
+func (s incomeMoneyImplement) Create(ctx context.Context, userID primitive.ObjectID, payload requestmodel.IncomeMoneyBodyCreate) (incomeID string, err error) {
 	// Convert payload string to ObjectId
 	categoryID, _ := mongodb.NewIDFromString(payload.Category)
 
@@ -68,7 +68,7 @@ func (s incomeImplement) Create(ctx context.Context, userID primitive.ObjectID, 
 }
 
 // Update ...
-func (s incomeImplement) Update(ctx context.Context, userID, incomeID primitive.ObjectID, payload requestmodel.IncomeBodyUpdate) (result string, err error) {
+func (s incomeMoneyImplement) Update(ctx context.Context, userID, incomeID primitive.ObjectID, payload requestmodel.IncomeMoneyBodyUpdate) (result string, err error) {
 	// Find incomeMoney
 	incomeMoney, err := s.FindByID(ctx, incomeID)
 	if err != nil {
@@ -108,7 +108,7 @@ func (s incomeImplement) Update(ctx context.Context, userID, incomeID primitive.
 }
 
 // All ...
-func (s incomeImplement) All(ctx context.Context, q mgquerry.AppQuery, userID primitive.ObjectID) (result responsemodel.ResponseIncomeMoneyAll, err error) {
+func (s incomeMoneyImplement) All(ctx context.Context, q mgquerry.AppQuery, userID primitive.ObjectID) (result responsemodel.ResponseIncomeMoneyAll, err error) {
 	var (
 		d    = dao.IncomeMoney()
 		cond = bson.D{
@@ -132,7 +132,8 @@ func (s incomeImplement) All(ctx context.Context, q mgquerry.AppQuery, userID pr
 	}
 
 	// Page token
-	endData := len(list) < int(q.Limit)
+	total := len(list)
+	endData := total < int(q.Limit)
 	var nextPageToken = ""
 	if len(list) == int(q.Limit) {
 		nextPageToken = pagetoken.PageTokenUsingPage(int(q.Page) + 1)
@@ -143,13 +144,14 @@ func (s incomeImplement) All(ctx context.Context, q mgquerry.AppQuery, userID pr
 		List:          list,
 		EndData:       endData,
 		NextPageToken: nextPageToken,
+		Total:         int64(total),
 	}
 
 	return
 }
 
 // FindByID ...
-func (s incomeImplement) FindByID(ctx context.Context, id primitive.ObjectID) (result mgexpense.IncomeMoney, err error) {
+func (s incomeMoneyImplement) FindByID(ctx context.Context, id primitive.ObjectID) (result mgexpense.IncomeMoney, err error) {
 	var (
 		d    = dao.IncomeMoney()
 		cond = bson.D{{"_id", id}}
@@ -169,12 +171,12 @@ func (s incomeImplement) FindByID(ctx context.Context, id primitive.ObjectID) (r
 //
 
 // assignQueryIncomeMoney ...
-func (s incomeImplement) assignQueryIncomeMoney(q *mgquerry.AppQuery, cond *bson.D) {
+func (s incomeMoneyImplement) assignQueryIncomeMoney(q *mgquerry.AppQuery, cond *bson.D) {
 	q.ExpenseTracker.AssignFromToAt(cond)
 }
 
 // assignQuerySort ...
-func (s incomeImplement) assignQuerySort(q *mgquerry.AppQuery) {
+func (s incomeMoneyImplement) assignQuerySort(q *mgquerry.AppQuery) {
 	switch q.SortString {
 	case "created_at_first":
 		q.SortInterface = bson.D{
@@ -190,7 +192,7 @@ func (s incomeImplement) assignQuerySort(q *mgquerry.AppQuery) {
 }
 
 // brief ...
-func (s incomeImplement) brief(ctx context.Context, doc mgexpense.IncomeMoney) responsemodel.ResponseIncomeMoneyInfo {
+func (s incomeMoneyImplement) brief(ctx context.Context, doc mgexpense.IncomeMoney) responsemodel.ResponseIncomeMoneyInfo {
 	return responsemodel.ResponseIncomeMoneyInfo{
 		ID: doc.ID.Hex(),
 		Category: mgexpense.CategoryShort{

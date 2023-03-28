@@ -9,13 +9,13 @@ import (
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
-// Income ...
-type Income struct{}
+// IncomeMoney ...
+type IncomeMoney struct{}
 
 // Create ...
-func (Income) Create(next echo.HandlerFunc) echo.HandlerFunc {
+func (IncomeMoney) Create(next echo.HandlerFunc) echo.HandlerFunc {
 	return func(c echo.Context) error {
-		var payload requestmodel.IncomeBodyCreate
+		var payload requestmodel.IncomeMoneyBodyCreate
 
 		if err := c.Bind(&payload); err != nil {
 			return response.R400(c, nil, "")
@@ -31,9 +31,9 @@ func (Income) Create(next echo.HandlerFunc) echo.HandlerFunc {
 }
 
 // Update ...
-func (Income) Update(next echo.HandlerFunc) echo.HandlerFunc {
+func (IncomeMoney) Update(next echo.HandlerFunc) echo.HandlerFunc {
 	return func(c echo.Context) error {
-		var payload requestmodel.IncomeBodyUpdate
+		var payload requestmodel.IncomeMoneyBodyUpdate
 
 		if err := c.Bind(&payload); err != nil {
 			return response.R400(c, nil, "")
@@ -49,7 +49,7 @@ func (Income) Update(next echo.HandlerFunc) echo.HandlerFunc {
 }
 
 // Detail ...
-func (Income) Detail(next echo.HandlerFunc) echo.HandlerFunc {
+func (IncomeMoney) Detail(next echo.HandlerFunc) echo.HandlerFunc {
 	return func(c echo.Context) error {
 		var id = c.Param("id")
 
@@ -68,7 +68,7 @@ func (Income) Detail(next echo.HandlerFunc) echo.HandlerFunc {
 }
 
 // All ...
-func (Income) All(next echo.HandlerFunc) echo.HandlerFunc {
+func (IncomeMoney) All(next echo.HandlerFunc) echo.HandlerFunc {
 	return func(c echo.Context) error {
 		var query querymodel.IncomeMoneyAll
 

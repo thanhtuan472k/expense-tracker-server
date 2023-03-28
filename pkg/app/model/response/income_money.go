@@ -10,6 +10,7 @@ type ResponseIncomeMoneyAll struct {
 	List          []ResponseIncomeMoneyInfo `json:"list"`
 	EndData       bool                      `json:"endData"`
 	NextPageToken string                    `json:"nextPageToken"`
+	Total         int64                     `json:"total"`
 }
 
 // ResponseIncomeMoneyInfo ...
