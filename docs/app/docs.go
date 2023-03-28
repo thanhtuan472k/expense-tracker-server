@@ -51,6 +51,35 @@ const docTemplate = `{
             }
         },
         "/incomes": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Income"
+                ],
+                "summary": "All",
+                "operationId": "app-income-money-all",
+                "parameters": [
+                    {
+                        "description": "Payload",
+                        "name": "payload",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/querymodel.IncomeMoneyAll"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            },
             "post": {
                 "security": [
                     {
@@ -67,7 +96,7 @@ const docTemplate = `{
                     "Income"
                 ],
                 "summary": "Create",
-                "operationId": "create-income-money",
+                "operationId": "app-income-money-create",
                 "parameters": [
                     {
                         "description": "Payload",
@@ -106,7 +135,7 @@ const docTemplate = `{
                     "Income"
                 ],
                 "summary": "Update",
-                "operationId": "update-income-money",
+                "operationId": "app-income-money-update",
                 "parameters": [
                     {
                         "type": "string",
@@ -255,6 +284,23 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "status": {
+                    "type": "string"
+                }
+            }
+        },
+        "querymodel.IncomeMoneyAll": {
+            "type": "object",
+            "properties": {
+                "fromAt": {
+                    "type": "string"
+                },
+                "pageToken": {
+                    "type": "string"
+                },
+                "sort": {
+                    "type": "string"
+                },
+                "toAt": {
                     "type": "string"
                 }
             }

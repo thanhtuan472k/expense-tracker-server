@@ -5,9 +5,13 @@ import (
 	"errors"
 	mgexpense "expense-tracker-server/external/model/mg/expense"
 	"expense-tracker-server/external/mongodb"
+	"expense-tracker-server/external/util/mgquerry"
+	"expense-tracker-server/external/util/pagetoken"
+	"expense-tracker-server/external/util/ptime"
 	"expense-tracker-server/pkg/app/dao"
 	"expense-tracker-server/pkg/app/errorcode"
 	requestmodel "expense-tracker-server/pkg/app/model/request"
+	responsemodel "expense-tracker-server/pkg/app/model/response"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
@@ -19,6 +23,9 @@ type IncomeInterface interface {
 
 	// Update ...
 	Update(ctx context.Context, userID, incomeID primitive.ObjectID, payload requestmodel.IncomeBodyUpdate) (result string, err error)
+
+	// All ...
+	All(ctx context.Context, q mgquerry.AppQuery, userID primitive.ObjectID) (result responsemodel.ResponseIncomeMoneyAll, err error)
 }
 
 // Income ...
@@ -100,6 +107,47 @@ func (s incomeImplement) Update(ctx context.Context, userID, incomeID primitive.
 	return
 }
 
+// All ...
+func (s incomeImplement) All(ctx context.Context, q mgquerry.AppQuery, userID primitive.ObjectID) (result responsemodel.ResponseIncomeMoneyAll, err error) {
+	var (
+		d    = dao.IncomeMoney()
+		cond = bson.D{
+			{"user", userID},
+		}
+	)
+
+	// Assign query
+	s.assignQueryIncomeMoney(&q, &cond)
+
+	// Assign sort
+	s.assignQuerySort(&q)
+
+	// Init data
+	var list = make([]responsemodel.ResponseIncomeMoneyInfo, 0)
+
+	// Find docs
+	docs := d.FindByCondition(ctx, cond, q.GetFindOptionsWithPage())
+	for _, doc := range docs {
+		list = append(list, s.brief(ctx, doc))
+	}
+
+	// Page token
+	endData := len(list) < int(q.Limit)
+	var nextPageToken = ""
+	if len(list) == int(q.Limit) {
+		nextPageToken = pagetoken.PageTokenUsingPage(int(q.Page) + 1)
+	}
+
+	// Response
+	result = responsemodel.ResponseIncomeMoneyAll{
+		List:          list,
+		EndData:       endData,
+		NextPageToken: nextPageToken,
+	}
+
+	return
+}
+
 // FindByID ...
 func (s incomeImplement) FindByID(ctx context.Context, id primitive.ObjectID) (result mgexpense.IncomeMoney, err error) {
 	var (
@@ -118,3 +166,40 @@ func (s incomeImplement) FindByID(ctx context.Context, id primitive.ObjectID) (r
 
 //
 // PRIVATE METHODS
+//
+
+// assignQueryIncomeMoney ...
+func (s incomeImplement) assignQueryIncomeMoney(q *mgquerry.AppQuery, cond *bson.D) {
+	q.ExpenseTracker.AssignFromToAt(cond)
+}
+
+// assignQuerySort ...
+func (s incomeImplement) assignQuerySort(q *mgquerry.AppQuery) {
+	switch q.SortString {
+	case "created_at_first":
+		q.SortInterface = bson.D{
+			{"createdAt", 1},
+			{"_id", 1},
+		}
+	default:
+		q.SortInterface = bson.D{
+			{"createdAt", -1},
+			{"_id", -1},
+		}
+	}
+}
+
+// brief ...
+func (s incomeImplement) brief(ctx context.Context, doc mgexpense.IncomeMoney) responsemodel.ResponseIncomeMoneyInfo {
+	return responsemodel.ResponseIncomeMoneyInfo{
+		ID: doc.ID.Hex(),
+		Category: mgexpense.CategoryShort{
+			ID:   doc.Category.ID,
+			Name: doc.Category.Name,
+		},
+		Money:     doc.Money, // TODO: refactor bỏ format tiền
+		Note:      doc.Note,
+		CreatedAt: ptime.TimeResponseInit(doc.CreatedAt),
+		UpdatedAt: ptime.TimeResponseInit(doc.UpdatedAt),
+	}
+}

@@ -9,6 +9,17 @@ definitions:
       status:
         type: string
     type: object
+  querymodel.IncomeMoneyAll:
+    properties:
+      fromAt:
+        type: string
+      pageToken:
+        type: string
+      sort:
+        type: string
+      toAt:
+        type: string
+    type: object
   requestmodel.IncomeBodyCreate:
     properties:
       category:
@@ -91,10 +102,29 @@ paths:
       tags:
       - Category
   /incomes:
+    get:
+      consumes:
+      - application/json
+      operationId: app-income-money-all
+      parameters:
+      - description: Payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/querymodel.IncomeMoneyAll'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      summary: All
+      tags:
+      - Income
     post:
       consumes:
       - application/json
-      operationId: create-income-money
+      operationId: app-income-money-create
       parameters:
       - description: Payload
         in: body
@@ -118,7 +148,7 @@ paths:
     put:
       consumes:
       - application/json
-      operationId: update-income-money
+      operationId: app-income-money-update
       parameters:
       - description: Income money id
         in: path
