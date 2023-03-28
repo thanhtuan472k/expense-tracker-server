@@ -90,7 +90,7 @@ func (Income) All(c echo.Context) error {
 		qParams   = echocontext.GetQuery(c).(querymodel.IncomeMoneyAll)
 		pageToken = pagetoken.PageTokenDecode(qParams.PageToken)
 		q         = mgquerry.AppQuery{
-			Page:          pageToken.Page,
+			Page:          int64(pageToken.Page),
 			Limit:         int64(constant.Limit20),
 			SortInterface: bson.D{{"createdAt", -1}},
 			SortString:    qParams.Sort,

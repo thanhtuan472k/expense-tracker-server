@@ -7,9 +7,9 @@ import (
 
 // ResponseIncomeMoneyAll ...
 type ResponseIncomeMoneyAll struct {
-	List          ResponseIncomeMoneyInfo `json:"list"`
-	EndData       bool                    `json:"endData"`
-	NextPageToken string                  `json:"nextPageToken"`
+	List          []ResponseIncomeMoneyInfo `json:"list"`
+	EndData       bool                      `json:"endData"`
+	NextPageToken string                    `json:"nextPageToken"`
 }
 
 // ResponseIncomeMoneyInfo ...
