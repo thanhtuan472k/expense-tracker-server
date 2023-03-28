@@ -1,12 +1,18 @@
 package handler
 
 import (
+	"expense-tracker-server/external/constant"
 	"expense-tracker-server/external/response"
 	"expense-tracker-server/external/util/echocontext"
+	"expense-tracker-server/external/util/mgquerry"
+	"expense-tracker-server/external/util/pagetoken"
+	"expense-tracker-server/external/util/ptime"
 	responsemodel "expense-tracker-server/pkg/admin/model/response"
+	querymodel "expense-tracker-server/pkg/app/model/query"
 	requestmodel "expense-tracker-server/pkg/app/model/request"
 	"expense-tracker-server/pkg/app/service"
 	"github.com/labstack/echo/v4"
+	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
@@ -16,7 +22,7 @@ type Income struct{}
 // Create godoc
 // @tags Income
 // @summary Create
-// @id create-income-money
+// @id app-income-money-create
 // @security ApiKeyAuth
 // @accept json
 // @produce json
@@ -44,7 +50,7 @@ func (Income) Create(c echo.Context) error {
 // Update godoc
 // @tags Income
 // @summary Update
-// @id update-income-money
+// @id app-income-money-update
 // @security ApiKeyAuth
 // @accept json
 // @produce json
@@ -66,5 +72,40 @@ func (Income) Update(c echo.Context) error {
 		return response.R400(c, nil, err.Error())
 	}
 
+	return response.R200(c, result, "")
+}
+
+// All godoc
+// @tags Income
+// @summary All
+// @id app-income-money-all
+// @accept json
+// @produce json
+// @param payload body querymodel.IncomeMoneyAll true "Payload"
+// @success 200 {object} nil
+// @router /incomes [get]
+func (Income) All(c echo.Context) error {
+	var (
+		ctx       = echocontext.GetContext(c)
+		qParams   = echocontext.GetQuery(c).(querymodel.IncomeMoneyAll)
+		pageToken = pagetoken.PageTokenDecode(qParams.PageToken)
+		q         = mgquerry.AppQuery{
+			Page:          int64(pageToken.Page),
+			Limit:         int64(constant.Limit20),
+			SortInterface: bson.D{{"createdAt", -1}},
+			SortString:    qParams.Sort,
+			ExpenseTracker: mgquerry.ExpenseTracker{
+				FromAt: ptime.TimeParseISODate(qParams.FromAt),
+				ToAt:   ptime.TimeParseISODate(qParams.ToAt),
+			},
+		}
+		s      = service.Income()
+		userID = echocontext.GetCurrentUserID(c)
+	)
+
+	result, err := s.All(ctx, q, userID)
+	if err != nil {
+		return response.R400(c, echo.Map{}, err.Error())
+	}
 	return response.R200(c, result, "")
 }

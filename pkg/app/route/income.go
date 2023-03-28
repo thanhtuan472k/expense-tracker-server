@@ -20,4 +20,9 @@ func income(e *echo.Group) {
 
 	// Update ...
 	g.PUT("/:id", h.Update, v.Update, v.Detail)
+
+	// All ...
+	g.GET("", h.All, v.All)
+
+	// Detail ...
 }
