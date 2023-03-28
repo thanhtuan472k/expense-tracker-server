@@ -26,6 +26,9 @@ type IncomeMoneyInterface interface {
 
 	// All ...
 	All(ctx context.Context, q mgquerry.AppQuery, userID primitive.ObjectID) (result responsemodel.ResponseIncomeMoneyAll, err error)
+
+	// Detail ...
+	Detail(ctx context.Context, id primitive.ObjectID) (result responsemodel.ResponseIncomeMoneyInfo, err error)
 }
 
 // IncomeMoney ...
@@ -147,6 +150,11 @@ func (s incomeMoneyImplement) All(ctx context.Context, q mgquerry.AppQuery, user
 		Total:         int64(total),
 	}
 
+	return
+}
+
+// Detail ...
+func (s incomeMoneyImplement) Detail(ctx context.Context, id primitive.ObjectID) (result responsemodel.ResponseIncomeMoneyInfo, err error) {
 	return
 }
 

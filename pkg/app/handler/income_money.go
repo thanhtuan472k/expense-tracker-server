@@ -110,3 +110,27 @@ func (IncomeMoney) All(c echo.Context) error {
 	}
 	return response.R200(c, result, "")
 }
+
+// Detail godoc
+// @tags IncomeMoney
+// @summary Detail
+// @id app-income-money-detail
+// @security ApiKeyAuth
+// @accept json
+// @produce json
+// @Param  id path string true "Income money id"
+// @success 200 {object} nil
+// @router /income-moneys/{id} [get]
+func (IncomeMoney) Detail(c echo.Context) error {
+	var (
+		ctx = echocontext.GetContext(c)
+		s   = service.IncomeMoney()
+		id  = echocontext.GetParam(c, "id").(primitive.ObjectID)
+	)
+
+	result, err := s.Detail(ctx, id)
+	if err != nil {
+		return response.R400(c, echo.Map{}, err.Error())
+	}
+	return response.R200(c, result, "")
+}
