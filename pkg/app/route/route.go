@@ -22,4 +22,5 @@ func Init(e *echo.Echo) {
 	user(r)
 	category(r)
 	income(r)
+	expenseMoney(r)
 }
