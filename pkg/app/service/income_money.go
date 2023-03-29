@@ -131,7 +131,7 @@ func (s incomeMoneyImplement) All(ctx context.Context, q mgquerry.AppQuery, user
 	// Find docs
 	docs := d.FindByCondition(ctx, cond, q.GetFindOptionsWithPage())
 	for _, doc := range docs {
-		list = append(list, s.brief(ctx, doc))
+		list = append(list, s.getIncomeMoneyInfo(ctx, doc))
 	}
 
 	// Page token
@@ -155,6 +155,14 @@ func (s incomeMoneyImplement) All(ctx context.Context, q mgquerry.AppQuery, user
 
 // Detail ...
 func (s incomeMoneyImplement) Detail(ctx context.Context, id primitive.ObjectID) (result responsemodel.ResponseIncomeMoneyInfo, err error) {
+	// Find incomeMoney
+	incomeMoney, err := s.FindByID(ctx, id)
+	if err != nil {
+		return
+	}
+
+	// Response
+	result = s.getIncomeMoneyInfo(ctx, incomeMoney)
 	return
 }
 
@@ -199,8 +207,8 @@ func (s incomeMoneyImplement) assignQuerySort(q *mgquerry.AppQuery) {
 	}
 }
 
-// brief ...
-func (s incomeMoneyImplement) brief(ctx context.Context, doc mgexpense.IncomeMoney) responsemodel.ResponseIncomeMoneyInfo {
+// getIncomeMoneyInfo ...
+func (s incomeMoneyImplement) getIncomeMoneyInfo(ctx context.Context, doc mgexpense.IncomeMoney) responsemodel.ResponseIncomeMoneyInfo {
 	return responsemodel.ResponseIncomeMoneyInfo{
 		ID: doc.ID.Hex(),
 		Category: mgexpense.CategoryShort{
