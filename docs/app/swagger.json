@@ -53,6 +53,168 @@
                 }
             }
         },
+        "/expense-moneys": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "ExpenseMoney"
+                ],
+                "summary": "All",
+                "operationId": "app-expense-money-all",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "name": "fromAt",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "pageToken",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "sort",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "toAt",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            },
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "ExpenseMoney"
+                ],
+                "summary": "Create",
+                "operationId": "app-expense-money-create",
+                "parameters": [
+                    {
+                        "description": "Payload",
+                        "name": "payload",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/requestmodel.ExpenseMoneyBodyCreate"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/responsemodel.ResponseCreate"
+                        }
+                    }
+                }
+            }
+        },
+        "/expense-moneys/{id}": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "ExpenseMoney"
+                ],
+                "summary": "Detail",
+                "operationId": "app-expense-money-detail",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Expense money id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            },
+            "put": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "ExpenseMoney"
+                ],
+                "summary": "Update",
+                "operationId": "app-expense-money-update",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Expense money id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Payload",
+                        "name": "payload",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/requestmodel.ExpenseMoneyBodyUpdate"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/responsemodel.ResponseUpdate"
+                        }
+                    }
+                }
+            }
+        },
         "/income-moneys": {
             "get": {
                 "security": [
@@ -325,6 +487,12 @@
         }
     },
     "definitions": {
+        "requestmodel.ExpenseMoneyBodyCreate": {
+            "type": "object"
+        },
+        "requestmodel.ExpenseMoneyBodyUpdate": {
+            "type": "object"
+        },
         "requestmodel.IncomeMoneyBodyCreate": {
             "type": "object",
             "properties": {
