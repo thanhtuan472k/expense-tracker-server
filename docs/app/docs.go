@@ -496,7 +496,21 @@ const docTemplate = `{
     },
     "definitions": {
         "requestmodel.ExpenseMoneyBodyCreate": {
-            "type": "object"
+            "type": "object",
+            "properties": {
+                "category": {
+                    "type": "string"
+                },
+                "money": {
+                    "type": "number"
+                },
+                "note": {
+                    "type": "string"
+                },
+                "subCategory": {
+                    "type": "string"
+                }
+            }
         },
         "requestmodel.ExpenseMoneyBodyUpdate": {
             "type": "object"

@@ -2,7 +2,9 @@ package service
 
 import (
 	"context"
+	"expense-tracker-server/external/mongodb"
 	"expense-tracker-server/external/util/mgquerry"
+	"expense-tracker-server/pkg/app/dao"
 	requestmodel "expense-tracker-server/pkg/app/model/request"
 	responsemodel "expense-tracker-server/pkg/app/model/response"
 	"go.mongodb.org/mongo-driver/bson/primitive"
@@ -36,8 +38,36 @@ type expenseMoneyImplement struct{}
 
 // Create ...
 func (s expenseMoneyImplement) Create(ctx context.Context, userID primitive.ObjectID, payload requestmodel.ExpenseMoneyBodyCreate) (expenseID string, err error) {
-	//TODO implement me
-	panic("implement me")
+	// Convert payload string to ObjectId
+	categoryID, _ := mongodb.NewIDFromString(payload.Category)
+	subCategoryID, _ := mongodb.NewIDFromString(payload.SubCategory)
+
+	// Find doc category is available
+	categorySvc := categoryImplement{}
+	category, err := categorySvc.findDocCategoryTypeExpenseAvailableByID(ctx, categoryID)
+	if err != nil {
+		return
+	}
+	// Find doc subCategory is available
+	subCategorySvc := subCategoryImplement{}
+	subCategory, err := subCategorySvc.findDocSubCategoryTypeExpenseAvailableByID(ctx, subCategoryID)
+	if err != nil {
+		return
+	}
+
+	var (
+		d   = dao.ExpenseMoney()
+		doc = payload.ConvertToBSON(userID, category, subCategory)
+	)
+
+	// Insert doc expense money
+	if err = d.InsertOne(ctx, doc); err != nil {
+		return
+	}
+
+	// Response
+	expenseID = doc.ID.Hex()
+	return
 }
 
 // Update ...

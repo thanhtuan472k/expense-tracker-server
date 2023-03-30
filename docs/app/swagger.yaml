@@ -1,6 +1,15 @@
 basePath: /app/expense
 definitions:
   requestmodel.ExpenseMoneyBodyCreate:
+    properties:
+      category:
+        type: string
+      money:
+        type: number
+      note:
+        type: string
+      subCategory:
+        type: string
     type: object
   requestmodel.ExpenseMoneyBodyUpdate:
     type: object
