@@ -1,5 +1,9 @@
 basePath: /app/expense
 definitions:
+  requestmodel.ExpenseMoneyBodyCreate:
+    type: object
+  requestmodel.ExpenseMoneyBodyUpdate:
+    type: object
   requestmodel.IncomeMoneyBodyCreate:
     properties:
       category:
@@ -86,6 +90,106 @@ paths:
       summary: All
       tags:
       - Category
+  /expense-moneys:
+    get:
+      consumes:
+      - application/json
+      operationId: app-expense-money-all
+      parameters:
+      - in: query
+        name: fromAt
+        type: string
+      - in: query
+        name: pageToken
+        type: string
+      - in: query
+        name: sort
+        type: string
+      - in: query
+        name: toAt
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      security:
+      - ApiKeyAuth: []
+      summary: All
+      tags:
+      - ExpenseMoney
+    post:
+      consumes:
+      - application/json
+      operationId: app-expense-money-create
+      parameters:
+      - description: Payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/requestmodel.ExpenseMoneyBodyCreate'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responsemodel.ResponseCreate'
+      security:
+      - ApiKeyAuth: []
+      summary: Create
+      tags:
+      - ExpenseMoney
+  /expense-moneys/{id}:
+    get:
+      consumes:
+      - application/json
+      operationId: app-expense-money-detail
+      parameters:
+      - description: Expense money id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      security:
+      - ApiKeyAuth: []
+      summary: Detail
+      tags:
+      - ExpenseMoney
+    put:
+      consumes:
+      - application/json
+      operationId: app-expense-money-update
+      parameters:
+      - description: Expense money id
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/requestmodel.ExpenseMoneyBodyUpdate'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responsemodel.ResponseUpdate'
+      security:
+      - ApiKeyAuth: []
+      summary: Update
+      tags:
+      - ExpenseMoney
   /income-moneys:
     get:
       consumes:
