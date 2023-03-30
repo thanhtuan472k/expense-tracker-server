@@ -6,11 +6,11 @@ const (
 	IncomeMoneyNotFound = "income_money_not_found"
 )
 
-// 400 - 499
+// 500 - 599
 var incomeMoney = []response.Code{
 	{
 		Key:     IncomeMoneyNotFound,
 		Message: "Thu nhập không tìm thấy",
-		Code:    400,
+		Code:    500,
 	},
 }
