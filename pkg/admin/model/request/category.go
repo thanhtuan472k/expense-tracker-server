@@ -4,7 +4,6 @@ import (
 	"expense-tracker-server/external/constant"
 	mgexpense "expense-tracker-server/external/model/mg/expense"
 	"expense-tracker-server/external/mongodb"
-	"expense-tracker-server/external/response"
 	"expense-tracker-server/external/util/ptime"
 	internalconstant "expense-tracker-server/internal/constant"
 	"expense-tracker-server/pkg/admin/errorcode"
@@ -41,37 +40,6 @@ func (m CategoryBodyCreate) ConvertToBSON() mgexpense.Category {
 		CreatedAt:    ptime.Now(),
 		UpdatedAt:    ptime.Now(),
 	}
-}
-
-// CategoryAll ...
-type CategoryAll struct {
-	Page    int64  `query:"page"`
-	Limit   int64  `query:"limit"`
-	Keyword string `query:"keyword"`
-	Status  string `query:"status"`
-	Type    string `query:"type"`
-}
-
-// Validate ...
-func (m CategoryAll) Validate() error {
-	var (
-		types = []interface{}{
-			internalconstant.CategoryTypeExpense,
-			internalconstant.CategoryTypeIncome,
-		}
-
-		statuses = []interface{}{
-			constant.StatusActive,
-			constant.StatusInactive,
-		}
-	)
-
-	return validation.ValidateStruct(&m,
-		validation.Field(&m.Page, validation.Min(0).Error(response.CommonPageInvalid)),
-		validation.Field(&m.Limit, validation.Min(0).Error(response.CommonLimitInvalid)),
-		validation.Field(&m.Type, validation.In(types...).Error(errorcode.CategoryTypeIsInvalid)),
-		validation.Field(&m.Status, validation.In(statuses...).Error(errorcode.CategoryStatusIsInvalid)),
-	)
 }
 
 // CategoryChangeStatus ...

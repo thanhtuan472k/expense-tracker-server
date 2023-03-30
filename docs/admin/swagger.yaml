@@ -57,6 +57,11 @@ definitions:
       status:
         type: string
     type: object
+  response.ResponseCreate:
+    properties:
+      _id:
+        type: string
+    type: object
   responsemodel.ResponseCategoryAdmin:
     properties:
       _id:
@@ -82,18 +87,6 @@ definitions:
         type: array
       total:
         type: integer
-    type: object
-  responsemodel.ResponseChangeStatus:
-    properties:
-      _id:
-        type: string
-      status:
-        type: string
-    type: object
-  responsemodel.ResponseCreate:
-    properties:
-      _id:
-        type: string
     type: object
   responsemodel.ResponseSubCategoryAdmin:
     properties:
@@ -189,7 +182,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/responsemodel.ResponseCreate'
+            $ref: '#/definitions/response.ResponseCreate'
       security:
       - ApiKeyAuth: []
       summary: Create
@@ -268,8 +261,6 @@ paths:
       responses:
         "200":
           description: OK
-          schema:
-            $ref: '#/definitions/responsemodel.ResponseChangeStatus'
       security:
       - ApiKeyAuth: []
       summary: ChangeStatus
@@ -332,7 +323,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/responsemodel.ResponseCreate'
+            $ref: '#/definitions/response.ResponseCreate'
       security:
       - ApiKeyAuth: []
       summary: Create Sub Category
@@ -445,8 +436,6 @@ paths:
       responses:
         "200":
           description: OK
-          schema:
-            $ref: '#/definitions/responsemodel.ResponseSubCategoryAdmin'
       security:
       - ApiKeyAuth: []
       summary: Detail
@@ -474,7 +463,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/responsemodel.ResponseCreate'
+            $ref: '#/definitions/response.ResponseCreate'
       security:
       - ApiKeyAuth: []
       summary: Update
@@ -502,8 +491,6 @@ paths:
       responses:
         "200":
           description: OK
-          schema:
-            $ref: '#/definitions/responsemodel.ResponseChangeStatus'
       security:
       - ApiKeyAuth: []
       summary: ChangeStatus

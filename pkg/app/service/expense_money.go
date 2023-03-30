@@ -48,6 +48,7 @@ func (s expenseMoneyImplement) Create(ctx context.Context, userID primitive.Obje
 	if err != nil {
 		return
 	}
+
 	// Find doc subCategory is available
 	subCategorySvc := subCategoryImplement{}
 	subCategory, err := subCategorySvc.findDocSubCategoryTypeExpenseAvailableByID(ctx, subCategoryID)
