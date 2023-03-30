@@ -131,7 +131,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/responsemodel.ResponseCreate"
+                            "$ref": "#/definitions/response.ResponseCreate"
                         }
                     }
                 }
@@ -209,7 +209,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/responsemodel.ResponseUpdate"
+                            "$ref": "#/definitions/response.ResponseUpdate"
                         }
                     }
                 }
@@ -293,7 +293,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/responsemodel.ResponseCreate"
+                            "$ref": "#/definitions/response.ResponseCreate"
                         }
                     }
                 }
@@ -371,7 +371,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/responsemodel.ResponseUpdate"
+                            "$ref": "#/definitions/response.ResponseUpdate"
                         }
                     }
                 }
@@ -566,7 +566,7 @@
                 }
             }
         },
-        "responsemodel.ResponseCreate": {
+        "response.ResponseCreate": {
             "type": "object",
             "properties": {
                 "_id": {
@@ -574,7 +574,7 @@
                 }
             }
         },
-        "responsemodel.ResponseUpdate": {
+        "response.ResponseUpdate": {
             "type": "object",
             "properties": {
                 "_id": {

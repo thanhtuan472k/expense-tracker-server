@@ -7,7 +7,6 @@ import (
 	"expense-tracker-server/external/util/mgquerry"
 	"expense-tracker-server/external/util/pagetoken"
 	"expense-tracker-server/external/util/ptime"
-	responsemodel "expense-tracker-server/pkg/admin/model/response"
 	querymodel "expense-tracker-server/pkg/app/model/query"
 	requestmodel "expense-tracker-server/pkg/app/model/request"
 	"expense-tracker-server/pkg/app/service"
@@ -27,7 +26,7 @@ type ExpenseMoney struct{}
 // @accept json
 // @produce json
 // @param payload body requestmodel.ExpenseMoneyBodyCreate true "Payload"
-// @success 200 {object} responsemodel.ResponseCreate
+// @success 200 {object} response.ResponseCreate
 // @router /expense-moneys [post]
 func (ExpenseMoney) Create(c echo.Context) error {
 	var (
@@ -42,7 +41,7 @@ func (ExpenseMoney) Create(c echo.Context) error {
 		return response.R400(c, nil, err.Error())
 	}
 
-	return response.R200(c, responsemodel.ResponseCreate{
+	return response.R200(c, response.ResponseCreate{
 		ID: expenseID,
 	}, "")
 }
@@ -56,7 +55,7 @@ func (ExpenseMoney) Create(c echo.Context) error {
 // @produce json
 // @param id path string true "Expense money id"
 // @param payload body requestmodel.ExpenseMoneyBodyUpdate true "Payload"
-// @success 200 {object} responsemodel.ResponseUpdate
+// @success 200 {object} response.ResponseUpdate
 // @router /expense-moneys/{id} [put]
 func (ExpenseMoney) Update(c echo.Context) error {
 	var (

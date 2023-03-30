@@ -4,7 +4,6 @@ import (
 	"expense-tracker-server/external/response"
 	"expense-tracker-server/external/util/echocontext"
 	requestmodel "expense-tracker-server/pkg/admin/model/request"
-	responsemodel "expense-tracker-server/pkg/admin/model/response"
 	"expense-tracker-server/pkg/admin/service"
 	"github.com/labstack/echo/v4"
 	"go.mongodb.org/mongo-driver/bson/primitive"
@@ -22,7 +21,7 @@ type SubCategory struct{}
 // @produce json
 // @Param  id path string true "Sub category id"
 // @param payload body requestmodel.SubCategoryBodyCreate true "Payload"
-// @success 200 {object} responsemodel.ResponseCreate
+// @success 200 {object} response.ResponseCreate
 // @router /sub-categories/{id} [put]
 func (SubCategory) Update(c echo.Context) error {
 	var (
@@ -36,7 +35,7 @@ func (SubCategory) Update(c echo.Context) error {
 	if err != nil {
 		return response.R400(c, nil, err.Error())
 	}
-	return response.R200(c, responsemodel.ResponseCreate{ID: result}, "")
+	return response.R200(c, response.ResponseCreate{ID: result}, "")
 }
 
 // Detail godoc
@@ -47,7 +46,7 @@ func (SubCategory) Update(c echo.Context) error {
 // @accept json
 // @produce json
 // @Param  id path string true "Sub category id"
-// @success 200 {object} responsemodel.ResponseSubCategoryAdmin
+// @success 200 {object} nil
 // @router /sub-categories/{id} [get]
 func (SubCategory) Detail(c echo.Context) error {
 	var (
@@ -72,7 +71,7 @@ func (SubCategory) Detail(c echo.Context) error {
 // @produce json
 // @Param  id path string true "Sub category id"
 // @param payload body requestmodel.SubCategoryChangeStatus true "Payload"
-// @success 200 {object} responsemodel.ResponseChangeStatus
+// @success 200 {object} nil
 // @router /sub-categories/{id}/status [patch]
 func (SubCategory) ChangeStatus(c echo.Context) error {
 	var (

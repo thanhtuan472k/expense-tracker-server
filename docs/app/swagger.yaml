@@ -51,12 +51,12 @@ definitions:
       phone:
         type: string
     type: object
-  responsemodel.ResponseCreate:
+  response.ResponseCreate:
     properties:
       _id:
         type: string
     type: object
-  responsemodel.ResponseUpdate:
+  response.ResponseUpdate:
     properties:
       _id:
         type: string
@@ -144,7 +144,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/responsemodel.ResponseCreate'
+            $ref: '#/definitions/response.ResponseCreate'
       security:
       - ApiKeyAuth: []
       summary: Create
@@ -193,7 +193,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/responsemodel.ResponseUpdate'
+            $ref: '#/definitions/response.ResponseUpdate'
       security:
       - ApiKeyAuth: []
       summary: Update
@@ -244,7 +244,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/responsemodel.ResponseCreate'
+            $ref: '#/definitions/response.ResponseCreate'
       security:
       - ApiKeyAuth: []
       summary: Create
@@ -293,7 +293,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/responsemodel.ResponseUpdate'
+            $ref: '#/definitions/response.ResponseUpdate'
       security:
       - ApiKeyAuth: []
       summary: Update

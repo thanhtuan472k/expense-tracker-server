@@ -4,6 +4,7 @@ import (
 	"expense-tracker-server/external/response"
 	"expense-tracker-server/external/util/echocontext"
 	"expense-tracker-server/external/util/mgquerry"
+	querymodel "expense-tracker-server/pkg/admin/model/query"
 	requestmodel "expense-tracker-server/pkg/admin/model/request"
 	responsemodel "expense-tracker-server/pkg/admin/model/response"
 	"expense-tracker-server/pkg/admin/service"
@@ -23,7 +24,7 @@ type Category struct{}
 // @accept json
 // @produce json
 // @param payload body requestmodel.CategoryBodyCreate true "Payload"
-// @success 200 {object} responsemodel.ResponseCreate
+// @success 200 {object} response.ResponseCreate
 // @router /categories [post]
 func (Category) Create(c echo.Context) error {
 	var (
@@ -36,7 +37,7 @@ func (Category) Create(c echo.Context) error {
 	if err != nil {
 		return response.R400(c, nil, err.Error())
 	}
-	return response.R200(c, responsemodel.ResponseCreate{ID: result}, "")
+	return response.R200(c, response.ResponseCreate{ID: result}, "")
 }
 
 // All godoc
@@ -46,13 +47,13 @@ func (Category) Create(c echo.Context) error {
 // @security ApiKeyAuth
 // @accept json
 // @produce json
-// @param payload query requestmodel.CategoryAll true "Query"
+// @param payload query querymodel.CategoryAll true "Query"
 // @success 200 {object} responsemodel.ResponseCategoryAll
 // @router /categories [get]
 func (Category) All(c echo.Context) error {
 	var (
 		ctx     = echocontext.GetContext(c)
-		qParams = echocontext.GetQuery(c).(requestmodel.CategoryAll)
+		qParams = echocontext.GetQuery(c).(querymodel.CategoryAll)
 		s       = service.Category()
 		q       = mgquerry.AppQuery{
 			Page:  qParams.Page,
@@ -131,7 +132,7 @@ func (Category) Update(c echo.Context) error {
 // @produce json
 // @Param  id path string true "Category id"
 // @param payload body requestmodel.CategoryChangeStatus true "Payload"
-// @success 200 {object} responsemodel.ResponseChangeStatus
+// @success 200 {object} nil
 // @router /categories/{id}/status [patch]
 func (Category) ChangeStatus(c echo.Context) error {
 	var (
@@ -157,7 +158,7 @@ func (Category) ChangeStatus(c echo.Context) error {
 // @produce json
 // @Param  id path string true "Category id"
 // @param payload body requestmodel.SubCategoryBodyCreate true "Payload"
-// @success 200 {object} responsemodel.ResponseCreate
+// @success 200 {object} response.ResponseCreate
 // @router /categories/{id}/sub-categories [post]
 func (Category) CreateSubCategory(c echo.Context) error {
 	var (
@@ -172,7 +173,7 @@ func (Category) CreateSubCategory(c echo.Context) error {
 		return response.R400(c, nil, err.Error())
 	}
 
-	return response.R200(c, responsemodel.ResponseCreate{ID: result}, "")
+	return response.R200(c, response.ResponseCreate{ID: result}, "")
 }
 
 // SubCategoryAll godoc
