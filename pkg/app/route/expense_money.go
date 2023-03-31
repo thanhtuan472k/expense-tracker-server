@@ -19,7 +19,7 @@ func expenseMoney(e *echo.Group) {
 	g.POST("", h.Create, v.Create)
 
 	// Update ...
-	g.PUT("/:id", h.Update, v.Detail)
+	g.PUT("/:id", h.Update, v.Update, v.Detail)
 
 	// All ...
 	g.GET("", h.All, v.All)
