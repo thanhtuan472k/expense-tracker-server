@@ -53,3 +53,17 @@ func (s categoryImplement) findDocCategoryTypeIncomeAvailableByID(ctx context.Co
 	}
 	return
 }
+
+// findDocCategoryTypeExpenseAvailableByID ...
+func (s categoryImplement) findDocCategoryTypeExpenseAvailableByID(ctx context.Context, id primitive.ObjectID) (doc mgexpense.Category, err error) {
+	var (
+		d    = dao.Category()
+		cond = bson.D{{"_id", id}}
+	)
+
+	doc = d.FindOneByCondition(ctx, cond)
+	if !doc.IsCategoryAvailableByTypeExpense() {
+		err = errors.New(errorcode.CategoryIsInvalid)
+	}
+	return
+}

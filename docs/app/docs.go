@@ -139,7 +139,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/responsemodel.ResponseCreate"
+                            "$ref": "#/definitions/response.ResponseCreate"
                         }
                     }
                 }
@@ -217,7 +217,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/responsemodel.ResponseUpdate"
+                            "$ref": "#/definitions/response.ResponseUpdate"
                         }
                     }
                 }
@@ -301,7 +301,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/responsemodel.ResponseCreate"
+                            "$ref": "#/definitions/response.ResponseCreate"
                         }
                     }
                 }
@@ -379,7 +379,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/responsemodel.ResponseUpdate"
+                            "$ref": "#/definitions/response.ResponseUpdate"
                         }
                     }
                 }
@@ -496,10 +496,38 @@ const docTemplate = `{
     },
     "definitions": {
         "requestmodel.ExpenseMoneyBodyCreate": {
-            "type": "object"
+            "type": "object",
+            "properties": {
+                "category": {
+                    "type": "string"
+                },
+                "money": {
+                    "type": "number"
+                },
+                "note": {
+                    "type": "string"
+                },
+                "subCategory": {
+                    "type": "string"
+                }
+            }
         },
         "requestmodel.ExpenseMoneyBodyUpdate": {
-            "type": "object"
+            "type": "object",
+            "properties": {
+                "category": {
+                    "type": "string"
+                },
+                "money": {
+                    "type": "number"
+                },
+                "note": {
+                    "type": "string"
+                },
+                "subCategory": {
+                    "type": "string"
+                }
+            }
         },
         "requestmodel.IncomeMoneyBodyCreate": {
             "type": "object",
@@ -560,7 +588,7 @@ const docTemplate = `{
                 }
             }
         },
-        "responsemodel.ResponseCreate": {
+        "response.ResponseCreate": {
             "type": "object",
             "properties": {
                 "_id": {
@@ -568,7 +596,7 @@ const docTemplate = `{
                 }
             }
         },
-        "responsemodel.ResponseUpdate": {
+        "response.ResponseUpdate": {
             "type": "object",
             "properties": {
                 "_id": {

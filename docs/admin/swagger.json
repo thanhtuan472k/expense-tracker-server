@@ -97,7 +97,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/responsemodel.ResponseCreate"
+                            "$ref": "#/definitions/response.ResponseCreate"
                         }
                     }
                 }
@@ -222,10 +222,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/responsemodel.ResponseChangeStatus"
-                        }
+                        "description": "OK"
                     }
                 }
             }
@@ -325,7 +322,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/responsemodel.ResponseCreate"
+                            "$ref": "#/definitions/response.ResponseCreate"
                         }
                     }
                 }
@@ -507,10 +504,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/responsemodel.ResponseSubCategoryAdmin"
-                        }
+                        "description": "OK"
                     }
                 }
             },
@@ -553,7 +547,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/responsemodel.ResponseCreate"
+                            "$ref": "#/definitions/response.ResponseCreate"
                         }
                     }
                 }
@@ -597,10 +591,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/responsemodel.ResponseChangeStatus"
-                        }
+                        "description": "OK"
                     }
                 }
             }
@@ -697,6 +688,14 @@
                 }
             }
         },
+        "response.ResponseCreate": {
+            "type": "object",
+            "properties": {
+                "_id": {
+                    "type": "string"
+                }
+            }
+        },
         "responsemodel.ResponseCategoryAdmin": {
             "type": "object",
             "properties": {
@@ -734,25 +733,6 @@
                 },
                 "total": {
                     "type": "integer"
-                }
-            }
-        },
-        "responsemodel.ResponseChangeStatus": {
-            "type": "object",
-            "properties": {
-                "_id": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "string"
-                }
-            }
-        },
-        "responsemodel.ResponseCreate": {
-            "type": "object",
-            "properties": {
-                "_id": {
-                    "type": "string"
                 }
             }
         },

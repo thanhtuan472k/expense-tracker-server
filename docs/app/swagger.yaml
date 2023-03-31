@@ -1,8 +1,26 @@
 basePath: /app/expense
 definitions:
   requestmodel.ExpenseMoneyBodyCreate:
+    properties:
+      category:
+        type: string
+      money:
+        type: number
+      note:
+        type: string
+      subCategory:
+        type: string
     type: object
   requestmodel.ExpenseMoneyBodyUpdate:
+    properties:
+      category:
+        type: string
+      money:
+        type: number
+      note:
+        type: string
+      subCategory:
+        type: string
     type: object
   requestmodel.IncomeMoneyBodyCreate:
     properties:
@@ -42,12 +60,12 @@ definitions:
       phone:
         type: string
     type: object
-  responsemodel.ResponseCreate:
+  response.ResponseCreate:
     properties:
       _id:
         type: string
     type: object
-  responsemodel.ResponseUpdate:
+  response.ResponseUpdate:
     properties:
       _id:
         type: string
@@ -135,7 +153,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/responsemodel.ResponseCreate'
+            $ref: '#/definitions/response.ResponseCreate'
       security:
       - ApiKeyAuth: []
       summary: Create
@@ -184,7 +202,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/responsemodel.ResponseUpdate'
+            $ref: '#/definitions/response.ResponseUpdate'
       security:
       - ApiKeyAuth: []
       summary: Update
@@ -235,7 +253,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/responsemodel.ResponseCreate'
+            $ref: '#/definitions/response.ResponseCreate'
       security:
       - ApiKeyAuth: []
       summary: Create
@@ -284,7 +302,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/responsemodel.ResponseUpdate'
+            $ref: '#/definitions/response.ResponseUpdate'
       security:
       - ApiKeyAuth: []
       summary: Update

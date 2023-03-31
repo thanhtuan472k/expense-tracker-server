@@ -5,6 +5,7 @@ import (
 	"expense-tracker-server/external/util/echocontext"
 	"expense-tracker-server/pkg/admin/errorcode"
 	requestmodel "expense-tracker-server/pkg/admin/model/request"
+	querymodel "expense-tracker-server/pkg/app/model/query"
 	"github.com/labstack/echo/v4"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
@@ -33,7 +34,7 @@ func (Category) Create(next echo.HandlerFunc) echo.HandlerFunc {
 // All ...
 func (Category) All(next echo.HandlerFunc) echo.HandlerFunc {
 	return func(c echo.Context) error {
-		var query requestmodel.CategoryAll
+		var query querymodel.CategoryAll
 
 		if err := c.Bind(&query); err != nil {
 			return response.R400(c, nil, "")

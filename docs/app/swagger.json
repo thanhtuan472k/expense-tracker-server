@@ -131,7 +131,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/responsemodel.ResponseCreate"
+                            "$ref": "#/definitions/response.ResponseCreate"
                         }
                     }
                 }
@@ -209,7 +209,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/responsemodel.ResponseUpdate"
+                            "$ref": "#/definitions/response.ResponseUpdate"
                         }
                     }
                 }
@@ -293,7 +293,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/responsemodel.ResponseCreate"
+                            "$ref": "#/definitions/response.ResponseCreate"
                         }
                     }
                 }
@@ -371,7 +371,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/responsemodel.ResponseUpdate"
+                            "$ref": "#/definitions/response.ResponseUpdate"
                         }
                     }
                 }
@@ -488,10 +488,38 @@
     },
     "definitions": {
         "requestmodel.ExpenseMoneyBodyCreate": {
-            "type": "object"
+            "type": "object",
+            "properties": {
+                "category": {
+                    "type": "string"
+                },
+                "money": {
+                    "type": "number"
+                },
+                "note": {
+                    "type": "string"
+                },
+                "subCategory": {
+                    "type": "string"
+                }
+            }
         },
         "requestmodel.ExpenseMoneyBodyUpdate": {
-            "type": "object"
+            "type": "object",
+            "properties": {
+                "category": {
+                    "type": "string"
+                },
+                "money": {
+                    "type": "number"
+                },
+                "note": {
+                    "type": "string"
+                },
+                "subCategory": {
+                    "type": "string"
+                }
+            }
         },
         "requestmodel.IncomeMoneyBodyCreate": {
             "type": "object",
@@ -552,7 +580,7 @@
                 }
             }
         },
-        "responsemodel.ResponseCreate": {
+        "response.ResponseCreate": {
             "type": "object",
             "properties": {
                 "_id": {
@@ -560,7 +588,7 @@
                 }
             }
         },
-        "responsemodel.ResponseUpdate": {
+        "response.ResponseUpdate": {
             "type": "object",
             "properties": {
                 "_id": {

@@ -105,7 +105,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/responsemodel.ResponseCreate"
+                            "$ref": "#/definitions/response.ResponseCreate"
                         }
                     }
                 }
@@ -230,10 +230,7 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/responsemodel.ResponseChangeStatus"
-                        }
+                        "description": "OK"
                     }
                 }
             }
@@ -333,7 +330,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/responsemodel.ResponseCreate"
+                            "$ref": "#/definitions/response.ResponseCreate"
                         }
                     }
                 }
@@ -515,10 +512,7 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/responsemodel.ResponseSubCategoryAdmin"
-                        }
+                        "description": "OK"
                     }
                 }
             },
@@ -561,7 +555,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/responsemodel.ResponseCreate"
+                            "$ref": "#/definitions/response.ResponseCreate"
                         }
                     }
                 }
@@ -605,10 +599,7 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/responsemodel.ResponseChangeStatus"
-                        }
+                        "description": "OK"
                     }
                 }
             }
@@ -705,6 +696,14 @@ const docTemplate = `{
                 }
             }
         },
+        "response.ResponseCreate": {
+            "type": "object",
+            "properties": {
+                "_id": {
+                    "type": "string"
+                }
+            }
+        },
         "responsemodel.ResponseCategoryAdmin": {
             "type": "object",
             "properties": {
@@ -742,25 +741,6 @@ const docTemplate = `{
                 },
                 "total": {
                     "type": "integer"
-                }
-            }
-        },
-        "responsemodel.ResponseChangeStatus": {
-            "type": "object",
-            "properties": {
-                "_id": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "string"
-                }
-            }
-        },
-        "responsemodel.ResponseCreate": {
-            "type": "object",
-            "properties": {
-                "_id": {
-                    "type": "string"
                 }
             }
         },
