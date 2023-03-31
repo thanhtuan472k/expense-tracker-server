@@ -78,10 +78,10 @@ func (s expenseMoneyImplement) Create(ctx context.Context, userID primitive.Obje
 // Update ...
 func (s expenseMoneyImplement) Update(ctx context.Context, userID, expenseID primitive.ObjectID, payload requestmodel.ExpenseMoneyBodyUpdate) (result string, err error) {
 	// Find expenseMoney
-	//expenseMoney, err := s.FindByID(ctx, expenseID)
-	//if err != nil {
-	//	return
-	//}
+	expenseMoney, err := s.FindByID(ctx, expenseID)
+	if err != nil {
+		return
+	}
 
 	// Convert payload string to ObjectId
 	categoryID, _ := mongodb.NewIDFromString(payload.Category)
@@ -120,7 +120,7 @@ func (s expenseMoneyImplement) Update(ctx context.Context, userID, expenseID pri
 	}
 
 	// Response
-	result = expenseID.Hex()
+	result = expenseMoney.ID.Hex()
 	return
 }
 
