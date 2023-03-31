@@ -6,6 +6,8 @@ import (
 	mgexpense "expense-tracker-server/external/model/mg/expense"
 	"expense-tracker-server/external/mongodb"
 	"expense-tracker-server/external/util/mgquerry"
+	"expense-tracker-server/external/util/pagetoken"
+	"expense-tracker-server/external/util/ptime"
 	"expense-tracker-server/pkg/app/dao"
 	"expense-tracker-server/pkg/app/errorcode"
 	requestmodel "expense-tracker-server/pkg/app/model/request"
@@ -126,14 +128,57 @@ func (s expenseMoneyImplement) Update(ctx context.Context, userID, expenseID pri
 
 // All ...
 func (s expenseMoneyImplement) All(ctx context.Context, q mgquerry.AppQuery, userID primitive.ObjectID) (result responsemodel.ResponseExpenseMoneyAll, err error) {
-	//TODO implement me
-	panic("implement me")
+	var (
+		d    = dao.ExpenseMoney()
+		cond = bson.D{
+			{"user", userID},
+		}
+	)
+
+	// Assign query
+	s.assignQueryExpenseMoney(&q, &cond)
+
+	// Assign sort
+	s.assignQuerySort(&q)
+
+	// Init data
+	var list = make([]responsemodel.ResponseExpenseMoneyInfo, 0)
+
+	// Find docs
+	docs := d.FindByCondition(ctx, cond, q.GetFindOptionsWithPage())
+	for _, doc := range docs {
+		list = append(list, s.getExpenseMoneyInfo(ctx, doc))
+	}
+
+	// Page token
+	total := len(list)
+	endData := total < int(q.Limit)
+	var nextPageToken = ""
+	if total == int(q.Limit) {
+		nextPageToken = pagetoken.PageTokenUsingPage(int(q.Page) + 1)
+	}
+
+	// Response
+	result = responsemodel.ResponseExpenseMoneyAll{
+		List:          list,
+		EndData:       endData,
+		NextPageToken: nextPageToken,
+		Total:         int64(total),
+	}
+	return
 }
 
 // Detail ...
 func (s expenseMoneyImplement) Detail(ctx context.Context, id primitive.ObjectID) (result responsemodel.ResponseExpenseMoneyInfo, err error) {
-	//TODO implement me
-	panic("implement me")
+	// Find expenseMoney
+	expenseMoney, err := s.FindByID(ctx, id)
+	if err != nil {
+		return
+	}
+
+	// Response
+	result = s.getExpenseMoneyInfo(ctx, expenseMoney)
+	return
 }
 
 // FindByID ...
@@ -150,4 +195,48 @@ func (s expenseMoneyImplement) FindByID(ctx context.Context, id primitive.Object
 	}
 	result = expenseMoney
 	return
+}
+
+//
+// PRIVATE METHODS
+//
+
+// assignQueryExpenseMoney ...
+func (s expenseMoneyImplement) assignQueryExpenseMoney(q *mgquerry.AppQuery, cond *bson.D) {
+	q.ExpenseTracker.AssignFromToAt(cond)
+}
+
+// assignQuerySort ...
+func (s expenseMoneyImplement) assignQuerySort(q *mgquerry.AppQuery) {
+	switch q.SortString {
+	case "created_at_first":
+		q.SortInterface = bson.D{
+			{"createdAt", 1},
+			{"_id", 1},
+		}
+	default:
+		q.SortInterface = bson.D{
+			{"createdAt", 1},
+			{"id", 1},
+		}
+	}
+}
+
+// getExpenseMoneyInfo ...
+func (s expenseMoneyImplement) getExpenseMoneyInfo(ctx context.Context, doc mgexpense.ExpenseMoney) responsemodel.ResponseExpenseMoneyInfo {
+	return responsemodel.ResponseExpenseMoneyInfo{
+		ID: doc.ID.Hex(),
+		Category: mgexpense.CategoryShort{
+			ID:   doc.Category.ID,
+			Name: doc.Category.Name,
+		},
+		SubCategory: mgexpense.SubCategoryShort{
+			ID:   doc.SubCategory.ID,
+			Name: doc.SubCategory.Name,
+		},
+		Money:     doc.Money,
+		Note:      doc.Note,
+		CreatedAt: ptime.TimeResponseInit(doc.CreatedAt),
+		UpdatedAt: ptime.TimeResponseInit(doc.UpdatedAt),
+	}
 }

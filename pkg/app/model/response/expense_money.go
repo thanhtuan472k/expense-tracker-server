@@ -15,11 +15,11 @@ type ResponseExpenseMoneyAll struct {
 
 // ResponseExpenseMoneyInfo ...
 type ResponseExpenseMoneyInfo struct {
-	ID          string                  `json:"_id"`
-	Category    mgexpense.CategoryShort `json:"category"`
-	SubCategory mgexpense.SubCategory   `json:"subCategory"`
-	Money       float64                 `json:"money"`
-	Note        string                  `json:"note"`
-	CreatedAt   *ptime.TimeResponse     `json:"createdAt"`
-	UpdatedAt   *ptime.TimeResponse     `json:"updatedAt"`
+	ID          string                     `json:"_id"`
+	Category    mgexpense.CategoryShort    `json:"category"`
+	SubCategory mgexpense.SubCategoryShort `json:"subCategory"`
+	Money       float64                    `json:"money"`
+	Note        string                     `json:"note"`
+	CreatedAt   *ptime.TimeResponse        `json:"createdAt"`
+	UpdatedAt   *ptime.TimeResponse        `json:"updatedAt"`
 }
