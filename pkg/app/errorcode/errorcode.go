@@ -20,5 +20,5 @@ func Init() {
 	response.AddListCodes(incomeMoney)
 
 	// Code from 600 -> 699
-	
+	response.AddListCodes(expenseMoney)
 }

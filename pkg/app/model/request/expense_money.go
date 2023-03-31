@@ -44,9 +44,30 @@ func (m ExpenseMoneyBodyCreate) ConvertToBSON(userID primitive.ObjectID, categor
 
 // ExpenseMoneyBodyUpdate ...
 type ExpenseMoneyBodyUpdate struct {
+	Money       float64 `json:"money"`
+	Category    string  `json:"category"`
+	SubCategory string  `json:"subCategory"`
+	Note        string  `json:"note"`
 }
 
 // Validate ...
 func (m ExpenseMoneyBodyUpdate) Validate() error {
 	return validation.ValidateStruct(&m)
+}
+
+// ConvertToBSON ...
+func (m ExpenseMoneyBodyUpdate) ConvertToBSON(category mgexpense.Category, subCategory mgexpense.SubCategory) mgexpense.ExpenseMoney {
+	return mgexpense.ExpenseMoney{
+		Category: mgexpense.CategoryShort{
+			ID:   category.ID,
+			Name: category.Name,
+		},
+		SubCategory: mgexpense.SubCategoryShort{
+			ID:   subCategory.ID,
+			Name: subCategory.Name,
+		},
+		Money:     m.Money,
+		Note:      m.Note,
+		UpdatedAt: ptime.Now(),
+	}
 }
