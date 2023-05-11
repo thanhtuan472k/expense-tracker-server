@@ -104,3 +104,11 @@
 2. Write some end-to-end tests
 3. Build and deploy to the cloud (AWS, EC2)
 4. Upload image
+
+### Swagger UI
+
+1. API Admin
+   ![API Admin](image/API-Admin.png)
+
+2. API Wed/App
+   ![API Web - App](image/API-App.png)
