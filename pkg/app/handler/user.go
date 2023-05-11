@@ -58,7 +58,7 @@ func (User) Login(c echo.Context) error {
 }
 
 // GetMe godoc
-// @tags Staff
+// @tags User
 // @summary GetMe
 // @id user-get-me
 // @security ApiKeyAuth
