@@ -355,7 +355,7 @@ paths:
       - ApiKeyAuth: []
       summary: GetMe
       tags:
-      - Staff
+      - User
   /users/register:
     post:
       consumes:

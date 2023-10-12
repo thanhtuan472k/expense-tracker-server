@@ -451,7 +451,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Staff"
+                    "User"
                 ],
                 "summary": "GetMe",
                 "operationId": "user-get-me",
