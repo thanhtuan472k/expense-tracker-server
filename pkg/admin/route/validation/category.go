@@ -4,8 +4,8 @@ import (
 	"expense-tracker-server/external/response"
 	"expense-tracker-server/external/util/echocontext"
 	"expense-tracker-server/pkg/admin/errorcode"
+	querymodel "expense-tracker-server/pkg/admin/model/query"
 	requestmodel "expense-tracker-server/pkg/admin/model/request"
-	querymodel "expense-tracker-server/pkg/app/model/query"
 	"github.com/labstack/echo/v4"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
